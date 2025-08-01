@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { 
   PhoneIcon, 
-  EnvelopeIcon, 
-  ClockIcon,
-  CheckCircleIcon,
-  ExclamationTriangleIcon
+  EnvelopeIcon,
+  CheckCircleIcon
 } from '@heroicons/react/24/outline';
 
 interface FormData {
@@ -17,52 +15,10 @@ interface FormData {
 }
 
 const CTA = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 7,
-    hours: 8,
-    minutes: 0,
-    seconds: 0
-  });
-  
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
-
-  // Countdown timer effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prevTime => {
-        let { days, hours, minutes, seconds } = prevTime;
-        
-        if (seconds > 0) {
-          seconds--;
-        } else {
-          seconds = 59;
-          if (minutes > 0) {
-            minutes--;
-          } else {
-            minutes = 59;
-            if (hours > 0) {
-              hours--;
-            } else {
-              hours = 23;
-              if (days > 0) {
-                days--;
-              } else {
-                // Reset timer when it reaches 0
-                return { days: 7, hours: 8, minutes: 0, seconds: 0 };
-              }
-            }
-          }
-        }
-        
-        return { days, hours, minutes, seconds };
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -87,116 +43,71 @@ const CTA = () => {
         setIsSubmitted(true);
         reset();
         
-        // WhatsApp fallback for immediate contact
-        const whatsappMessage = `¡Hola! Solicito cotización gratuita para limpieza de piscina.%0A%0ANombre: ${data.name}%0ATeléfono: ${data.phone}%0ATamaño: ${data.poolSize}%0AMensaje: ${data.message}`;
+        // WhatsApp contact
+        const whatsappMessage = `Hola, soy ${data.name}. Me interesa el servicio de mantenimiento de piscina. Mi teléfono: ${data.phone}`;
         setTimeout(() => {
-          window.open(`https://wa.me/51999888777?text=${whatsappMessage}`, '_blank');
+          window.open(`https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         }, 1000);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      // Fallback to WhatsApp if form fails
-      const whatsappMessage = `¡Hola! Solicito cotización gratuita para limpieza de piscina.%0A%0ANombre: ${data.name}%0ATeléfono: ${data.phone}`;
-      window.open(`https://wa.me/51999888777?text=${whatsappMessage}`, '_blank');
+      console.error('Error:', error);
+      // Fallback to WhatsApp
+      const whatsappMessage = `Hola, soy ${data.name}. Me interesa el servicio de mantenimiento de piscina.`;
+      window.open(`https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     }
     
     setIsSubmitting(false);
-    
-    // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   const openWhatsApp = () => {
     const phone = "51999888777";
-    const message = "Hola! Me interesa obtener una cotización gratuita para limpieza de piscina. ¿Podrían ayudarme?";
+    const message = "Hola, me interesa conocer más sobre el servicio de mantenimiento de piscinas";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
   return (
-    <section id="contact" className="section-padding bg-primary-600 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-pattern opacity-10"></div>
-      
-      <div className="container-custom relative">
-        {/* Header */}
+    <section id="contact" className="section-padding bg-white">
+      <div className="container-custom">
+        {/* Simple Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 text-shadow-lg">
-            ¡AGENDA TU COTIZACIÓN GRATUITA HOY Y
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary-800 mb-4">
+            ¿Conversamos?
           </h2>
-          <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-yellow-300">
-            DISFRUTA DE UNA PISCINA PERFECTA ANTES DEL FIN DE SEMANA!
-          </h3>
+          <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
+            Cuéntanos sobre tu piscina y te daremos una cotización honesta
+          </p>
         </div>
 
-        {/* Urgency Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-16 text-center">
-          <div className="inline-flex items-center bg-accent-500 text-white px-6 py-3 rounded-full text-lg font-bold mb-6 animate-pulse">
-            <ExclamationTriangleIcon className="h-6 w-6 mr-2" />
-            OFERTA PARA PRIMEROS CLIENTES
-          </div>
-          
-          <h4 className="text-2xl md:text-3xl font-bold mb-8">
-            TERMINA EN:
-          </h4>
-          
-          {/* Countdown Timer */}
-          <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-4xl font-bold">
-                {timeLeft.days.toString().padStart(2, '0')}
-              </div>
-              <div className="text-sm opacity-75">DÍAS</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-4xl font-bold">
-                {timeLeft.hours.toString().padStart(2, '0')}
-              </div>
-              <div className="text-sm opacity-75">HORAS</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-4xl font-bold">
-                {timeLeft.minutes.toString().padStart(2, '0')}
-              </div>
-              <div className="text-sm opacity-75">MIN</div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-4xl font-bold">
-                {timeLeft.seconds.toString().padStart(2, '0')}
-              </div>
-              <div className="text-sm opacity-75">SEG</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-white rounded-3xl p-8 shadow-2xl">
-            <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Obtén tu cotización gratuita
-            </h4>
+          <div className="bg-secondary-50 rounded-lg p-8">
+            <h3 className="text-xl font-medium text-secondary-800 mb-6">
+              Déjanos un mensaje
+            </h3>
             
             {isSubmitted ? (
               <div className="text-center py-8">
-                <CheckCircleIcon className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                <h5 className="text-xl font-bold text-green-600 mb-2">
-                  ¡Mensaje enviado exitosamente!
-                </h5>
-                <p className="text-gray-600">
-                  Te contactaremos en menos de 2 horas para programar tu cotización gratuita.
+                <CheckCircleIcon className="h-12 w-12 text-primary-500 mx-auto mb-4" />
+                <h4 className="text-lg font-medium text-primary-600 mb-2">
+                  Mensaje enviado
+                </h4>
+                <p className="text-secondary-600 text-sm">
+                  Te contactaremos pronto por WhatsApp
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nombre completo *
+                  <label className="block text-sm font-medium text-secondary-700 mb-1">
+                    Nombre
                   </label>
                   <input
-                    {...register('name', { required: 'El nombre es requerido' })}
+                    {...register('name', { required: 'Tu nombre es necesario' })}
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
-                    placeholder="Tu nombre completo"
+                    className="w-full px-3 py-2 rounded border border-secondary-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-secondary-900"
+                    placeholder="Tu nombre"
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
@@ -204,20 +115,20 @@ const CTA = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Teléfono *
+                  <label className="block text-sm font-medium text-secondary-700 mb-1">
+                    Teléfono
                   </label>
                   <input
                     {...register('phone', { 
-                      required: 'El teléfono es requerido',
+                      required: 'Tu teléfono es necesario',
                       pattern: {
-                        value: /^[+]?[0-9\s\-()]{10,}$/,
-                        message: 'Ingresa un teléfono válido'
+                        value: /^[+]?[0-9\s\-()]{9,}$/,
+                        message: 'Formato: 999888777'
                       }
                     })}
                     type="tel"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
-                    placeholder="+51 999 888 777"
+                    className="w-full px-3 py-2 rounded border border-secondary-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-secondary-900"
+                    placeholder="999 888 777"
                   />
                   {errors.phone && (
                     <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
@@ -225,127 +136,102 @@ const CTA = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
+                  <label className="block text-sm font-medium text-secondary-700 mb-1">
+                    Email (opcional)
                   </label>
                   <input
-                    {...register('email', {
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Ingresa un email válido'
-                      }
-                    })}
+                    {...register('email')}
                     type="email"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
-                    placeholder="contacto@jefrapools.com"
+                    className="w-full px-3 py-2 rounded border border-secondary-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-secondary-900"
+                    placeholder="tu@email.com"
                   />
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondary-700 mb-1">
                     Tamaño de piscina
                   </label>
                   <select
                     {...register('poolSize')}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
+                    className="w-full px-3 py-2 rounded border border-secondary-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-secondary-900"
                   >
-                    <option value="">Selecciona el tamaño</option>
-                    <option value="pequeña">Pequeña (hasta 20m²)</option>
-                    <option value="mediana">Mediana (20-40m²)</option>
-                    <option value="grande">Grande (40m² o más)</option>
+                    <option value="">Elige una opción</option>
+                    <option value="pequeña">Pequeña</option>
+                    <option value="mediana">Mediana</option>
+                    <option value="grande">Grande</option>
                     <option value="no-se">No estoy seguro</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Mensaje adicional
+                  <label className="block text-sm font-medium text-secondary-700 mb-1">
+                    Cuéntanos un poco más
                   </label>
                   <textarea
                     {...register('message')}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 resize-none"
-                    placeholder="Cuéntanos sobre el estado actual de tu piscina o cualquier pregunta específica..."
+                    rows={3}
+                    className="w-full px-3 py-2 rounded border border-secondary-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-secondary-900 resize-none"
+                    placeholder="¿Cómo está tu piscina actualmente?"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full btn-cta text-lg ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  className={`w-full px-6 py-3 bg-accent-500 hover:bg-accent-600 text-white rounded font-medium transition-colors duration-200 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  {isSubmitting ? 'Enviando...' : '🏊‍♀️ Obtener Cotización Gratis'}
+                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
                 </button>
               </form>
             )}
           </div>
 
-          {/* Contact Info & WhatsApp */}
+          {/* Contact Info */}
           <div className="space-y-8">
-            {/* Contact Methods */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8">
-              <h4 className="text-2xl font-bold mb-6 text-center">
-                O contáctanos directamente
-              </h4>
+            <div>
+              <h3 className="text-xl font-medium text-secondary-800 mb-6">
+                O llámanos directamente
+              </h3>
               
-              <div className="space-y-6">
-                <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                  <PhoneIcon className="h-8 w-8 mr-4 text-yellow-300" />
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <PhoneIcon className="h-5 w-5 mr-3 text-primary-600" />
                   <div>
-                    <div className="font-bold text-lg">+51 999 888 777</div>
-                    <div className="text-sm opacity-75">Disponible 7 días • 8AM-6PM</div>
+                    <div className="font-medium text-secondary-800">+51 999 888 777</div>
+                    <div className="text-sm text-secondary-600">Lunes a sábado, 8am-6pm</div>
                   </div>
                 </div>
                 
-                <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                  <EnvelopeIcon className="h-8 w-8 mr-4 text-yellow-300" />
+                <div className="flex items-center">
+                  <EnvelopeIcon className="h-5 w-5 mr-3 text-primary-600" />
                   <div>
-                    <div className="font-bold text-lg">contacto@jefrapools.com</div>
-                    <div className="text-sm opacity-75">Respuesta en 2 horas o menos</div>
+                    <div className="font-medium text-secondary-800">contacto@jefrapools.com</div>
+                    <div className="text-sm text-secondary-600">Respuesta en el día</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* WhatsApp CTA */}
-            <div className="bg-green-500 rounded-3xl p-8 text-center shadow-2xl">
-              <div className="text-4xl mb-4">📱</div>
-              <h4 className="text-2xl font-bold mb-4">
-                ¿Prefieres WhatsApp?
+            {/* WhatsApp Option */}
+            <div className="bg-primary-50 rounded-lg p-6">
+              <h4 className="font-medium text-secondary-800 mb-3">
+                Preferimos WhatsApp
               </h4>
-              <p className="mb-6 opacity-90">
-                Chatea con nosotros ahora y obtén respuestas instantáneas
+              <p className="text-sm text-secondary-600 mb-4">
+                Es más fácil coordinar y enviarte fotos del progreso
               </p>
               <button
                 onClick={openWhatsApp}
-                className="bg-white text-green-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg"
+                className="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition-colors duration-200"
               >
-                💬 Chatear por WhatsApp
+                Escribir por WhatsApp
               </button>
             </div>
 
-            {/* Guarantee */}
-            <div className="bg-yellow-400 text-gray-900 rounded-3xl p-8 text-center">
-              <div className="text-4xl mb-4">🛡️</div>
-              <h4 className="text-xl font-bold mb-4">
-                Garantía de Satisfacción 100%
-              </h4>
-              <p className="text-sm">
-                Si no quedas completamente satisfecho con nuestro servicio, 
-                regresamos sin costo adicional hasta que quedes feliz.
-              </p>
+            {/* Simple promise */}
+            <div className="text-center text-sm text-secondary-600">
+              <p>Te contactaremos dentro del día para coordinar una visita</p>
             </div>
-          </div>
-        </div>
-
-        {/* Final CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-8 py-4 rounded-full">
-            <ClockIcon className="h-6 w-6 mr-2" />
-            <span className="font-medium">Respuesta garantizada en menos de 2 horas</span>
           </div>
         </div>
       </div>

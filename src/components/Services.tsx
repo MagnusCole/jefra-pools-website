@@ -2,59 +2,46 @@ import {
   SparklesIcon, 
   WrenchScrewdriverIcon, 
   BeakerIcon,
-  CheckIcon,
-  CurrencyDollarIcon
+  CheckIcon
 } from '@heroicons/react/24/outline';
 
 const Services = () => {
   const services = [
     {
       icon: SparklesIcon,
-      title: "Limpieza Semanal Premium",
-      price: "Desde S/ 200 soles",
-      description: "Servicio completo para piscinas residenciales en La Molina",
+      title: "Limpieza semanal",
+      price: "Desde S/200",
+      description: "Mantenimiento regular para tu piscina familiar",
       features: [
-        "Aspirado completo del fondo y paredes",
-        "Limpieza de línea de flotación",
-        "Vaciado y limpieza de skimmers",
-        "Balanceado químico profesional",
-        "Revisión de equipos de filtración",
-        "Reporte fotográfico del trabajo"
-      ],
-      bgColor: "bg-primary-500",
-      popular: true
+        "Aspirado de fondo y paredes",
+        "Limpieza de línea de flotación", 
+        "Balanceado químico",
+        "Revisión de equipos"
+      ]
     },
     {
       icon: WrenchScrewdriverIcon,
-      title: "Equipos y Reparaciones",
-      price: "Cotización personalizada",
-      description: "Instalación y reparación de equipos con garantía",
+      title: "Reparaciones",
+      price: "Según necesidad",
+      description: "Arreglos y mejoras cuando las necesites",
       features: [
-        "Bombas de alta eficiencia energética",
-        "Sistemas de filtración modernos",
-        "Instalación eléctrica certificada",
-        "Automatización y control remoto",
-        "Garantía de 2 años en equipos",
-        "Mantenimiento preventivo incluido"
-      ],
-      bgColor: "bg-secondary-500",
-      popular: false
+        "Bombas y filtros",
+        "Reparaciones eléctricas",
+        "Automatización básica",
+        "Garantía incluida"
+      ]
     },
     {
       icon: BeakerIcon,
-      title: "Químicos Premium",
-      price: "Incluido en servicio",
-      description: "Productos de primera calidad, seguros para toda la familia",
+      title: "Químicos seguros",
+      price: "Incluido",
+      description: "Productos de calidad para toda la familia",
       features: [
-        "Químicos importados certificados",
-        "Productos biodegradables y seguros",
+        "Certificados y seguros",
         "Balanceado perfecto del pH",
-        "Desinfección total sin irritaciones",
-        "Seguro para niños y mascotas",
-        "Asesoría química especializada"
-      ],
-      bgColor: "bg-accent-500",
-      popular: false
+        "Seguros para niños",
+        "Asesoría incluida"
+      ]
     }
   ];
 
@@ -66,16 +53,15 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="section-padding bg-gray-50">
+    <section id="services" className="section-padding bg-white">
       <div className="container-custom">
-        {/* Header */}
+        {/* Simple Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-            NUESTROS <span className="text-gradient">SERVICIOS</span>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary-800 mb-4">
+            Nuestros servicios
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            <span className="font-bold text-primary-600">JefraPools</span> - Especialistas en mantenimiento de piscinas 
-            <span className="block mt-2">con más de 5 años de experiencia en La Molina</span>
+          <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
+            Servicios simples y confiables para el cuidado de tu piscina
           </p>
         </div>
 
@@ -86,111 +72,76 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className={`relative card hover:scale-105 transform transition-all duration-300 ${service.popular ? 'ring-4 ring-accent-400 ring-opacity-50' : ''}`}
+                className="bg-white border border-secondary-200 rounded-lg p-6 hover:shadow-sm transition-shadow duration-200"
               >
-                {service.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-accent-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                      ⭐ MÁS POPULAR
-                    </div>
-                  </div>
-                )}
-
-                <div className="text-center">
+                <div className="text-center mb-6">
                   {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-20 h-20 ${service.bgColor} rounded-2xl mb-6 shadow-lg`}>
-                    <IconComponent className="h-10 w-10 text-white" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 text-primary-600 mb-4">
+                    <IconComponent className="h-8 w-8" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-medium text-secondary-800 mb-2">
                     {service.title}
                   </h3>
 
                   {/* Price */}
-                  <div className="flex items-center justify-center mb-4">
-                    <CurrencyDollarIcon className="h-5 w-5 text-green-600 mr-1" />
-                    <span className="text-xl font-bold text-green-600">
-                      {service.price}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 mb-6 text-lg">
-                    {service.description}
+                  <p className="text-lg font-medium text-accent-600 mb-2">
+                    {service.price}
                   </p>
 
-                  {/* Features */}
-                  <div className="text-left space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+                  {/* Description */}
+                  <p className="text-secondary-600 mb-6">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Features */}
+                <div className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-start text-sm">
+                      <CheckIcon className="h-4 w-4 text-primary-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-secondary-700">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Value Proposition */}
-        <div className="bg-primary-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
-          <h3 className="text-2xl md:text-3xl font-bold mb-6">
-            ¿Por qué elegir nuestros servicios?
+        {/* Simple Promise */}
+        <div className="bg-primary-50 rounded-lg p-8 text-center mb-12">
+          <h3 className="text-xl font-medium text-secondary-800 mb-4">
+            Nuestro compromiso
           </h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl mb-4">🎯</div>
-              <h4 className="text-xl font-bold mb-2">Resultados Garantizados</h4>
-              <p className="opacity-90">Si no quedas satisfecho, regresamos sin costo adicional</p>
+          <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <div className="text-2xl mb-2">🎯</div>
+              <p className="text-secondary-700">Trabajo bien hecho</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">⏰</div>
-              <h4 className="text-xl font-bold mb-2">Servicio Puntual</h4>
-              <p className="opacity-90">Llegamos siempre a tiempo, respetamos tu horario</p>
+            <div>
+              <div className="text-2xl mb-2">⏰</div>
+              <p className="text-secondary-700">Puntualidad</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">💰</div>
-              <h4 className="text-xl font-bold mb-2">Precio Justo</h4>
-              <p className="opacity-90">Sin sorpresas, precios transparentes y competitivos</p>
+            <div>
+              <div className="text-2xl mb-2">💰</div>
+              <p className="text-secondary-700">Precio justo</p>
             </div>
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* Gentle CTA */}
         <div className="text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-            ¿Listo para tener la piscina de tus sueños?
-          </h3>
-          
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Obtén una cotización personalizada completamente gratis. 
-            Sin compromisos, sin letra pequeña.
+          <p className="text-secondary-600 mb-6">
+            ¿Quieres conocer más detalles?
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="btn-cta text-lg"
-            >
-              🏊‍♀️ Cotización Gratis
-            </button>
-            <button 
-              onClick={() => scrollToSection('testimonials')}
-              className="btn-secondary text-lg"
-            >
-              Ver Testimonios
-            </button>
-          </div>
-
-          {/* Trust Badge */}
-          <div className="inline-flex items-center mt-8 bg-green-100 text-green-800 px-6 py-3 rounded-full">
-            <CheckIcon className="h-5 w-5 mr-2" />
-            <span className="font-medium">Respuesta garantizada en menos de 2 horas</span>
-          </div>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="inline-flex items-center px-6 py-3 bg-accent-500 hover:bg-accent-600 text-white rounded-lg font-medium transition-colors duration-200"
+          >
+            Hagamos una cotización
+          </button>
         </div>
       </div>
     </section>

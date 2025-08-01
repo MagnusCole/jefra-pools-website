@@ -21,33 +21,33 @@ export default {
           900: '#0c4a6e',  // Azul cristal profundo
           950: '#082f49',  // Azul cristal negro
         },
-        // ⚪ BLANCO/GRIS SECUNDARIO = Pureza/Limpieza
+        // ⚪ SAGE SECONDARY = Natural calm and simplicity (Wabi-sabi inspired)
         secondary: {
-          50: '#ffffff',   // Blanco puro
-          100: '#f8fafc',  // Blanco grisáceo muy claro
-          200: '#f1f5f9',  // Blanco grisáceo claro
-          300: '#e2e8f0',  // Gris muy claro
-          400: '#cbd5e1',  // Gris claro
-          500: '#94a3b8',  // Gris medio ✅ PROFESIONAL LIMPIO
-          600: '#64748b',  // Gris oscuro
-          700: '#475569',  // Gris carbón
-          800: '#334155',  // Gris muy oscuro
-          900: '#1e293b',  // Gris negro
-          950: '#0f172a',  // Negro suave
+          50: '#fafafa',   // Pure light
+          100: '#f4f5f6',  // Soft neutral
+          200: '#e8eaed',  // Gentle gray
+          300: '#d1d5db',  // Light stone
+          400: '#9ca3af',  // Soft stone
+          500: '#6b7280',  // Natural stone ✅ CALM PROFESSIONALISM
+          600: '#4b5563',  // Deep stone
+          700: '#374151',  // Charcoal
+          800: '#1f2937',  // Deep charcoal
+          900: '#111827',  // Near black
+          950: '#030712',  // Natural black
         },
-        // 🟡 AMARILLO ACCENT = Urgencia/CTA (Sin ser agresivo)
+        // 🟡 SOFT ACCENT = Natural warmth (Wabi-sabi inspired)
         accent: {
-          50: '#fffbeb',   // Amarillo muy claro
-          100: '#fef3c7',  // Amarillo claro
-          200: '#fde68a',  // Amarillo suave
-          300: '#fcd34d',  // Amarillo medio
-          400: '#fbbf24',  // Amarillo vibrante
-          500: '#f59e0b',  // Amarillo principal ✅ URGENCIA SUAVE
-          600: '#d97706',  // Amarillo fuerte
-          700: '#b45309',  // Amarillo oscuro
-          800: '#92400e',  // Amarillo muy oscuro
-          900: '#78350f',  // Amarillo profundo
-          950: '#451a03',  // Amarillo negro
+          50: '#fefdfb',   // Warm off-white
+          100: '#fef7ed',  // Soft cream
+          200: '#fde8cc',  // Gentle sand
+          300: '#fbd49a',  // Natural ochre
+          400: '#f8b968',  // Soft gold
+          500: '#e6a855',  // Muted earth tone ✅ NATURAL WARMTH
+          600: '#cd9042',  // Deeper earth
+          700: '#a67431',  // Rich earth
+          800: '#855d28',  // Dark earth
+          900: '#6b4a22',  // Deep earth
+          950: '#3d2a15',  // Earth shadow
         },
         // 🔴 ROJO PROBLEMA = Solo para mostrar "antes" (opcional)
         danger: {
