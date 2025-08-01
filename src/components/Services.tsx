@@ -10,28 +10,30 @@ const Services = () => {
   const services = [
     {
       icon: SparklesIcon,
-      title: "Limpieza semanal o quincenal",
-      price: "Desde $700 pesos",
-      description: "Eliminamos algas y mosquitos",
+      title: "Limpieza Semanal Premium",
+      price: "Desde S/ 200 soles",
+      description: "Servicio completo para piscinas residenciales en La Molina",
       features: [
-        "Aspirado completo del fondo",
-        "Limpieza de paredes y escalones",
-        "Vaciado de canastas skimmers",
+        "Aspirado completo del fondo y paredes",
         "Limpieza de línea de flotación",
-        "Revisión de sistema de filtración"
+        "Vaciado y limpieza de skimmers",
+        "Balanceado químico profesional",
+        "Revisión de equipos de filtración",
+        "Reporte fotográfico del trabajo"
       ],
       bgGradient: "from-blue-500 to-cyan-500",
       popular: true
     },
     {
       icon: WrenchScrewdriverIcon,
-      title: "Equipo profesional",
-      price: "Instalación incluida",
-      description: "Filtros, bombas y equipos nuevos, instalación en energía",
+      title: "Equipos y Reparaciones",
+      price: "Cotización personalizada",
+      description: "Instalación y reparación de equipos con garantía",
       features: [
-        "Bombas de alta eficiencia",
+        "Bombas de alta eficiencia energética",
         "Sistemas de filtración modernos",
-        "Instalación profesional certificada",
+        "Instalación eléctrica certificada",
+        "Automatización y control remoto",
         "Garantía de 2 años en equipos",
         "Mantenimiento preventivo incluido"
       ],
@@ -40,15 +42,16 @@ const Services = () => {
     },
     {
       icon: BeakerIcon,
-      title: "Químicos inofensivos",
-      price: "Mejor calidad",
-      description: "De la mejor calidad para proteger la salud",
+      title: "Químicos Premium",
+      price: "Incluido en servicio",
+      description: "Productos de primera calidad, seguros para toda la familia",
       features: [
-        "Productos biodegradables",
-        "Sin químicos agresivos",
+        "Químicos importados certificados",
+        "Productos biodegradables y seguros",
         "Balanceado perfecto del pH",
-        "Desinfección total garantizada",
-        "Seguro para niños y mascotas"
+        "Desinfección total sin irritaciones",
+        "Seguro para niños y mascotas",
+        "Asesoría química especializada"
       ],
       bgGradient: "from-purple-500 to-violet-500",
       popular: false
@@ -63,16 +66,16 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="section-padding bg-white">
+    <section id="services" className="section-padding bg-gray-50">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-            OFRECEMOS
+            NUESTROS <span className="text-gradient">SERVICIOS</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Servicios completos de limpieza y mantenimiento para que tu piscina 
-            esté siempre perfecta y lista para disfrutar
+            <span className="font-bold text-primary-600">JefraPools</span> - Especialistas en mantenimiento de piscinas 
+            <span className="block mt-2">con más de 5 años de experiencia en La Molina</span>
           </p>
         </div>
 

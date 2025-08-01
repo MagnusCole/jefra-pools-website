@@ -43,8 +43,8 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-8 max-w-3xl mx-auto font-medium leading-relaxed animate-slide-up">
-            Piscina libre de algas y bacterias, 
-            <span className="text-primary-600 font-semibold"> lista para las visitas</span>
+            Piscina libre de algas y bacterias en 
+            <span className="text-primary-600 font-semibold"> La Molina y alrededores</span>
           </p>
 
           {/* Value Propositions */}

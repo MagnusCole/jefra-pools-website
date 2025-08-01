@@ -3,25 +3,32 @@ import { StarIcon } from '@heroicons/react/24/solid';
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Juan Pérez",
-      location: "Profesional en Surco",
+      name: "Carmen Rodriguez",
+      location: "Los Fresnos, La Molina",
       rating: 5,
-      text: "No más agua turbia ni demonio Jefra Pools transformó mi piscina en La Molina en un paraíso seguro para mis hijos.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
-    },
-    {
-      name: "María López",
-      location: "en Miraflores",
-      rating: 5,
-      text: "Excelente servicio honesto y eficiente; adiós a los mosquitos y olores.",
+      text: "JefraPools transformó completamente nuestra piscina. Ahora es el lugar favorito de toda la familia. El servicio es impecable y muy profesional.",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Carlos Ramírez",
-      location: "Gerente en San Isidro",
+      name: "Roberto Mendoza",
+      location: "Rinconada del Lago, La Molina",
       rating: 5,
-      text: "Mi piscina en San Isidro luce impecable para eventos, gracias a su rapidez y profesionalismo.",
+      text: "Después de probar varios servicios, JefraPools es el único que mantiene mi piscina cristalina todo el año. Los recomiendo al 100%.",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
+    },
+    {
+      name: "Patricia Vega",
+      location: "Los Granados, La Molina", 
+      rating: 5,
+      text: "Mis hijos pueden nadar sin preocupaciones. El agua siempre está perfecta y sin químicos agresivos. Excelente servicio de JefraPools.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
+    },
+    {
+      name: "Diego Silva",
+      location: "Club La Molina",
+      rating: 5,
+      text: "Como administrador del club, confío en JefraPools para mantener nuestras piscinas en perfecto estado. Nunca hemos tenido problemas.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
     }
   ];
 
@@ -29,12 +36,12 @@ const Testimonials = () => {
     {
       before: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&w=400&q=80",
       after: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
-      location: "Residencia en La Molina"
+      location: "Residencia Los Fresnos, La Molina"
     },
     {
-      before: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&w=400&q=80",
+      before: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&w=400&q=80", 
       after: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixlib=rb-4.0.3&w=400&q=80",
-      location: "Club en San Borja"
+      location: "Torres de La Molina"
     }
   ];
 
@@ -66,10 +73,11 @@ const Testimonials = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-            ELLOS YA LO HAN PROBADO
+            NUESTROS <span className="text-gradient">CLIENTES</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Más de 100 familias confían en nosotros para mantener sus piscinas perfectas
+            Más de <span className="font-bold text-primary-600">200 familias en La Molina</span> confían en 
+            <span className="block mt-2">JefraPools para mantener sus piscinas perfectas</span>
           </p>
         </div>
 

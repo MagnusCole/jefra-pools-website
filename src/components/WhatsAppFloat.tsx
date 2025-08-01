@@ -1,6 +1,6 @@
 const WhatsAppFloat = () => {
-  const whatsappNumber = "5491234567890"; // Reemplazar con número real
-  const defaultMessage = "¡Hola! Me interesa conocer más sobre sus servicios de limpieza de piscinas. ¿Podrían enviarme una cotización?";
+  const whatsappNumber = "51987654321"; // Número de JefraPools Perú
+  const defaultMessage = "¡Hola JefraPools! Me interesa conocer más sobre sus servicios de limpieza de piscinas en La Molina. ¿Podrían enviarme una cotización gratuita?";
 
   const openWhatsApp = () => {
     const message = encodeURIComponent(defaultMessage);
