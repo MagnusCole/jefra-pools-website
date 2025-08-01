@@ -21,7 +21,7 @@ const Services = () => {
         "Revisión de equipos de filtración",
         "Reporte fotográfico del trabajo"
       ],
-      bgGradient: "from-blue-500 to-cyan-500",
+      bgColor: "bg-primary-500",
       popular: true
     },
     {
@@ -37,7 +37,7 @@ const Services = () => {
         "Garantía de 2 años en equipos",
         "Mantenimiento preventivo incluido"
       ],
-      bgGradient: "from-green-500 to-emerald-500",
+      bgColor: "bg-secondary-500",
       popular: false
     },
     {
@@ -53,7 +53,7 @@ const Services = () => {
         "Seguro para niños y mascotas",
         "Asesoría química especializada"
       ],
-      bgGradient: "from-purple-500 to-violet-500",
+      bgColor: "bg-accent-500",
       popular: false
     }
   ];
@@ -98,7 +98,7 @@ const Services = () => {
 
                 <div className="text-center">
                   {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${service.bgGradient} rounded-2xl mb-6 shadow-lg`}>
+                  <div className={`inline-flex items-center justify-center w-20 h-20 ${service.bgColor} rounded-2xl mb-6 shadow-lg`}>
                     <IconComponent className="h-10 w-10 text-white" />
                   </div>
 
@@ -136,7 +136,7 @@ const Services = () => {
         </div>
 
         {/* Value Proposition */}
-        <div className="bg-gradient-to-r from-primary-600 to-accent-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
+        <div className="bg-primary-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
           <h3 className="text-2xl md:text-3xl font-bold mb-6">
             ¿Por qué elegir nuestros servicios?
           </h3>

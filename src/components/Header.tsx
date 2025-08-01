@@ -22,17 +22,17 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-xl">P</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">PoolClean</span>
+            <span className="text-xl font-bold text-gray-900">JefraPools</span>
           </div>
 
           {/* Contact Info - Desktop */}
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center space-x-2 text-gray-600">
               <PhoneIcon className="h-5 w-5 text-primary-600" />
-              <span className="font-medium">+91 (123) 456-7890</span>
+              <span className="font-medium">+51 999 888 777</span>
             </div>
             <div className="text-sm text-gray-500">
               <span className="font-medium">7 días • 8AM-6PM</span>
@@ -70,7 +70,7 @@ const Header = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
               <div className="flex items-center space-x-2 px-3 py-2 text-gray-600">
                 <PhoneIcon className="h-5 w-5 text-primary-600" />
-                <span className="font-medium">+91 (123) 456-7890</span>
+                <span className="font-medium">+51 999 888 777</span>
               </div>
               <div className="px-3 py-2 text-sm text-gray-500">
                 <span className="font-medium">7 días • 8AM-6PM</span>

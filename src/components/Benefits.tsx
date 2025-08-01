@@ -13,37 +13,37 @@ const Benefits = () => {
       icon: SparklesIcon,
       title: "Piscina Siempre Lista",
       description: "Tu piscina perfecta para cuando lleguen las visitas. Sin preocupaciones, sin estrés.",
-      color: "from-blue-500 to-cyan-500"
+      color: "bg-primary-500"
     },
     {
       icon: HeartIcon,
       title: "Salud de tu Familia",
       description: "Agua cristalina y libre de bacterias. Tus hijos pueden nadar con total seguridad.",
-      color: "from-red-500 to-pink-500"
+      color: "bg-secondary-500"
     },
     {
       icon: UserGroupIcon,
       title: "Disfruta con Amigos",
       description: "Reuniones perfectas alrededor de una piscina impecable. Sé el anfitrión ideal.",
-      color: "from-purple-500 to-indigo-500"
+      color: "bg-accent-500"
     },
     {
       icon: ClockIcon,
       title: "Tiempo para Ti",
       description: "Olvídate del mantenimiento. Dedica tu tiempo libre a lo que realmente importa.",
-      color: "from-green-500 to-emerald-500"
+      color: "bg-primary-600"
     },
     {
       icon: ShieldCheckIcon,
       title: "Inversión Protegida",
       description: "Mantén el valor de tu propiedad con un mantenimiento profesional constante.",
-      color: "from-orange-500 to-amber-500"
+      color: "bg-secondary-600"
     },
     {
       icon: StarIcon,
       title: "Orgullo de Casa",
       description: "La piscina que siempre quisiste tener. Perfecta, limpia y lista para disfrutar.",
-      color: "from-yellow-500 to-orange-500"
+      color: "bg-accent-600"
     }
   ];
 
@@ -69,7 +69,7 @@ const Benefits = () => {
               className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-primary-200"
             >
               {/* Icon */}
-              <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${benefit.color} mb-6`}>
+              <div className={`inline-flex p-4 rounded-2xl ${benefit.color} mb-6`}>
                 <benefit.icon className="h-8 w-8 text-white" />
               </div>
 

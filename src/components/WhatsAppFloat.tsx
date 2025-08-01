@@ -1,5 +1,5 @@
 const WhatsAppFloat = () => {
-  const whatsappNumber = "51987654321"; // Número de JefraPools Perú
+  const whatsappNumber = "51999888777"; // Número de JefraPools Perú
   const defaultMessage = "¡Hola JefraPools! Me interesa conocer más sobre sus servicios de limpieza de piscinas en La Molina. ¿Podrían enviarme una cotización gratuita?";
 
   const openWhatsApp = () => {

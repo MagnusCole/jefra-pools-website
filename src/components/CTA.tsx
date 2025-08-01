@@ -90,14 +90,14 @@ const CTA = () => {
         // WhatsApp fallback for immediate contact
         const whatsappMessage = `¡Hola! Solicito cotización gratuita para limpieza de piscina.%0A%0ANombre: ${data.name}%0ATeléfono: ${data.phone}%0ATamaño: ${data.poolSize}%0AMensaje: ${data.message}`;
         setTimeout(() => {
-          window.open(`https://wa.me/5491234567890?text=${whatsappMessage}`, '_blank');
+          window.open(`https://wa.me/51999888777?text=${whatsappMessage}`, '_blank');
         }, 1000);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       // Fallback to WhatsApp if form fails
       const whatsappMessage = `¡Hola! Solicito cotización gratuita para limpieza de piscina.%0A%0ANombre: ${data.name}%0ATeléfono: ${data.phone}`;
-      window.open(`https://wa.me/5491234567890?text=${whatsappMessage}`, '_blank');
+      window.open(`https://wa.me/51999888777?text=${whatsappMessage}`, '_blank');
     }
     
     setIsSubmitting(false);
@@ -107,14 +107,14 @@ const CTA = () => {
   };
 
   const openWhatsApp = () => {
-    const phone = "5491234567890";
+    const phone = "51999888777";
     const message = "Hola! Me interesa obtener una cotización gratuita para limpieza de piscina. ¿Podrían ayudarme?";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-br from-primary-600 via-primary-700 to-accent-600 text-white relative overflow-hidden">
+    <section id="contact" className="section-padding bg-primary-600 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-pattern opacity-10"></div>
       
@@ -217,7 +217,7 @@ const CTA = () => {
                     })}
                     type="tel"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
-                    placeholder="+91 123 456 7890"
+                    placeholder="+51 999 888 777"
                   />
                   {errors.phone && (
                     <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
@@ -237,7 +237,7 @@ const CTA = () => {
                     })}
                     type="email"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900"
-                    placeholder="tu@email.com"
+                    placeholder="contacto@jefrapools.com"
                   />
                   {errors.email && (
                     <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
@@ -295,7 +295,7 @@ const CTA = () => {
                 <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-xl p-4">
                   <PhoneIcon className="h-8 w-8 mr-4 text-yellow-300" />
                   <div>
-                    <div className="font-bold text-lg">+91 (123) 456-7890</div>
+                    <div className="font-bold text-lg">+51 999 888 777</div>
                     <div className="text-sm opacity-75">Disponible 7 días • 8AM-6PM</div>
                   </div>
                 </div>
@@ -303,7 +303,7 @@ const CTA = () => {
                 <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-xl p-4">
                   <EnvelopeIcon className="h-8 w-8 mr-4 text-yellow-300" />
                   <div>
-                    <div className="font-bold text-lg">hello@reallygreat.com</div>
+                    <div className="font-bold text-lg">contacto@jefrapools.com</div>
                     <div className="text-sm opacity-75">Respuesta en 2 horas o menos</div>
                   </div>
                 </div>

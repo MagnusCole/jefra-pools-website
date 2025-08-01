@@ -12,46 +12,46 @@ interface GalleryImage {
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
-  // Placeholders para fotos reales de JefraPools
+  // Fotos reales de JefraPools - misma imagen perfecta para todas
   const galleryImages: GalleryImage[] = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Piscina limpia y cristalina mantenida por JefraPools en La Molina",
       title: "Piscina Residencial - La Molina",
       location: "Residencial Los Fresnos"
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1563996619-11ad6caa24e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Equipo profesional de JefraPools trabajando en limpieza",
       title: "Servicio Profesional",
       location: "Club La Molina"
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1571061140740-056a77ceb69a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Piscina de condominio mantenida por JefraPools",
       title: "Condominio Premium",
       location: "Torres de La Molina"
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1571061140740-f6e3ba2c6aa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Antes y después del servicio de JefraPools",
       title: "Transformación Completa",
       location: "Rinconada del Lago"
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1571061140740-f6e3ba2c6aa5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Piscina familiar perfectamente mantenida",
       title: "Piscina Familiar",
       location: "Los Granados"
     },
     {
       id: 6,
-      src: "https://images.unsplash.com/photo-1571061140740-f6e3ba2c6aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      src: "/pool-real.jpg",
       alt: "Equipo y químicos profesionales de JefraPools",
       title: "Equipos Profesionales",
       location: "Sede JefraPools"
@@ -85,7 +85,7 @@ const Gallery = () => {
                 className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
                   <h3 className="font-bold text-lg">{image.title}</h3>
                   <p className="text-sm opacity-90">{image.location}</p>

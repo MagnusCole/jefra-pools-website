@@ -34,13 +34,13 @@ const Testimonials = () => {
 
   const beforeAfterImages = [
     {
-      before: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&w=400&q=80",
-      after: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
+      before: "/pool-real.jpg",
+      after: "/pool-real.jpg",
       location: "Residencia Los Fresnos, La Molina"
     },
     {
-      before: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&w=400&q=80", 
-      after: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixlib=rb-4.0.3&w=400&q=80",
+      before: "/pool-real.jpg", 
+      after: "/pool-real.jpg",
       location: "Torres de La Molina"
     }
   ];
@@ -171,7 +171,7 @@ const Testimonials = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gradient-to-r from-primary-600 to-accent-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
+        <div className="bg-primary-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
           <h3 className="text-2xl md:text-3xl font-bold mb-8">
             Resultados que hablan por sí solos
           </h3>
