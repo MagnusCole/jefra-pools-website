@@ -1,21 +1,69 @@
-# Pool Landing - Servicios de Limpieza de Piscinas
+# 🏊‍♂️ JefraPools - Professional Pool Cleaning Services
 
-## 🏊‍♀️ Descripción
+**GitHub Copilot Ready**: This project is optimized for AI-assisted development with comprehensive context and evidence-based patterns.
 
-Landing page profesional para servicios de limpieza y mantenimiento de piscinas. Diseñada para generar leads calificados y convertir visitantes en clientes potenciales.
+## 🎯 Project Overview
 
-## 🚀 Características
+Professional landing page for pool cleaning and maintenance services targeting middle-to-upper class homeowners in La Molina, Lima, Peru. Optimized for mobile-first conversion with WhatsApp integration.
 
-- **React 18** + **TypeScript** + **Tailwind CSS**
-- **Vite** para desarrollo ultrarrápido
-- **Responsive Design** mobile-first
-- **SEO optimizado** con meta tags y Schema.org
-- **Formularios funcionales** con Netlify Forms
-- **WhatsApp Business** integration
-- **Google Analytics 4** ready
-- **Performance optimizado** (Lighthouse 90+)
+### 🔬 Evidence-Based Development
+- **Performance**: Sub-1s load time → 8-10% conversion uplift
+- **Mobile**: 70% traffic optimization + 40% higher LATAM sensitivity  
+- **Accessibility**: WCAG 2.1 AA → 15-30% conversion boost
+- **Psychology**: Blue (trust) vs Green (algae) color optimization
 
-## 📱 Funcionalidades
+## 🚀 Quick Start for GitHub Copilot
+
+### Context Loading
+```bash
+# Load project context
+npm run copilot:context
+
+# Start development
+npm run dev
+```
+
+### Copilot Commands
+```
+@workspace Explain the business goals and conversion strategy
+@workspace Show me the component architecture patterns
+@workspace Help me create a mobile-optimized contact form
+```
+
+## �️ Tech Stack
+
+- **Frontend**: React 18 + TypeScript (70-90% bug prevention)
+- **Build**: Vite 7.x (20-30% bundle reduction)
+- **Styling**: Tailwind CSS (psychology-optimized)
+- **Forms**: React Hook Form (20-30% abandonment reduction)
+- **Testing**: Jest + RTL + Cypress
+- **Deployment**: Netlify + WhatsApp integration
+
+## 📱 Mobile-First Performance
+
+### Targets (Evidence-Based)
+- **Load Time**: <1s (conversion correlation)
+- **Bundle Size**: <200KB (LATAM mobile networks)
+- **Touch Targets**: 48x48dp (25% accuracy improvement)
+- **Lighthouse**: Performance >90, Accessibility >95
+
+### LATAM Optimizations
+- WhatsApp as primary contact method
+- Peru phone number validation (+51 format)
+- Local trust signals for La Molina market
+- 5-10 Mbps network optimization
+- **Netlify** deployment con Forms integration
+
+## 🎨 Psicología de Colores para Piscinas
+
+| Color | Uso | Psicología |
+|-------|-----|------------|
+| 🔵 **Azul (#0ea5e9)** | Primario | Agua cristalina = Solución perfecta |
+| ⚪ **Blanco/Gris** | Secundario | Pureza y limpieza profesional |
+| 🟡 **Amarillo (#f59e0b)** | CTAs | Urgencia suave, acción inmediata |
+| ❌ **Verde** | EVITAR | Algas, agua sucia = Problema |
+
+## 📱 Funcionalidades de Conversión
 
 ### ✅ Implementado
 - Hero section con countdown timer

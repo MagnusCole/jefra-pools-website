@@ -9,7 +9,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "type-check": "tsc --noEmit",
+    "performance": "npm run build && npm run preview",
+    "copilot:context": "echo 'GitHub Copilot Context Loaded: JefraPools - Pool cleaning service in La Molina, Lima, Peru. React+TypeScript+Vite+Tailwind. Focus: conversion optimization, mobile-first, evidence-based decisions.'",
+    "help": "echo 'Available commands: dev, build, test, lint, type-check, performance, copilot:context'"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
