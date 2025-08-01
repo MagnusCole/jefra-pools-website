@@ -1,8 +1,10 @@
 {
-  "name": "pool-landing",
+  "name": "jefra-pools-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Professional pool cleaning and maintenance landing page",
+  "keywords": ["pool cleaning", "maintenance", "landing page", "react", "typescript"],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
