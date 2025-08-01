@@ -1,0 +1,219 @@
+import { StarIcon } from '@heroicons/react/24/solid';
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Juan Pérez",
+      location: "Profesional en Surco",
+      rating: 5,
+      text: "No más agua turbia ni demonio Jefra Pools transformó mi piscina en La Molina en un paraíso seguro para mis hijos.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
+    },
+    {
+      name: "María López",
+      location: "en Miraflores",
+      rating: 5,
+      text: "Excelente servicio honesto y eficiente; adiós a los mosquitos y olores.",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
+    },
+    {
+      name: "Carlos Ramírez",
+      location: "Gerente en San Isidro",
+      rating: 5,
+      text: "Mi piscina en San Isidro luce impecable para eventos, gracias a su rapidez y profesionalismo.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=150&h=150&fit=crop&crop=face"
+    }
+  ];
+
+  const beforeAfterImages = [
+    {
+      before: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&w=400&q=80",
+      after: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
+      location: "Residencia en La Molina"
+    },
+    {
+      before: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&w=400&q=80",
+      after: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixlib=rb-4.0.3&w=400&q=80",
+      location: "Club en San Borja"
+    }
+  ];
+
+  const renderStars = (rating: number) => {
+    return (
+      <div className="flex">
+        {[...Array(5)].map((_, i) => (
+          <StarIcon
+            key={i}
+            className={`h-5 w-5 ${
+              i < rating ? 'text-yellow-400' : 'text-gray-300'
+            }`}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section id="testimonials" className="section-padding bg-gray-50">
+      <div className="container-custom">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+            ELLOS YA LO HAN PROBADO
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Más de 100 familias confían en nosotros para mantener sus piscinas perfectas
+          </p>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="card bg-white hover:scale-105 transform transition-all duration-300">
+              <div className="text-center">
+                {/* Profile Image */}
+                <div className="relative mb-6">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-20 h-20 rounded-full mx-auto object-cover shadow-lg"
+                  />
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-1 shadow-lg">
+                    {renderStars(testimonial.rating)}
+                  </div>
+                </div>
+
+                {/* Testimonial Text */}
+                <blockquote className="text-gray-700 mb-6 italic text-lg leading-relaxed">
+                  "{testimonial.text}"
+                </blockquote>
+
+                {/* Author Info */}
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-bold text-gray-900 text-lg">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-gray-600">
+                    {testimonial.location}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Before/After Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12">
+            Transformaciones Reales
+          </h3>
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            {beforeAfterImages.map((project, index) => (
+              <div key={index} className="card bg-white">
+                <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">
+                  {project.location}
+                </h4>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Before */}
+                  <div>
+                    <div className="relative">
+                      <img
+                        src={project.before}
+                        alt="Antes de la limpieza"
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        ANTES
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* After */}
+                  <div>
+                    <div className="relative">
+                      <img
+                        src={project.after}
+                        alt="Después de la limpieza"
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <div className="absolute top-2 left-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        DESPUÉS
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-center mt-4">
+                  <span className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                    ✨ Transformación en 2 horas
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="bg-gradient-to-r from-primary-600 to-accent-600 rounded-3xl p-8 md:p-12 text-white text-center mb-16 shadow-2xl">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">
+            Resultados que hablan por sí solos
+          </h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-2">100+</div>
+              <div className="text-sm md:text-base opacity-90">Piscinas limpiadas</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-2">98%</div>
+              <div className="text-sm md:text-base opacity-90">Clientes satisfechos</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-2">2h</div>
+              <div className="text-sm md:text-base opacity-90">Tiempo promedio</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
+              <div className="text-sm md:text-base opacity-90">Soporte disponible</div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            ¿Quieres ser el próximo en tener una piscina perfecta?
+          </h3>
+          
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Únete a las más de 100 familias que ya disfrutan de piscinas cristalinas y seguras
+          </p>
+
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="btn-cta text-lg"
+          >
+            🏊‍♀️ Obtener Mi Cotización Gratis
+          </button>
+
+          {/* Trust Badge */}
+          <div className="inline-flex items-center mt-6 bg-yellow-100 text-yellow-800 px-6 py-3 rounded-full">
+            <StarIcon className="h-5 w-5 mr-2" />
+            <span className="font-medium">4.9/5 estrellas promedio en Google</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;

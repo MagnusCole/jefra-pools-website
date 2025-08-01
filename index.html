@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0891b2" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"></noscript>
+    
+    <!-- Basic SEO -->
+    <title>Limpieza de Piscinas Profesional | Piscina libre de algas y bacterias</title>
+    <meta name="description" content="Servicio profesional de limpieza y mantenimiento de piscinas. Piscina libre de algas y bacterias, lista para las visitas. Cotización gratuita." />
+    <meta name="keywords" content="limpieza piscinas, mantenimiento piscinas, químicos piscina, servicio piscinas, limpieza profesional" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "PoolClean - Servicios de Limpieza de Piscinas",
+      "description": "Servicio profesional de limpieza y mantenimiento de piscinas",
+      "telephone": "+91-123-456-7890",
+      "serviceType": "Limpieza y mantenimiento de piscinas",
+      "areaServed": "Ciudad y alrededores",
+      "priceRange": "$$$"
+    }
+    </script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+  </head>
+  <body>
+    <!-- Hidden form for Netlify Forms -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <select name="poolSize">
+        <option value="pequeña">Pequeña (hasta 20m²)</option>
+        <option value="mediana">Mediana (20-40m²)</option>
+        <option value="grande">Grande (40m²+)</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

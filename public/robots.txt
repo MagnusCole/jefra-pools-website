@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://poolclean.netlify.app/sitemap.xml
+
+# Block AI crawlers (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# SEO optimization
+Crawl-delay: 1
