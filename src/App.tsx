@@ -10,6 +10,17 @@ import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 
 function App() {
+  // Track WhatsApp engagement for analytics
+  const handleHeroWhatsAppClick = () => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'hero_whatsapp_engagement', {
+        event_category: 'conversion',
+        event_label: 'hero_primary_cta',
+        value: 1
+      });
+    }
+  };
+
   return (
     <div className="App">
       <Helmet>
@@ -40,7 +51,7 @@ function App() {
 
       <Header />
       <main>
-        <Hero />
+        <Hero onWhatsAppClick={handleHeroWhatsAppClick} />
         <Gallery />
         <Benefits />
         <Services />
