@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { 
   PhoneIcon, 
   EnvelopeIcon, 
@@ -5,216 +6,133 @@ import {
   ClockIcon
 } from '@heroicons/react/24/outline';
 
-const Footer = () => {
+/**
+ * Footer Component - SIMPLIFIED VERSION
+ * Evidence-Based: Essential contact info + trust signals
+ * Mobile-first: 70% traffic LATAM
+ * Minimal design: Clean, professional, focused
+ */
+const Footer: React.FC = React.memo(() => {
   const currentYear = new Date().getFullYear();
 
-  const openWhatsApp = () => {
-    const phone = "51999888777";
-    const message = "Hola! Me interesa obtener información sobre sus servicios de limpieza de piscina.";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
+  // WhatsApp contact
+  const handleWhatsAppClick = useCallback(() => {
+    const message = encodeURIComponent(
+      "¡Hola! Visité su página web y me interesa información sobre servicios de limpieza de piscina en La Molina."
+    );
+    window.open(`https://wa.me/51999888777?text=${message}`, '_blank');
+  }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // Phone call
+  const handleCallClick = useCallback(() => {
+    window.location.href = 'tel:+51999888777';
+  }, []);
+
+  // Email
+  const handleEmailClick = useCallback(() => {
+    window.location.href = 'mailto:contacto@jefrapools.com?subject=Consulta%20desde%20página%20web';
+  }, []);
 
   return (
     <footer className="bg-gray-900 text-white">
-      {/* Main Footer Content */}
       <div className="container-custom py-16">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">P</span>
-              </div>
-              <span className="text-2xl font-bold">JefraPools</span>
-            </div>
-            
-            <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
-              Especialistas en limpieza y mantenimiento de piscinas. 
-              Más de 100 familias confían en nosotros para mantener 
-              sus piscinas cristalinas y seguras.
+          <div>
+            <h3 className="text-2xl font-bold text-primary-400 mb-6">
+              JefraPools
+            </h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Especialistas en mantenimiento y limpieza de piscinas en La Molina. 
+              Más de 5 años convirtiendo piscinas en espacios perfectos para tu familia.
             </p>
-
-            {/* Social Proof */}
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="flex items-center bg-yellow-500/20 px-4 py-2 rounded-full">
-                <span className="text-yellow-400 mr-2">⭐⭐⭐⭐⭐</span>
-                <span className="text-sm font-medium">4.9/5 en Google</span>
-              </div>
-              <div className="flex items-center bg-green-500/20 px-4 py-2 rounded-full">
-                <span className="text-green-400 mr-2">✓</span>
-                <span className="text-sm font-medium">100+ clientes</span>
-              </div>
-            </div>
-
-            {/* Quick Contact */}
-            <div className="space-y-3">
-              <a 
-                href="tel:+51999888777"
-                className="flex items-center text-primary-400 hover:text-primary-300 transition-colors duration-200"
-              >
-                <PhoneIcon className="h-5 w-5 mr-3" />
-                <span className="font-medium">+51 999 888 777</span>
-              </a>
-              <a 
-                href="mailto:contacto@jefrapools.com"
-                className="flex items-center text-primary-400 hover:text-primary-300 transition-colors duration-200"
-              >
-                <EnvelopeIcon className="h-5 w-5 mr-3" />
-                <span className="font-medium">contacto@jefrapools.com</span>
-              </a>
+            <div className="flex items-center text-gray-300">
+              <MapPinIcon className="h-5 w-5 mr-2" />
+              <span>La Molina, Lima - Perú</span>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Contacto</h3>
+            <h4 className="text-xl font-bold mb-6">Contacto</h4>
             <div className="space-y-4">
-              <div className="flex items-start">
-                <PhoneIcon className="h-5 w-5 text-primary-400 mr-3 mt-1" />
-                <div>
-                  <div className="font-medium">+51 999 888 777</div>
-                  <div className="text-sm text-gray-400">Línea directa</div>
-                </div>
-              </div>
+              <button 
+                onClick={handleWhatsAppClick}
+                className="flex items-center text-gray-300 hover:text-white transition-colors w-full text-left"
+              >
+                <PhoneIcon className="h-5 w-5 mr-3" />
+                <span>WhatsApp: (01) 999-888-777</span>
+              </button>
               
-              <div className="flex items-start">
-                <EnvelopeIcon className="h-5 w-5 text-primary-400 mr-3 mt-1" />
-                <div>
-                  <div className="font-medium">contacto@jefrapools.com</div>
-                  <div className="text-sm text-gray-400">Email general</div>
-                </div>
-              </div>
+              <button 
+                onClick={handleCallClick}
+                className="flex items-center text-gray-300 hover:text-white transition-colors w-full text-left"
+              >
+                <PhoneIcon className="h-5 w-5 mr-3" />
+                <span>Llamada: (01) 999-888-777</span>
+              </button>
               
-              <div className="flex items-start">
-                <MapPinIcon className="h-5 w-5 text-primary-400 mr-3 mt-1" />
-                <div>
-                  <div className="font-medium">Ciudad y alrededores</div>
-                  <div className="text-sm text-gray-400">Área de servicio</div>
-                </div>
-              </div>
+              <button 
+                onClick={handleEmailClick}
+                className="flex items-center text-gray-300 hover:text-white transition-colors w-full text-left"
+              >
+                <EnvelopeIcon className="h-5 w-5 mr-3" />
+                <span>contacto@jefrapools.com</span>
+              </button>
               
-              <div className="flex items-start">
-                <ClockIcon className="h-5 w-5 text-primary-400 mr-3 mt-1" />
-                <div>
-                  <div className="font-medium">7 días a la semana</div>
-                  <div className="text-sm text-gray-400">8:00 AM - 6:00 PM</div>
-                </div>
+              <div className="flex items-center text-gray-300">
+                <ClockIcon className="h-5 w-5 mr-3" />
+                <span>Lun - Dom: 7:00 AM - 7:00 PM</span>
               </div>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Servicios</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Limpieza semanal
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Limpieza quincenal
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Equipo profesional
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Químicos inofensivos
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Mantenimiento preventivo
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-accent-400 hover:text-accent-300 transition-colors duration-200 font-medium">
-                  Cotización gratuita
-                </a>
-              </li>
+            <h4 className="text-xl font-bold mb-6">Servicios</h4>
+            <ul className="space-y-3 text-gray-300">
+              <li>Limpieza Express (S/ 180)</li>
+              <li>Mantenimiento Semanal (S/ 220)</li>
+              <li>Recuperación Total (S/ 350)</li>
+              <li>Balanceado Químico</li>
+              <li>Mantenimiento de Equipos</li>
+              <li>Emergencias 24/7</li>
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* WhatsApp & Quick Actions Bar */}
-      <div className="bg-gray-800 py-6">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-300">¿Necesitas ayuda inmediata?</span>
-              <button
-                onClick={openWhatsApp}
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 flex items-center"
-              >
-                <span className="mr-2">💬</span>
-                WhatsApp
-              </button>
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 mb-4 md:mb-0">
+              © {currentYear} JefraPools. Todos los derechos reservados.
             </div>
             
-            <div className="flex items-center space-x-6">
-              <a 
-                href="tel:+51999888777"
-                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 flex items-center"
-              >
-                <PhoneIcon className="h-4 w-4 mr-2" />
-                Llamar Ahora
-              </a>
-              
-              <button
-                onClick={scrollToTop}
-                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-full transition-all duration-200"
-              >
-                ↑ Inicio
-              </button>
+            <div className="flex items-center space-x-6 text-gray-400">
+              <span>200+ Clientes Satisfechos</span>
+              <span>•</span>
+              <span>5+ Años Experiencia</span>
+              <span>•</span>
+              <span>Garantía 100%</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="bg-gray-950 py-6">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-400">
-              © {currentYear} JefraPools. Todos los derechos reservados.
-            </div>
-            
-            <div className="flex items-center space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Política de Privacidad
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Términos de Servicio
-              </a>
-              <a href="#contact" className="text-primary-400 hover:text-primary-300 transition-colors duration-200">
-                Contacto
-              </a>
-            </div>
-          </div>
-          
-          {/* Additional Info */}
-          <div className="mt-4 pt-4 border-t border-gray-800 text-center">
-            <p className="text-xs text-gray-500">
-              Servicio profesional de limpieza y mantenimiento de piscinas | 
-              Especialistas en químicos seguros y equipos de última generación | 
-              Garantía de satisfacción 100%
-            </p>
-          </div>
+      {/* Final CTA Bar */}
+      <div className="bg-primary-600 py-4">
+        <div className="container-custom text-center">
+          <button 
+            onClick={handleWhatsAppClick}
+            className="text-white font-bold hover:text-primary-200 transition-colors"
+          >
+            ¿Listo para una piscina perfecta? ¡Hablemos por WhatsApp!
+          </button>
         </div>
       </div>
     </footer>
   );
-};
+});
 
+Footer.displayName = 'Footer';
 export default Footer;
