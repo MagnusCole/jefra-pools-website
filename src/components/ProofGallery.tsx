@@ -26,9 +26,9 @@ const ProofGallery: React.FC = React.memo(() => {
       <div className="container-custom">
         <div className="text-center mb-8">
           <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-gray-900">
-            Trabajos realizados
+            Resultados reales
           </h2>
-          <p className="text-gray-600 mt-2">Pruebas reales en La Molina y alrededores</p>
+          <p className="text-gray-600 mt-2">Antes y después en La Molina, Surco y San Borja</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
           {images.map((img, i) => (
@@ -46,24 +46,6 @@ const ProofGallery: React.FC = React.memo(() => {
           ))}
         </div>
 
-        {/* Mini casos */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="font-bold mb-1">Caso 1 — San Borja</h3>
-            <p className="mb-1">Problema: agua turbia por falta de filtrado.</p>
-            <p>Resultado: agua cristalina en 2h con balanceo químico.</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="font-bold mb-1">Caso 2 — La Molina</h3>
-            <p className="mb-1">Problema: algas verdes en bordes.</p>
-            <p>Resultado: limpieza profunda y cepillado; listos para usar.</p>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="font-bold mb-1">Caso 3 — Surco</h3>
-            <p className="mb-1">Problema: químicos desbalanceados.</p>
-            <p>Resultado: pH y cloro perfectos, sin irritaciones.</p>
-          </div>
-        </div>
       </div>
     </section>
   );

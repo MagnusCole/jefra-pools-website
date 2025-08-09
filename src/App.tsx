@@ -64,7 +64,8 @@ function App() {
             <h2 id="final-cta-title" className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
               Agenda tu inspección sin costo
             </h2>
-            <p className="text-gray-600 mb-5">La Molina y alrededores • Respuesta en minutos</p>
+            <p className="text-gray-600">La Molina y alrededores • Respuesta en minutos</p>
+            <p className="text-gray-700 text-lg mt-1 mb-5">Recupera tu tiempo y disfruta tu piscina sin preocupaciones.</p>
             <button
               onClick={() => {
                 const phone = '51999888777';

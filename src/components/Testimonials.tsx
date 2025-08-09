@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
-import { StarIcon } from '@heroicons/react/24/solid';
+import { UsersIcon, TrophyIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
 
 interface Testimonial {
   name: string;
   location: string;
-  rating: number;
   text: string;
   avatar: string;
 }
@@ -29,40 +28,22 @@ const Testimonials: React.FC = React.memo(() => {
     {
       name: "Carmen Rodriguez",
       location: "Los Fresnos, La Molina",
-      rating: 5,
       text: "Mi piscina estaba verde y mis hijos no podían usarla. En solo 2 horas la dejó cristalina. Ahora viene cada semana y nunca más tuvimos problemas.",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=80&h=80&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
       name: "Roberto Mendoza", 
       location: "Rinconada del Lago, La Molina",
-      rating: 5,
       text: "Probé 3 servicios diferentes antes de encontrar JefraPools. Es el único que realmente mantiene el agua cristalina todo el año.",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=80&h=80&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
       name: "Patricia Vega",
       location: "Los Granados, La Molina", 
-      rating: 5,
       text: "Como mamá, lo que más me importa es la seguridad. Usa químicos balanceados, mis gemelos de 4 años nadan tranquilos y sin irritaciones.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=80&h=80&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     }
   ];
-
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex">
-        {[...Array(5)].map((_, i) => (
-          <StarIcon
-            key={i}
-            className={`h-5 w-5 ${
-              i < rating ? 'text-yellow-400' : 'text-gray-300'
-            }`}
-          />
-        ))}
-      </div>
-    );
-  };
 
   return (
     <section 
@@ -72,7 +53,7 @@ const Testimonials: React.FC = React.memo(() => {
       aria-labelledby="testimonials-title"
     >
       <div className="container-custom">
-        {/* Header */}
+  {/* Header */}
         <div className="text-center mb-16">
           <h2 
             id="testimonials-title"
@@ -81,32 +62,21 @@ const Testimonials: React.FC = React.memo(() => {
             Lo que dicen{' '}
             <span className="text-primary-600">nuestros clientes</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Más de <span className="font-bold text-primary-600">200 familias satisfechas</span> en La Molina confían en JefraPools
-          </p>
+          {/* Authority line removed per request */}
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-gray-50 rounded-lg p-8">
-              {/* Stars */}
-              <div className="mb-4">
-                {renderStars(testimonial.rating)}
-              </div>
 
               {/* Testimonial Text */}
               <blockquote className="text-gray-700 mb-6 leading-relaxed">
                 "{testimonial.text}"
               </blockquote>
 
-              {/* Author */}
-              <div className="flex items-center">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover mr-4"
-                />
+              {/* Author (no avatar) */}
+              <div className="flex items-start">
                 <div>
                   <h4 className="font-bold text-gray-900">
                     {testimonial.name}
@@ -120,26 +90,31 @@ const Testimonials: React.FC = React.memo(() => {
           ))}
         </div>
 
-        {/* Social Proof Stats */}
+        {/* Social Proof Stats with icons and 30+ years */}
         <div className="bg-gray-50 rounded-lg p-8 md:p-12 text-center mb-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="text-3xl font-bold text-primary-600 mb-2">200+</div>
-              <div className="text-sm text-gray-600">Clientes satisfechos</div>
+            <div className="flex flex-col items-center">
+              <UsersIcon className="w-7 h-7 text-primary-600 mb-2" />
+              <div className="text-3xl font-bold text-primary-600 mb-1">200+</div>
+              <div className="text-sm text-gray-600">Familias al mes</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary-600 mb-2">5.0</div>
-              <div className="text-sm text-gray-600">Calificación promedio</div>
+            <div className="flex flex-col items-center">
+              <TrophyIcon className="w-7 h-7 text-primary-600 mb-2" />
+              <div className="text-3xl font-bold text-primary-600 mb-1">30+</div>
+              <div className="text-sm text-gray-600">Años de experiencia</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary-600 mb-2">5+</div>
-              <div className="text-sm text-gray-600">Años experiencia</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary-600 mb-2">100%</div>
+            <div className="flex flex-col items-center">
+              <ShieldCheckIcon className="w-7 h-7 text-primary-600 mb-2" />
+              <div className="text-3xl font-bold text-primary-600 mb-1">100%</div>
               <div className="text-sm text-gray-600">Garantía satisfacción</div>
             </div>
+            <div className="flex flex-col items-center">
+              <UsersIcon className="w-7 h-7 text-primary-600 mb-2" />
+              <div className="text-3xl font-bold text-primary-600 mb-1">5k+</div>
+              <div className="text-sm text-gray-600">Servicios realizados</div>
+            </div>
           </div>
+          <p className="text-gray-700 text-lg">Recupera tu tiempo y disfruta tu piscina sin preocupaciones.</p>
         </div>
 
         {/* CTA Section */}

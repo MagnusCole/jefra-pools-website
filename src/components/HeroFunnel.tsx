@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties } from 'react';
 import Countdown from './Countdown';
 
@@ -12,10 +12,12 @@ interface HeroFunnelProps {
 const ALLOWED_BG: Record<string, string> = {
   default: '/pool-real.jpg',
   // whitelist a few options from public/images
-  a: '/images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg',
+  a: '/images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', // more contrast
   b: '/images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg',
   c: '/images/d5366dfa-97e8-473e-9286-c70af2b7adf0.jpg',
   d: '/images/fb922e80-a67e-4d6d-a188-679e111f5554.jpg',
+  // "dirty" variant to suggest before state
+  dirty: '/pool.png'
 };
 
 const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPosition }) => {
@@ -33,6 +35,15 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
       return ALLOWED_BG.default;
     }
   }, [bgSrc]);
+
+  // Optional crossfade to a "clean" background for contrast demo
+  const [showClean, setShowClean] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mql.matches) return; // respect reduced motion
+    const t = setTimeout(() => setShowClean(true), 1800);
+    return () => clearTimeout(t);
+  }, []);
 
   const objPos: CSSProperties['objectPosition'] = useMemo(() => {
     try {
@@ -57,11 +68,21 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* Background */}
+      {/* Backgrounds: start slightly dull/dirty then reveal clean */}
+      <img
+        src={ALLOWED_BG.dirty}
+        alt="Piscina antes de limpiar"
+        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${hover ? 'scale-105' : 'scale-100'}`}
+        style={{ objectPosition: objPos, filter: 'grayscale(25%) saturate(0.8)' }}
+        loading="eager"
+        decoding="async"
+        sizes="100vw"
+        fetchPriority="high"
+      />
       <img
         src={resolvedBg}
         alt="Piscina limpia y cristalina"
-        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${hover ? 'scale-105' : 'scale-100'}`}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${showClean ? 'opacity-100' : 'opacity-0'}`}
         style={{ objectPosition: objPos }}
         loading="eager"
         decoding="async"
@@ -99,8 +120,10 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
 
         {/* Countdown */}
         <div className="mt-4">
-          <p className="text-sm text-gray-200 mb-2">Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana</p>
-          <Countdown label="Termina en" emphasis size="sm" urgentThresholdHours={12} />
+          <p className="text-base md:text-lg text-gray-200 mb-2">Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana</p>
+          <div className="inline-block scale-105 md:scale-110">
+            <Countdown label="Termina en" emphasis size="md" urgentThresholdHours={12} />
+          </div>
         </div>
 
         {/* CTA */}
@@ -108,11 +131,12 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           <button
             onClick={handleWhatsApp}
             data-testid="cta-primary"
-            className="btn-cta bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl min-h-[48px] min-w-[48px] text-lg ring-1 ring-white/30 shadow-xl"
+            className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-8 py-4 md:py-5 rounded-xl min-h-[52px] min-w-[56px] text-lg md:text-xl ring-1 ring-white/30 shadow-xl"
             aria-label="📞 Cotización Gratuita WhatsApp"
           >
             📞 Quiero mi limpieza GRATIS
           </button>
+          <p className="mt-2 text-xs md:text-sm text-gray-300">Sin pagos ocultos. Sin compromisos.</p>
           <div className="mt-2">
             <a
               href={`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar mi inspección sin costo para esta semana.')}`}
