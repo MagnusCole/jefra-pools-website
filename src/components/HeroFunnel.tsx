@@ -103,23 +103,21 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
       {/* Content */}
       <div className="relative z-10 w-full max-w-3xl mx-auto px-6 text-center">
         <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
-          ¿Tu piscina está <span className="text-blue-300">sucia</span> y sin brillo?
+          Piscina <span className="text-blue-300">cristalina</span> en 24h — sin que muevas un dedo
         </h1>
 
         <p className="mt-3 text-lg md:text-xl text-gray-100">
-          Limpieza profesional en 24h. Recupera el brillo sin mover un dedo.
-          <span className="block">Limpieza profunda + inspección sin costo.</span>
+          Inspección gratis + limpieza completa + mantenimiento preventivo
         </p>
 
-        {/* Bullets simplified */}
-        <ul className="mt-6 text-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-          <li>✅ Servicio en tu casa</li>
-          <li>✅ Resultados en 24h</li>
-          <li>✅ Sin contratos</li>
-        </ul>
+        {/* Garantía visible */}
+        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/20">
+          <span className="text-white text-sm font-semibold">Garantía:</span>
+          <span className="text-sky-200 text-sm">Si no queda cristalina, repetimos gratis</span>
+        </div>
 
-  {/* Countdown */}
-  <div className="mt-5 md:mt-6">
+        {/* Bonus + Countdown */}
+        <div className="mt-5 md:mt-6">
           <p className="text-base md:text-lg text-gray-200 mb-2">Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana</p>
           <div className="inline-block scale-105 md:scale-110">
             <Countdown label="Termina en" emphasis size="md" urgentThresholdHours={12} />
@@ -132,22 +130,11 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
             onClick={handleWhatsApp}
             data-testid="cta-primary"
             className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-8 py-4 md:py-5 rounded-xl min-h-[52px] min-w-[56px] text-lg md:text-xl ring-1 ring-white/30 shadow-xl"
-            aria-label="📞 Cotización Gratuita WhatsApp"
+            aria-label="Reservar mi limpieza GRATIS ahora"
           >
-            📞 Reservar mi limpieza GRATIS — Quedan 10 cupos
+            📞 Reservar mi limpieza GRATIS ahora
           </button>
           <p className="mt-2 text-xs md:text-sm text-gray-300">Atendemos en menos de 24h • Productos seguros para tu familia</p>
-          <div className="mt-2">
-            <a
-              href={`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar mi inspección sin costo para esta semana.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-gray-200 underline underline-offset-2"
-            >
-              o escríbenos por WhatsApp
-            </a>
-          </div>
-          <p className="mt-2 text-sm text-gray-300">Servicio en La Molina, San Borja, Surco y alrededores</p>
         </div>
       </div>
     </section>
