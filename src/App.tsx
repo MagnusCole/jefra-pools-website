@@ -42,7 +42,7 @@ function App() {
       </Helmet>
 
   <OfferBanner />
-  <main className="pb-20 sm:pb-0">
+  <main className="pb-16 sm:pb-0" style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 64px)' }}>
         {/* Funnel hero */}
         <HeroFunnel />
         {/* Concrete benefits */}

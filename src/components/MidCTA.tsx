@@ -16,7 +16,7 @@ const MidCTA: React.FC = React.memo(() => {
         <p className="opacity-90 mb-5">Inspección sin costo en La Molina • Respuesta en minutos</p>
         <button
           onClick={handleClick}
-          className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
           aria-label="Cotización Gratuita por WhatsApp"
         >
           📞 Cotización Gratuita WhatsApp

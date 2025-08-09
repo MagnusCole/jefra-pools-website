@@ -50,8 +50,9 @@ const Countdown: React.FC<CountdownProps> = React.memo(({ target, label = 'Ofert
   const isUrgent = hoursLeft <= urgentThresholdHours;
 
   return (
-    <div className="inline-flex flex-col items-center text-white" role="timer" aria-live="polite">
-      <span className={size === 'sm' ? 'text-xs opacity-90' : 'text-sm md:text-base opacity-90'}>{label}</span>
+    <div className="inline-flex flex-col items-center text-white" role="timer" aria-live="off" aria-atomic="true">
+      <span className="sr-only">{label}</span>
+      <span aria-hidden className={size === 'sm' ? 'text-xs opacity-90' : 'text-sm md:text-base opacity-90'}>{label}</span>
       <div className={`mt-2 flex items-center gap-1.5 md:gap-2 font-mono ${isUrgent && emphasis ? 'animate-pulse' : ''}`}>
         {d > 0 && (
           <div className={`${emphasis ? 'bg-accent-600 text-white' : 'bg-white/10 text-white'} rounded-lg ${size === 'sm' ? 'px-2 py-1 text-base' : 'px-3 py-2 text-lg md:text-2xl'}`}>

@@ -89,7 +89,7 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
         sizes="100vw"
         fetchPriority="high"
       />
-      <div className="absolute inset-0 bg-black/60 md:bg-black/55" />
+  <div className="absolute inset-0 bg-black/60 md:bg-black/60" />
       {/* Before/After hint overlay: desaturate left side, reveal on hover */}
       <div
         className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${hover ? 'opacity-0' : 'opacity-100'}`}
@@ -106,7 +106,7 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           Piscina <span className="text-blue-300">cristalina</span> en 24h — sin que muevas un dedo
         </h1>
 
-        <p className="mt-3 text-lg md:text-xl text-gray-100">
+        <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium">
           Inspección gratis + limpieza completa + mantenimiento preventivo
         </p>
 
@@ -129,10 +129,10 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           <button
             onClick={handleWhatsApp}
             data-testid="cta-primary"
-            className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-8 py-4 md:py-5 rounded-xl min-h-[52px] min-w-[56px] text-lg md:text-xl ring-1 ring-white/30 shadow-xl"
+            className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-9 py-5 md:py-6 rounded-2xl min-h-[56px] min-w-[64px] text-xl md:text-2xl ring-1 ring-amber-300 shadow-[0_10px_25px_rgba(245,158,11,0.45)] transform transition duration-200 hover:scale-[1.02] active:scale-[0.99]"
             aria-label="Reservar mi limpieza GRATIS ahora"
           >
-            📞 Reservar mi limpieza GRATIS ahora
+            📞 RESERVAR MI LIMPIEZA GRATIS AHORA
           </button>
           <p className="mt-2 text-xs md:text-sm text-gray-300">Atendemos en menos de 24h • Productos seguros para tu familia</p>
         </div>
