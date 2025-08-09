@@ -58,7 +58,7 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
     <section
       id="hero"
       role="banner"
-  className="relative min-h-[88vh] md:min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary-700"
+  className="relative min-h-[82vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden bg-primary-700"
     >
       {/* Background simple y nítido (estático) */}
       <picture className="absolute inset-0 w-full h-full">

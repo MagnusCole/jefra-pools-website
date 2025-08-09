@@ -11,9 +11,9 @@ const Process: React.FC = React.memo(() => {
   }, []);
 
   return (
-  <section aria-labelledby="process-title" className="py-14 sm:py-16 bg-white">
+  <section aria-labelledby="process-title" className="pt-8 pb-14 sm:pt-10 sm:pb-16 bg-white">
       <div className="container-custom">
-        <h2 id="process-title" className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-8">
+  <h2 id="process-title" className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-6">
           ¿Cómo dejamos tu piscina perfecta?
         </h2>
 
