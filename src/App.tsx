@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 import { trackLead } from './utils/tracking';
 import HeroFunnel from './components/HeroFunnel';
 import Benefits from './components/Benefits';
-import IncludesSection from './components/IncludesSection';
+import Process from './components/Process';
 import MidCTA from './components/MidCTA';
 import FAQ from './components/FAQ';
 // Removed OfferBanner, WhatsAppFloat, and StickyFooterCTA per request
@@ -16,6 +16,7 @@ function App() {
     <div className="App">
       <Helmet>
         <title>JefraPools - Limpieza de Piscinas en La Molina, Lima | Servicio Profesional</title>
+  <link rel="canonical" href="https://jefrapools.com/" />
         <meta 
           name="description" 
           content="JefraPools - Servicio profesional de limpieza y mantenimiento de piscinas en La Molina, Lima. Más de 200 clientes satisfechos. Cotización gratuita y sin compromiso."
@@ -25,15 +26,16 @@ function App() {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="JefraPools - Limpieza de Piscinas en La Molina, Lima" />
+  <meta property="og:title" content="JefraPools - Limpieza de Piscinas en La Molina, Lima" />
         <meta property="og:description" content="Servicio profesional de limpieza y mantenimiento de piscinas en La Molina. Más de 200 clientes satisfechos. Cotización gratuita." />
-        <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:image" content="/pool-real.jpg" />
+  <meta property="og:url" content="https://jefrapools.com/" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="JefraPools - Limpieza de Piscinas en La Molina" />
         <meta property="twitter:description" content="Servicio profesional de limpieza y mantenimiento de piscinas en La Molina, Lima. Cotización gratuita." />
-        <meta property="twitter:image" content="/og-image.jpg" />
+  <meta property="twitter:image" content="/pool-real.jpg" />
         
         {/* Viewport and mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,10 +45,10 @@ function App() {
   <main>
         {/* Funnel hero */}
         <HeroFunnel />
+        {/* Proceso de limpieza */}
+  <Process />
         {/* Concrete benefits */}
-        <Benefits />
-  {/* Includes: what your cleaning covers */}
-  <IncludesSection />
+  <Benefits />
   {/* Proof */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando pruebas…</div>}>
           <ProofGallery />

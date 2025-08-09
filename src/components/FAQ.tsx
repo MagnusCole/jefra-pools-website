@@ -120,9 +120,9 @@ const FAQ: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <section aria-labelledby="faq-title" className="py-14 bg-white">
+    <section aria-labelledby="faq-title" className="py-14 bg-primary-600">
       <div className="container-custom">
-        <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-8">
+        <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-white text-center mb-8">
           Preguntas frecuentes
         </h2>
 

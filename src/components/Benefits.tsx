@@ -24,13 +24,13 @@ const Benefits: React.FC = React.memo(() => {
 
 
 
-    <section id="beneficios" aria-labelledby="benefits-title" className="py-14 bg-white">
+    <section id="beneficios" aria-labelledby="benefits-title" className="py-14 bg-primary-600">
       <div className="container-custom">
-        <div className="text-center mb-8">
-          <h2 id="benefits-title" className="text-3xl md:text-4xl font-black text-gray-900">
+        <div className="text-center mb-8 text-white">
+          <h2 id="benefits-title" className="text-3xl md:text-4xl font-black">
             Beneficios garantizados
           </h2>
-          <p className="text-gray-600 mt-1">Lo esencial para una piscina perfecta</p>
+          <p className="opacity-90 mt-1">Lo esencial para una piscina perfecta</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -79,7 +79,7 @@ const Benefits: React.FC = React.memo(() => {
     <div className="mt-8 flex justify-center">
           <button
             onClick={handleWhatsAppClick}
-      className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
+      className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-300 text-amber-100 bg-transparent font-semibold shadow-sm hover:bg-amber-50/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 transition min-h-[48px]"
           >
       Solicitar inspección gratis
           </button>

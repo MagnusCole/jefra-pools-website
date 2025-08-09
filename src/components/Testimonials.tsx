@@ -68,7 +68,7 @@ const Testimonials: React.FC = React.memo(() => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-8">
+            <div key={index} className="bg-white rounded-lg p-8 text-gray-900">
 
               {/* Testimonial Text */}
               <blockquote className="text-gray-700 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: `"${testimonial.text}"` }} />
@@ -89,7 +89,7 @@ const Testimonials: React.FC = React.memo(() => {
         </div>
 
         {/* Social Proof Stats with icons and 30+ years */}
-        <div className="bg-gray-50 rounded-lg p-8 md:p-12 text-center mb-16">
+  <div className="bg-white rounded-lg p-8 md:p-12 text-center mb-16 text-gray-900">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="flex flex-col items-center">
               <UsersIcon className="w-7 h-7 text-primary-600 mb-2" />
@@ -116,7 +116,7 @@ const Testimonials: React.FC = React.memo(() => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center">
+  <div className="text-center">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
             ¿Quieres ser el próximo testimonio?
           </h3>
@@ -127,7 +127,7 @@ const Testimonials: React.FC = React.memo(() => {
 
           <button 
             onClick={handleWhatsAppClick}
-            className="bg-accent-500 hover:bg-accent-600 text-white font-bold text-lg px-8 py-4 rounded-lg transition-colors"
+            className="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold text-lg px-8 py-4 rounded-lg transition-colors"
           >
             Obtener Mi Cotización Gratis
           </button>

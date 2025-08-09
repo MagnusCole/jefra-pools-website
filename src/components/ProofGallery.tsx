@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Minimal proof gallery using public/images assets with captions
 const images: { src: string; caption: string }[] = [
@@ -50,6 +50,14 @@ export default ProofGallery;
 // Simple lightbox grid with clickable figures
 function LightboxGrid({ images }: { images: { src: string; caption: string }[] }) {
   const [open, setOpen] = useState<number | null>(null);
+  useEffect(() => {
+    if (open === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">

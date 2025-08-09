@@ -23,6 +23,7 @@ const MidCTA: React.FC = React.memo(() => {
         >
           📞 RESERVAR MI LIMPIEZA GRATIS AHORA
         </button>
+        <p className="mt-2 text-xs md:text-sm text-white/90">Inspección sin costo • Sin compromiso</p>
       </div>
     </section>
   );
