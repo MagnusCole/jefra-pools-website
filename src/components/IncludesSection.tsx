@@ -46,13 +46,13 @@ const IncludesSection: React.FC = React.memo(() => {
           </article>
         </div>
 
-        <div className="text-center mt-6">
+    <div className="text-center mt-6">
           <button
             onClick={handleWhatsApp}
-            className="inline-flex items-center justify-center text-sky-700 hover:text-sky-800 font-semibold underline decoration-sky-300 underline-offset-4 hover:decoration-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400 px-2 py-1 rounded"
-            aria-label="Solicita tu limpieza ahora por WhatsApp"
+      className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
+      aria-label="Solicitar inspección gratis"
           >
-            Solicita tu limpieza ahora →
+      Solicitar inspección gratis
           </button>
         </div>
       </div>

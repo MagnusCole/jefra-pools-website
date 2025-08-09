@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties } from 'react';
 import Countdown from './Countdown';
+import { trackLead } from '../utils/tracking';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
 // Copy aligned to creative: "¿Cansado de limpiar tu piscina? +1 limpieza GRATIS esta semana + inspección sin costo"
@@ -58,13 +59,14 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
     const phone = '51999888777';
     const msg = '¡Hola JefraPools! Quiero agendar una inspección sin costo y aprovechar la limpieza GRATIS esta semana en La Molina.';
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+  trackLead('hero');
   }, []);
 
   return (
     <section
       id="hero"
       role="banner"
-  className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary-700"
+  className="relative min-h-[88vh] md:min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary-700"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -136,6 +138,11 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           </button>
           <p className="mt-2 text-xs md:text-sm text-gray-300">Atendemos en menos de 24h • Productos seguros para tu familia</p>
         </div>
+      </div>
+
+      {/* Scroll cue to next section */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white/70 text-xs md:text-sm select-none pointer-events-none">
+        <span>Desliza para ver beneficios</span>
       </div>
     </section>
   );

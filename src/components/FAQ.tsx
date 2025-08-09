@@ -157,16 +157,7 @@ const FAQ: React.FC = React.memo(() => {
             );
           })}
         </div>
-        <div className="max-w-3xl mx-auto mt-6 text-center">
-          <button
-            onClick={() => {
-              window.open(`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar para este fin de semana.')}`,'_blank','noopener');
-            }}
-            className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
-          >
-            📞 Reservar por WhatsApp
-          </button>
-        </div>
+  {/* CTA removed here to keep hierarchy; closing push will be the global primary CTA */}
       </div>
     </section>
   );

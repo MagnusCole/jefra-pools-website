@@ -31,6 +31,14 @@ const ProofGallery: React.FC = React.memo(() => {
         </div>
   <LightboxGrid images={images} />
 
+        <div className="mt-8 text-center">
+          <a
+            href={`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar una inspección gratuita para mi piscina.')}`}
+            className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
+          >
+            Reservar inspección gratis
+          </a>
+        </div>
       </div>
     </section>
   );

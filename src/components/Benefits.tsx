@@ -42,11 +42,7 @@ const Benefits: React.FC = React.memo(() => {
             <h3 className="font-bold text-lg">Agua cristalina sin esfuerzo</h3>
             <p className="text-gray-600 mt-1">Disfruta tu piscina lista para usar, sin que tú hagas nada.</p>
             <p className="text-gray-600 text-sm mt-1">En solo <span className="font-semibold">2 horas</span>.</p>
-            <div className="mt-3">
-              <button onClick={handleWhatsAppClick} className="text-sm font-semibold text-sky-700 hover:underline min-h-[44px]">
-                Solicitar limpieza ahora →
-              </button>
-            </div>
+            {/* micro-CTA removed to keep a single section CTA */}
           </div>
           {/* 2 */}
           <div className="p-5 rounded-xl border border-gray-200 bg-white">
@@ -56,11 +52,7 @@ const Benefits: React.FC = React.memo(() => {
             <h3 className="font-bold text-lg">Cuidamos a tu familia</h3>
             <p className="text-gray-600 mt-1">Baños sin irritaciones y con total tranquilidad.</p>
             <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">Productos seguros</span> para tu familia.</p>
-            <div className="mt-3">
-              <button onClick={handleWhatsAppClick} className="text-sm font-semibold text-sky-700 hover:underline min-h-[44px]">
-                Solicitar limpieza ahora →
-              </button>
-            </div>
+            {/* micro-CTA removed */}
           </div>
           {/* 3 */}
           <div className="p-5 rounded-xl border border-gray-200 bg-white">
@@ -70,11 +62,7 @@ const Benefits: React.FC = React.memo(() => {
             <h3 className="font-bold text-lg">Sin preocupaciones</h3>
             <p className="text-gray-600 mt-1">Nos encargamos de todo para que no te falte tiempo libre.</p>
             <p className="text-gray-600 text-sm mt-1">Atención en <span className="font-semibold">menos de 24h</span>.</p>
-            <div className="mt-3">
-              <button onClick={handleWhatsAppClick} className="text-sm font-semibold text-sky-700 hover:underline min-h-[44px]">
-                Solicitar limpieza ahora →
-              </button>
-            </div>
+            {/* micro-CTA removed */}
           </div>
           {/* 4 */}
           <div className="p-5 rounded-xl border border-gray-200 bg-white">
@@ -84,20 +72,16 @@ const Benefits: React.FC = React.memo(() => {
             <h3 className="font-bold text-lg">Garantía de satisfacción</h3>
             <p className="text-gray-600 mt-1">Si no queda perfecta, repetimos gratis hasta dejarla impecable.</p>
             <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias</span> atendidas al mes.</p>
-            <div className="mt-3">
-              <button onClick={handleWhatsAppClick} className="text-sm font-semibold text-sky-700 hover:underline min-h-[44px]">
-                Solicitar limpieza ahora →
-              </button>
-            </div>
+            {/* micro-CTA removed */}
           </div>
         </div>
 
-        <div className="mt-8 flex justify-center">
+    <div className="mt-8 flex justify-center">
           <button
             onClick={handleWhatsAppClick}
-            className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
+      className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
           >
-            📞 Cotización Gratuita WhatsApp
+      Solicitar inspección gratis
           </button>
         </div>
       </div>

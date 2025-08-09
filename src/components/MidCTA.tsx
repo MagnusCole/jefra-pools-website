@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
+import { trackLead } from '../utils/tracking';
 
 const MidCTA: React.FC = React.memo(() => {
   const handleClick = useCallback(() => {
     const phone = '51999888777';
     const msg = 'Hola JefraPools, quiero mi limpieza GRATIS. ¿Pueden atender hoy en La Molina?';
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  trackLead('mid-cta');
   }, []);
 
   return (
@@ -16,10 +18,10 @@ const MidCTA: React.FC = React.memo(() => {
         <p className="opacity-90 mb-5">Inspección sin costo en La Molina • Respuesta en minutos</p>
         <button
           onClick={handleClick}
-          className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
-          aria-label="Cotización Gratuita por WhatsApp"
+          className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
+          aria-label="Reservar mi limpieza GRATIS ahora"
         >
-          📞 Cotización Gratuita WhatsApp
+          📞 RESERVAR MI LIMPIEZA GRATIS AHORA
         </button>
       </div>
     </section>

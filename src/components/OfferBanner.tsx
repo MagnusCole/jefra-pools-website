@@ -1,13 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 // Slim, non-invasive top banner with the weekly offer
 const OfferBanner: React.FC = React.memo(() => {
-
-  const handleWhatsApp = useCallback(() => {
-    const phone = '51999888777';
-    const msg = '¡Hola! Quiero agendar mi inspección sin costo y la limpieza GRATIS esta semana.';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
-  }, []);
 
   return (
     <div
@@ -20,15 +14,6 @@ const OfferBanner: React.FC = React.memo(() => {
           <span className="hidden sm:inline">🏊‍♂️</span>
           <p className="truncate font-semibold">Inspección sin costo en La Molina</p>
         </div>
-        <button
-          onClick={handleWhatsApp}
-          className="bg-accent-500 hover:bg-accent-600 text-white font-bold px-2.5 py-1.5 md:px-3 md:py-2 rounded-lg text-xs md:text-sm min-h-[36px] md:min-h-[40px]"
-          aria-label="Agendar por WhatsApp"
-          data-testid="banner-cta"
-        >
-          <span className="hidden sm:inline">📞 Agenda por WhatsApp</span>
-          <span className="sm:hidden">📞 WhatsApp</span>
-        </button>
       </div>
     </div>
   );

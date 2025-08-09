@@ -1,13 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import { Suspense, lazy } from 'react';
-import OfferBanner from './components/OfferBanner';
+import { trackLead } from './utils/tracking';
 import HeroFunnel from './components/HeroFunnel';
 import Benefits from './components/Benefits';
 import IncludesSection from './components/IncludesSection';
 import MidCTA from './components/MidCTA';
 import FAQ from './components/FAQ';
-import WhatsAppFloat from './components/WhatsAppFloat';
-import StickyFooterCTA from './components/StickyFooterCTA';
+// Removed OfferBanner, WhatsAppFloat, and StickyFooterCTA per request
 
 const ProofGallery = lazy(() => import('./components/ProofGallery'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
@@ -41,8 +40,7 @@ function App() {
         <meta name="theme-color" content="#0891b2" />
       </Helmet>
 
-  <OfferBanner />
-  <main className="pb-16 sm:pb-0" style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 64px)' }}>
+  <main>
         {/* Funnel hero */}
         <HeroFunnel />
         {/* Concrete benefits */}
@@ -62,8 +60,8 @@ function App() {
         {/* FAQ objections */}
         <FAQ />
 
-        {/* Final CTA repeat */}
-        <section aria-labelledby="final-cta-title" className="py-10 bg-white">
+  {/* Final CTA repeat (primary) */}
+  <section aria-labelledby="final-cta-title" className="py-10 bg-white">
           <div className="container-custom text-center">
             <h2 id="final-cta-title" className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
               Agenda tu inspección sin costo
@@ -73,21 +71,19 @@ function App() {
             <button
               onClick={() => {
                 const phone = '51999888777';
-                const msg = 'Hola JefraPools, quiero mi limpieza GRATIS. ¿Pueden atender hoy en La Molina?';
-                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    const msg = 'Hola JefraPools, quiero reservar mi limpieza GRATIS ahora. ¿Pueden atender hoy en La Molina?';
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+                trackLead('final-cta');
               }}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
-              aria-label="Cotización Gratuita por WhatsApp"
+        className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
+        aria-label="Reservar mi limpieza GRATIS ahora"
             >
-              📞 Cotización Gratuita WhatsApp
+        📞 RESERVAR MI LIMPIEZA GRATIS AHORA
             </button>
           </div>
         </section>
       </main>
   {/* Footer intentionally omitted for focus and speed */}
-  {/* Mobile sticky CTA (avoids overlap with floating WhatsApp) */}
-  <StickyFooterCTA />
-      <WhatsAppFloat />
     </div>
   );
 }
