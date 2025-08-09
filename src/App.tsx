@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import HeroClean from './components/HeroClean';
 import Gallery from './components/Gallery';
 import Benefits from './components/Benefits';
 import Services from './components/Services';
@@ -40,7 +40,7 @@ function App() {
 
       <Header />
       <main>
-        <Hero />
+        <HeroClean />
         <Gallery />
         <Benefits />
         <Services />
