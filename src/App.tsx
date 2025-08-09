@@ -1,13 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import Header from './components/Header';
-import HeroClean from './components/HeroClean';
-import Gallery from './components/Gallery';
+import { Suspense, lazy } from 'react';
+import OfferBanner from './components/OfferBanner';
+import HeroFunnel from './components/HeroFunnel';
 import Benefits from './components/Benefits';
-import Services from './components/Services';
-import Testimonials from './components/Testimonials';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
+import MidCTA from './components/MidCTA';
+import FAQ from './components/FAQ';
 import WhatsAppFloat from './components/WhatsAppFloat';
+
+const ProofGallery = lazy(() => import('./components/ProofGallery'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
 
 function App() {
   return (
@@ -38,16 +39,47 @@ function App() {
         <meta name="theme-color" content="#0891b2" />
       </Helmet>
 
-      <Header />
+  <OfferBanner />
       <main>
-        <HeroClean />
-        <Gallery />
+        {/* Funnel hero */}
+        <HeroFunnel />
+        {/* Concrete benefits */}
         <Benefits />
-        <Services />
-        <Testimonials />
-        <CTA />
+        {/* Proof */}
+        <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando pruebas…</div>}>
+          <ProofGallery />
+        </Suspense>
+        {/* Mid-page CTA */}
+        <MidCTA />
+        {/* Testimonials short */}
+        <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando testimonios…</div>}>
+          <Testimonials />
+        </Suspense>
+        {/* FAQ objections */}
+        <FAQ />
+
+        {/* Final CTA repeat */}
+        <section aria-labelledby="final-cta-title" className="py-10 bg-white">
+          <div className="container-custom text-center">
+            <h2 id="final-cta-title" className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
+              Agenda tu inspección sin costo
+            </h2>
+            <p className="text-gray-600 mb-5">La Molina y alrededores • Respuesta en minutos</p>
+            <button
+              onClick={() => {
+                const phone = '51999888777';
+                const msg = 'Hola JefraPools, quiero mi limpieza GRATIS. ¿Pueden atender hoy en La Molina?';
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+              }}
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
+              aria-label="Cotización Gratuita por WhatsApp"
+            >
+              📞 Cotización Gratuita WhatsApp
+            </button>
+          </div>
+        </section>
       </main>
-      <Footer />
+      {/* Footer intentionally omitted for focus and speed */}
       <WhatsAppFloat />
     </div>
   );

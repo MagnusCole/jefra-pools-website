@@ -42,12 +42,9 @@ const Header: React.FC = React.memo(() => {
     setIsMenuOpen(false);
   }, []);
 
-  // Navigation items
+  // Navigation items (simplified landing)
   const navItems = [
-    { id: 'gallery', label: 'Trabajos' },
-    { id: 'services', label: 'Servicios' },
-    { id: 'testimonials', label: 'Testimonios' },
-    { id: 'contact', label: 'Contacto' }
+    { id: 'trabajos', label: 'Trabajos' },
   ];
 
   return (
