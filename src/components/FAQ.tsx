@@ -73,6 +73,15 @@ const FAQ: React.FC = React.memo(() => {
       )
     },
     {
+      id: 'finsemana',
+      q: '¿Puedo reservar para este fin de semana?',
+      a: (
+        <p>
+          Sí. Agenda ahora por WhatsApp y confirmamos tu horario disponible para sábado o domingo.
+        </p>
+      )
+    },
+    {
       id: 'precio',
       q: '¿Cuál es el precio después de la promo?',
       a: (
@@ -117,7 +126,7 @@ const FAQ: React.FC = React.memo(() => {
           Preguntas frecuentes
         </h2>
 
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border border-gray-200 rounded-xl bg-white">
+  <div className="max-w-3xl mx-auto divide-y divide-gray-200 border border-gray-200 rounded-xl bg-white">
           {items.map(({ id, q, a }) => {
             const isOpen = open.has(id);
             const btnId = `faq-btn-${id}`;
@@ -147,6 +156,16 @@ const FAQ: React.FC = React.memo(() => {
               </div>
             );
           })}
+        </div>
+        <div className="max-w-3xl mx-auto mt-6 text-center">
+          <button
+            onClick={() => {
+              window.open(`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar para este fin de semana.')}`,'_blank','noopener');
+            }}
+            className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-amber-400 text-gray-900 font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
+          >
+            📞 Reservar por WhatsApp
+          </button>
         </div>
       </div>
     </section>

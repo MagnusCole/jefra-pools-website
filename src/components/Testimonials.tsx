@@ -28,19 +28,19 @@ const Testimonials: React.FC = React.memo(() => {
     {
       name: "Carmen Rodriguez",
       location: "Los Fresnos, La Molina",
-      text: "Mi piscina estaba verde y mis hijos no podían usarla. En solo 2 horas la dejó cristalina. Ahora viene cada semana y nunca más tuvimos problemas.",
+  text: "Mi piscina estaba verde y mis hijos no podían usarla. En <strong>solo 2 horas</strong> la dejó <strong>cristalina</strong>. Ahora viene cada semana y nunca más tuvimos problemas.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
       name: "Roberto Mendoza", 
       location: "Rinconada del Lago, La Molina",
-      text: "Probé 3 servicios diferentes antes de encontrar JefraPools. Es el único que realmente mantiene el agua cristalina todo el año.",
+  text: "Probé 3 servicios diferentes antes de encontrar JefraPools. Es el único que realmente mantiene el agua <strong>cristalina</strong> todo el año.",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
       name: "Patricia Vega",
       location: "Los Granados, La Molina", 
-      text: "Como mamá, lo que más me importa es la seguridad. Usa químicos balanceados, mis gemelos de 4 años nadan tranquilos y sin irritaciones.",
+  text: "Como mamá, lo que más me importa es la <strong>seguridad</strong>. Mis gemelos de 4 años nadan tranquilos y <strong>sin irritaciones</strong>. Atención <strong>rapidísima</strong>.",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     }
   ];
@@ -71,9 +71,7 @@ const Testimonials: React.FC = React.memo(() => {
             <div key={index} className="bg-gray-50 rounded-lg p-8">
 
               {/* Testimonial Text */}
-              <blockquote className="text-gray-700 mb-6 leading-relaxed">
-                "{testimonial.text}"
-              </blockquote>
+              <blockquote className="text-gray-700 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: `"${testimonial.text}"` }} />
 
               {/* Author (no avatar) */}
               <div className="flex items-start">

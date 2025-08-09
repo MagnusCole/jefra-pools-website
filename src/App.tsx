@@ -3,9 +3,11 @@ import { Suspense, lazy } from 'react';
 import OfferBanner from './components/OfferBanner';
 import HeroFunnel from './components/HeroFunnel';
 import Benefits from './components/Benefits';
+import IncludesSection from './components/IncludesSection';
 import MidCTA from './components/MidCTA';
 import FAQ from './components/FAQ';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import StickyFooterCTA from './components/StickyFooterCTA';
 
 const ProofGallery = lazy(() => import('./components/ProofGallery'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
@@ -40,12 +42,14 @@ function App() {
       </Helmet>
 
   <OfferBanner />
-      <main>
+  <main className="pb-20 sm:pb-0">
         {/* Funnel hero */}
         <HeroFunnel />
         {/* Concrete benefits */}
         <Benefits />
-        {/* Proof */}
+  {/* Includes: what your cleaning covers */}
+  <IncludesSection />
+  {/* Proof */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando pruebas…</div>}>
           <ProofGallery />
         </Suspense>
@@ -80,7 +84,9 @@ function App() {
           </div>
         </section>
       </main>
-      {/* Footer intentionally omitted for focus and speed */}
+  {/* Footer intentionally omitted for focus and speed */}
+  {/* Mobile sticky CTA (avoids overlap with floating WhatsApp) */}
+  <StickyFooterCTA />
       <WhatsAppFloat />
     </div>
   );

@@ -118,8 +118,8 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           <li>✅ Sin contratos</li>
         </ul>
 
-        {/* Countdown */}
-        <div className="mt-4">
+  {/* Countdown */}
+  <div className="mt-5 md:mt-6">
           <p className="text-base md:text-lg text-gray-200 mb-2">Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana</p>
           <div className="inline-block scale-105 md:scale-110">
             <Countdown label="Termina en" emphasis size="md" urgentThresholdHours={12} />
@@ -127,16 +127,16 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
         </div>
 
         {/* CTA */}
-        <div className="mt-6">
+        <div className="mt-6 md:mt-8">
           <button
             onClick={handleWhatsApp}
             data-testid="cta-primary"
             className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-8 py-4 md:py-5 rounded-xl min-h-[52px] min-w-[56px] text-lg md:text-xl ring-1 ring-white/30 shadow-xl"
             aria-label="📞 Cotización Gratuita WhatsApp"
           >
-            📞 Quiero mi limpieza GRATIS
+            📞 Reservar mi limpieza GRATIS — Quedan 10 cupos
           </button>
-          <p className="mt-2 text-xs md:text-sm text-gray-300">Sin pagos ocultos. Sin compromisos.</p>
+          <p className="mt-2 text-xs md:text-sm text-gray-300">Atendemos en menos de 24h • Productos seguros para tu familia</p>
           <div className="mt-2">
             <a
               href={`https://wa.me/51999888777?text=${encodeURIComponent('Hola, quiero reservar mi inspección sin costo para esta semana.')}`}

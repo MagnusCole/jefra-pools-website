@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Minimal proof gallery using public/images assets with captions
 const images: { src: string; caption: string }[] = [
-  { src: 'images/0f953af6-f566-4b76-9062-19a6d387d47d.jpg', caption: 'La Molina — Limpieza profunda (2h)' },
   { src: 'images/3a6bd5ad-729a-49c3-a9e5-07b6b40d7acf.jpg', caption: 'San Borja — Recuperación de brillo' },
   { src: 'images/7482029c-d9f0-4c51-b951-6985d88550d4.jpg', caption: 'Surco — Balanceo químico' },
   { src: 'images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', caption: 'La Molina — Mantenimiento semanal' },
   { src: 'images/aadf19d5-b8ee-4901-b8a2-1acc7f09162b.jpg', caption: 'San Borja — Limpieza completa (2h)' },
-  { src: 'images/ab302bdf-c230-46ec-8c4a-ce8e3cffb414.jpg', caption: 'La Molina — Antes/Después' },
+  { src: 'images/ab302bdf-c230-46ec-8c4a-ce8e3cffb414.jpg', caption: 'La Molina — Resultado' },
   { src: 'images/ad2639cd-5294-4eab-bd0b-eed2e85cdeb0.jpg', caption: 'Surco — Filtrado y cepillado' },
   { src: 'images/aed6151e-23b6-419b-93e0-033abe1d207c.jpg', caption: 'La Molina — Agua cristalina' },
   { src: 'images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg', caption: 'San Borja — Hogar familiar' },
@@ -28,23 +27,9 @@ const ProofGallery: React.FC = React.memo(() => {
           <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-gray-900">
             Resultados reales
           </h2>
-          <p className="text-gray-600 mt-2">Antes y después en La Molina, Surco y San Borja</p>
+          <p className="text-gray-600 mt-2">Trabajos reales de esta semana en La Molina, Surco y San Borja.</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
-          {images.map((img, i) => (
-            <figure key={img.src} className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-              <img
-                src={`/${img.src}`}
-                alt={`Trabajo de limpieza de piscina ${i + 1}`}
-                className="w-full h-40 md:h-48 object-cover hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-              <figcaption className="px-2 py-2 text-[11px] sm:text-xs text-gray-600">{img.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
+  <LightboxGrid images={images} />
 
       </div>
     </section>
@@ -53,3 +38,38 @@ const ProofGallery: React.FC = React.memo(() => {
 
 ProofGallery.displayName = 'ProofGallery';
 export default ProofGallery;
+
+// Simple lightbox grid with clickable figures
+function LightboxGrid({ images }: { images: { src: string; caption: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+        {images.map((img, i) => (
+          <Figure key={img.src} index={i} img={img} onOpen={() => setOpen(i)} />
+        ))}
+      </div>
+      {open !== null && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" role="dialog" aria-modal="true" onClick={() => setOpen(null)}>
+          <img src={`/${images[open].src}`} alt={images[open].caption} className="max-h-[85vh] w-auto object-contain" />
+        </div>
+      )}
+    </>
+  );
+}
+
+function Figure({ img, index, onOpen }: { img: { src: string; caption: string }; index: number; onOpen: () => void }) {
+  return (
+    <figure className="group overflow-hidden rounded-lg border border-gray-200 bg-white relative cursor-zoom-in" onClick={onOpen}>
+      <img
+        src={`/${img.src}`}
+        alt={`Trabajo de limpieza de piscina ${index + 1}`}
+        className="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 768px) 50vw, 25vw"
+      />
+      <figcaption className="px-2 py-2 text-[11px] sm:text-xs text-gray-600">{img.caption}</figcaption>
+    </figure>
+  );
+}
