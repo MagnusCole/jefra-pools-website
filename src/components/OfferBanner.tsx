@@ -49,10 +49,13 @@ const OfferBanner: React.FC<OfferBannerProps> = React.memo(({ sticky = false, di
       className={`${hidden ? 'hidden' : ''} w-full ${variant === 'overlay' ? 'absolute top-0 left-0 right-0 z-20 bg-primary-700/80 backdrop-blur-sm' : `${sticky ? 'sticky top-0 z-40' : ''} bg-primary-700/95`} text-white ${variant === 'overlay' ? '' : 'border-b border-primary-800'}`}
     >
       <div className={`container-custom flex items-center justify-between gap-3 ${variant === 'overlay' ? 'py-1 md:py-1.5' : 'py-1.5 md:py-2'}`}>
-        {/* Copy */}
-  <p className="text-xs md:text-sm text-gray-50/95 font-medium tracking-tight">
-          Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana
-        </p>
+        {/* Visual-first chip */}
+        <div className="inline-flex items-center gap-2">
+          <span className="inline-flex items-center rounded-md bg-amber-400/90 text-gray-900 px-2 py-0.5 text-xs font-extrabold shadow-sm">
+            10 cupos
+          </span>
+          <span className="hidden sm:inline text-xs text-white/90">esta semana</span>
+        </div>
         {/* Compact countdown */}
         <div className="shrink-0 flex items-center gap-2">
           <Countdown label="Termina en" emphasis size="sm" urgentThresholdHours={12} />

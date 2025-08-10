@@ -24,8 +24,9 @@ const Process: React.FC = React.memo(() => {
             {
               title: (
                 <>
-                  Evaluación inicial clara — S/.100 <span className="mx-1">&gt;</span>
-                  <span className="align-middle rounded-md bg-primary-600 text-white px-1.5 py-0.5 text-[13px]">S/.0.00</span>
+                  Evaluación inicial clara — <span className="line-through decoration-4 decoration-primary-700 text-gray-600">S/.100</span>{' '}
+                  <span className="mx-1">&gt;</span>
+                  <span className="align-middle rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-extrabold">S/.0.00</span>
                 </>
               ),
               desc: 'Revisamos agua, paredes, fondo y filtrado. Te explicamos qué está bien y qué hay que mejorar.'
