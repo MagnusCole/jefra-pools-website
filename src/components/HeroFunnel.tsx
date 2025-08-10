@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
 import { trackLead } from '../utils/tracking';
+import OfferBanner from './OfferBanner';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
 // Copy aligned to creative: "¿Cansado de limpiar tu piscina? +1 limpieza GRATIS esta semana + inspección sin costo"
@@ -59,6 +60,8 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
       role="banner"
   className="relative min-h-[82vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden bg-primary-700"
     >
+      {/* Overlay banner fixed at top of hero */}
+      <OfferBanner variant="overlay" dismissible={false} />
       {/* Background simple y nítido (estático) */}
       <picture className="absolute inset-0 w-full h-full">
         <source srcSet={`${resolvedBg.replace(/\.jpg$/g,'.avif')}`} type="image/avif" />
@@ -77,7 +80,7 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
   <div className="absolute inset-0 bg-black/45 md:bg-black/45" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 text-center">
+  <div className="relative z-10 w-full max-w-3xl mx-auto px-6 pt-10 md:pt-12 text-center">
   <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
           Piscina <span className="text-blue-300">cristalina</span> en 24h
         </h1>
@@ -86,11 +89,11 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           GRATIS: Inspección + 1 limpieza extra
         </p>
 
-        {/* Garantía visible */}
+        {/* Garantía visible }
   <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/20">
           <span className="text-white text-sm font-semibold">Garantía:</span>
           <span className="text-sky-200 text-sm">Si no queda cristalina, repetimos gratis</span>
-        </div>
+        </div> 
 
   {/* Bonus + Countdown moved to OfferBanner for less invasive placement */}
 

@@ -1,7 +1,7 @@
 // Lightweight analytics helpers focused on Meta Pixel Lead tracking
 // Defensive: avoid errors if fbq is not loaded
 
-export type LeadSource = 'hero' | 'mid-cta' | 'final-cta';
+export type LeadSource = 'hero' | 'mid-cta' | 'final-cta' | 'process-cta';
 
 export const trackLead = (source: LeadSource, extra?: Record<string, unknown>) => {
   try {
