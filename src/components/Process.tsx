@@ -16,7 +16,7 @@ const Process: React.FC = React.memo(() => {
   <section aria-labelledby="process-title" className="pt-8 pb-14 sm:pt-10 sm:pb-16 bg-white">
       <div className="container-custom">
   <h2 id="process-title" className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-6">
-          ¿Qué incluye la <span className="align-baseline rounded-lg bg-amber-100 text-amber-800 px-2 py-0.5 font-extrabold">oferta</span>?
+          ¿Qué incluye el <span className="align-baseline rounded-lg bg-amber-100 text-amber-800 px-2 py-0.5 font-extrabold">servicio</span>?
         </h2>
 
         <ol className="max-w-3xl mx-auto space-y-4">
@@ -24,29 +24,31 @@ const Process: React.FC = React.memo(() => {
             {
               title: (
                 <>
-                  Evaluación inicial clara — <span className="line-through decoration-4 decoration-primary-700 text-gray-600">S/.100</span>{' '}
-                  <span className="mx-1">&gt;</span>
+                  Visita técnica inicial — <span className="text-gray-700">Antes</span>{' '}
+                  <span className="line-through decoration-4 decoration-primary-700 text-gray-600">S/.149</span>{' '}
+                  <span className="mx-1">→</span>
+                  <span className="text-gray-700">Ahora</span>{' '}
                   <span className="align-middle rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-extrabold">S/.0.00</span>
                 </>
               ),
-              desc: 'Revisamos agua, paredes, fondo y filtrado. Te explicamos qué está bien y qué hay que mejorar.'
+              desc: 'Revisión del agua, materiales, salada de maqúina (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Heco por expertos, ahorrándote horas y detectando problemas temprano.'
             },
             {
-              title: 'Cotización transparente',
-              desc: 'Escuchamos tus necesidades y te damos una propuesta clara, sin costos ocultos.'
+              title: 'Cotización transparente y personalizada',
+              desc: 'Detalle exacto de insumos y cotización de materiales, sin sorpresas, todo claro para tu tranquilidad.'
             },
             {
               title: (
                 <>
                   4 visitas de mantenimiento <span className="font-black">+</span>{' '}
-                  <span className="rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 font-semibold whitespace-nowrap">1 visita de limpieza gratis</span>
+                  <span className="rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-bold whitespace-nowrap">1 Limpieza Gratis</span>
                 </>
               ),
-              desc: 'Cepillado, aspirado y balanceo profesional para recuperar el brillo. Sin interrumpir tu rutina.'
+              desc: 'Mantenimiento completo de la piscina, limpieza de paredes, piso y canaletas; disminución de agua, limpieza de filtro, etc. Resultados visibles en semanas, con reportes digitales para seguimiento fácil.'
             },
             {
-              title: 'Revisión final + fotos',
-              desc: 'Verificamos que quede cristalina y te compartimos fotos del resultado. Si no, repetimos gratis.'
+              title: 'Informe detallado por visita',
+              desc: 'Recibe un reporte claro de cada mantenimiento. Si no te convence, repetimos gratis hasta que estés 100% satisfecho.'
             }
           ].map((step, i) => (
             <li key={i} className="relative rounded-2xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
@@ -63,10 +65,10 @@ const Process: React.FC = React.memo(() => {
           ))}
         </ol>
 
-        <div className="text-center mt-8">
+    <div className="text-center mt-8">
           <button
             onClick={handleWhatsApp}
-            className="inline-flex items-center justify-center px-6 py-3 rounded-xl border-2 border-amber-400 text-amber-700 bg-amber-50 font-bold shadow-sm hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
+      className="inline-flex items-center justify-center px-6 md:px-8 py-3 rounded-full border-2 border-amber-400 text-amber-700 bg-amber-50 font-bold shadow hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
             aria-label="Solicitar inspección gratis"
           >
             ¡Sé el próximo cliente feliz!

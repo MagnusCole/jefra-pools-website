@@ -1,51 +1,17 @@
-import React, { useCallback, useMemo } from 'react';
-import type { CSSProperties } from 'react';
+import React, { useCallback } from 'react';
 import { trackLead } from '../utils/tracking';
 import OfferBanner from './OfferBanner';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
 // Copy aligned to creative: "¿Cansado de limpiar tu piscina? +1 limpieza GRATIS esta semana + inspección sin costo"
-interface HeroFunnelProps {
-  bgSrc?: string; // optional override relative to public/
-  objectPosition?: string; // e.g., 'center' | '50% 40%'
-}
+type HeroFunnelProps = undefined;
 
-const ALLOWED_BG: Record<string, string> = {
-  default: '/pool-real.jpg',
-  // whitelist a few options from public/images
-  a: '/images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', // more contrast
-  b: '/images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg',
-  c: '/images/d5366dfa-97e8-473e-9286-c70af2b7adf0.jpg',
-  d: '/images/fb922e80-a67e-4d6d-a188-679e111f5554.jpg',
-  // "dirty" variant to suggest before state
-  dirty: '/pool.png'
-};
+// Single, fixed hero background (no alternates)
+const HERO_BG = '/images/b651ee56-0c98-4bc4-8d01-87ee3d7bc715.jpg';
 
-const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPosition }) => {
-
-  // Allow quick testing via URL: ?bg=a|b|c|d or ?bg=/images/xxx.jpg (if matches whitelist)
-  const resolvedBg = useMemo(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const q = params.get('bg');
-      if (q && ALLOWED_BG[q as keyof typeof ALLOWED_BG]) return ALLOWED_BG[q as keyof typeof ALLOWED_BG];
-      if (bgSrc && Object.values(ALLOWED_BG).includes(bgSrc)) return bgSrc;
-      return ALLOWED_BG.default;
-    } catch {
-      return ALLOWED_BG.default;
-    }
-  }, [bgSrc]);
-
-  // Background simplified: static clean image for focus
-
-  const objPos: CSSProperties['objectPosition'] = useMemo(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      return objectPosition || params.get('pos') || 'center';
-    } catch {
-      return objectPosition || 'center';
-    }
-  }, [objectPosition]);
+const HeroFunnel: React.FC = React.memo(() => {
+  // Background: single image; slightly lower center for best composition
+  const objPos = '50% 55%';
 
   const handleWhatsApp = useCallback(() => {
     const phone = '51999888777';
@@ -62,30 +28,27 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
     >
       {/* Overlay banner fixed at top of hero */}
       <OfferBanner variant="overlay" dismissible={false} />
-      {/* Background simple y nítido (estático) */}
-      <picture className="absolute inset-0 w-full h-full">
-        <source srcSet={`${resolvedBg.replace(/\.jpg$/g,'.avif')}`} type="image/avif" />
-        <source srcSet={`${resolvedBg.replace(/\.jpg$/g,'.webp')}`} type="image/webp" />
-        <img
-          src={resolvedBg}
-          alt="Piscina limpia y cristalina"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: objPos }}
-          loading="eager"
-          decoding="async"
-          sizes="100vw"
-          fetchPriority="high"
-        />
-      </picture>
-  <div className="absolute inset-0 bg-black/45 md:bg-black/45" />
+      {/* Background simple y nítido (única imagen) */}
+      <img
+        src={HERO_BG}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover brightness-[1.08] saturate-125 pointer-events-none select-none"
+        style={{ objectPosition: objPos }}
+        loading="eager"
+        decoding="async"
+        sizes="100vw"
+        fetchPriority="high"
+      />
+  <div className="absolute inset-0 bg-black/20" />
 
       {/* Content */}
   <div className="relative z-10 w-full max-w-3xl mx-auto px-6 pt-10 md:pt-12 text-center">
-  <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
+  <h1 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
           Piscina <span className="text-blue-300">cristalina</span> en 24h
         </h1>
 
-  <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium">
+  <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
           GRATIS: Inspección + 1 limpieza extra
         </p>
 
