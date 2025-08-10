@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Suspense, lazy } from 'react';
 import { trackLead } from './utils/tracking';
 import HeroFunnel from './components/HeroFunnel';
+import OfferBanner from './components/OfferBanner';
 import Benefits from './components/Benefits';
 import Process from './components/Process';
 import MidCTA from './components/MidCTA';
@@ -43,6 +44,8 @@ function App() {
       </Helmet>
 
   <main>
+        {/* Top offer banner */}
+        <OfferBanner />
         {/* Funnel hero */}
         <HeroFunnel />
         {/* Proceso de limpieza */}

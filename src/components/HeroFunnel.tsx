@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
-import Countdown from './Countdown';
 import { trackLead } from '../utils/tracking';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
@@ -80,11 +79,11 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
       {/* Content */}
       <div className="relative z-10 w-full max-w-3xl mx-auto px-6 text-center">
   <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
-          Piscina <span className="text-blue-300">cristalina</span> en 24h — sin que muevas un dedo
+          Piscina <span className="text-blue-300">cristalina</span> en 24h
         </h1>
 
   <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium">
-          Inspección gratis + limpieza completa + mantenimiento preventivo
+          GRATIS: Inspección + 1 limpieza extra
         </p>
 
         {/* Garantía visible */}
@@ -93,13 +92,7 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           <span className="text-sky-200 text-sm">Si no queda cristalina, repetimos gratis</span>
         </div>
 
-        {/* Bonus + Countdown */}
-  <div className="mt-5 md:mt-6">
-          <p className="text-base md:text-lg text-gray-200 mb-2">Oferta limitada — solo <span className="font-bold text-white">10</span> cupos esta semana</p>
-          <div className="inline-block scale-105 md:scale-110">
-            <Countdown label="Termina en" emphasis size="md" urgentThresholdHours={12} />
-          </div>
-        </div>
+  {/* Bonus + Countdown moved to OfferBanner for less invasive placement */}
 
         {/* CTA */}
   <div className="mt-5 md:mt-6">
@@ -111,7 +104,6 @@ const HeroFunnel: React.FC<HeroFunnelProps> = React.memo(({ bgSrc, objectPositio
           >
             📞 RESERVAR MI LIMPIEZA GRATIS AHORA
           </button>
-          <p className="mt-2 text-xs md:text-sm text-gray-200">Inspección sin costo • Sin compromiso</p>
         </div>
       </div>
 
