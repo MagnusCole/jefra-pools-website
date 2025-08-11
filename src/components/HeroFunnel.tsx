@@ -4,7 +4,6 @@ import OfferBanner from './OfferBanner';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
 // Copy aligned to creative: "¿Cansado de limpiar tu piscina? +1 limpieza GRATIS esta semana + inspección sin costo"
-type HeroFunnelProps = undefined;
 
 // Single, fixed hero background (no alternates)
 const HERO_BG = '/images/b651ee56-0c98-4bc4-8d01-87ee3d7bc715.jpg';
