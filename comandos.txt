@@ -1,3 +1,4 @@
+--EMPEZAR A TRABAJAR--
 git clone - CLONAR
 
 --ANTES DE TRABAJAR--
@@ -5,6 +6,26 @@ git clone - CLONAR
 git checkout main - CHEQUEAR CAMBIOS
 git pull origin main - TRAER CAMBIOS
 
+--CREAR RAMAS--
+
+git checkout -b feature/NOMBRERAMA
+git add .
+git commit -m "SE AGREGO ALGO"
+git push origin feature/NOMBRERAMA
+
 --SUBIR CAMBIOS--
 
-git add .
+git add . - agregar cambios
+git commit -m "AGREGÉ COMANDOS.TXT" - CONFIRMAR
+git push origin main - SUBIR A LA RAMA PRINCIPAL
+
+
+--ANTES DE TRABAJAR--
+
+git checkout main - CHEQUEAR CAMBIOS
+git pull origin main - TRAER CAMBIOS
+
+--ABRIR ENTORNO DE DESARROLLO--
+
+npm run dev
+npm run build - VERIFICAR TODO OK PARA SUBIR
