@@ -1,0 +1,10 @@
+git clone - CLONAR
+
+--ANTES DE TRABAJAR--
+
+git checkout main - CHEQUEAR CAMBIOS
+git pull origin main - TRAER CAMBIOS
+
+--SUBIR CAMBIOS--
+
+git add .
