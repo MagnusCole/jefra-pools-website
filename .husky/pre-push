@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Pre-push: validando proyecto (types, lint, build ligero, CSP)."
+
+# 1. Type check
+echo "▶ Type check"
+npm run type-check || { echo "❌ Type errors"; exit 1; }
+
+# 2. Lint (sin autofix):
+echo "▶ Lint"
+npm run lint || { echo "❌ Lint errors"; exit 1; }
+
+# 3. Build (asegura que producción compila)
+echo "▶ Build"
+npm run build >/dev/null 2>&1 || { echo "❌ Build failed"; exit 1; }
+
+# 4. Validar CSP mínima (font-src incluye data:)
+echo "▶ CSP check"
+grep -q "font-src 'self' https://fonts.gstatic.com data:" netlify.toml || { echo "❌ CSP font-src sin data:"; exit 1; }
+
+echo "✅ Pre-push passed. Listo para subir."

@@ -66,6 +66,15 @@ const Process: React.FC = React.memo(() => {
           ))}
         </ol>
 
+        {/* Clarificación requerida: debajo del paso 4 y antes del CTA */}
+        <p
+          className="mt-6 max-w-3xl mx-auto text-[11px] sm:text-xs md:text-sm leading-snug text-gray-600 bg-amber-50/80 border border-amber-200 rounded-lg px-4 py-3 shadow-sm"
+          role="note"
+        >
+          <span className="font-semibold text-amber-700">Importante:</span> La visita técnica inicial es gratuita únicamente al
+          contratar el servicio de mantenimiento completo (plan de 4 visitas) y cuenta como la primera visita del plan.
+        </p>
+
     <div className="text-center mt-8">
           <button
             onClick={handleWhatsApp}

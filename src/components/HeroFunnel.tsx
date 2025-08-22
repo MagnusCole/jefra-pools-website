@@ -51,13 +51,14 @@ const HeroFunnel: React.FC = React.memo(() => {
           GRATIS: Inspección + 1 limpieza extra
         </p>
 
-        {/* Garantía visible }
-  <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/20">
+        {/* Garantía (removida temporalmente para reducir distracción y peso visual)
+        <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/20">
           <span className="text-white text-sm font-semibold">Garantía:</span>
           <span className="text-sky-200 text-sm">Si no queda cristalina, repetimos gratis</span>
-        </div> 
+        </div>
+        */}
 
-  {/* Bonus + Countdown moved to OfferBanner for less invasive placement */}
+        {/* Bonus + Countdown moved to OfferBanner for less invasive placement */}
 
         {/* CTA */}
   <div className="mt-5 md:mt-6">
@@ -65,7 +66,7 @@ const HeroFunnel: React.FC = React.memo(() => {
             onClick={handleWhatsApp}
             data-testid="cta-primary"
             className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-9 py-5 md:py-6 rounded-2xl min-h-[56px] min-w-[64px] text-xl md:text-2xl ring-1 ring-amber-300 shadow-[0_10px_25px_rgba(245,158,11,0.45)] transform transition duration-200 hover:scale-[1.02] active:scale-[0.99]"
-            aria-label="RRESERVA GRATIS AHORA"
+            aria-label="RESERVA GRATIS AHORA"
           >
             📞 RESERVA GRATIS AHORA
           </button>
