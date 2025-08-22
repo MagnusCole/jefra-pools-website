@@ -137,7 +137,7 @@ El proyecto está configurado para deploy automático en Netlify:
 
 ```bash
 VITE_GOOGLE_ANALYTICS_ID=GA_MEASUREMENT_ID
-VITE_WHATSAPP_NUMBER=51946398228
+VITE_WHATSAPP_NUMBER=51999888777
 ```
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:

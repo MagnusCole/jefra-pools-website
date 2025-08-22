@@ -79,7 +79,7 @@ describe('ContactForm - Conversion Critical', () => {
 
     // Test international format
     await user.clear(phoneInput);
-  await user.type(phoneInput, '+51946398228');
+    await user.type(phoneInput, '+51999888777');
     await user.tab();
 
     expect(screen.queryByText(/formato válido/i)).not.toBeInTheDocument();
@@ -106,7 +106,7 @@ describe('ContactForm - Conversion Critical', () => {
 
     // Fill form with valid data
     await user.type(screen.getByLabelText(/nombre/i), 'María González');
-  await user.type(screen.getByLabelText(/teléfono/i), '+51946398228');
+    await user.type(screen.getByLabelText(/teléfono/i), '+51999888777');
     await user.type(screen.getByLabelText(/email/i), 'maria@email.com');
 
     // Submit form
@@ -114,14 +114,14 @@ describe('ContactForm - Conversion Critical', () => {
 
     await waitFor(() => {
       expect(mockWindowOpen).toHaveBeenCalledWith(
-  expect.stringContaining('https://wa.me/51946398228'),
+        expect.stringContaining('https://wa.me/51999888777'),
         '_blank'
       );
 
       // Verify message contains user data
       const whatsappUrl = mockWindowOpen.mock.calls[0][0];
       expect(whatsappUrl).toContain('María González');
-  expect(whatsappUrl).toContain('+51946398228');
+      expect(whatsappUrl).toContain('+51999888777');
     });
   });
 
@@ -168,7 +168,7 @@ describe("Hero to WhatsApp Integration", () => {
 
     // Verify WhatsApp opens with business number
     expect(window.open).toHaveBeenCalledWith(
-      "https://wa.me/51946398228?text=Hola,%20solicito%20cotización%20para%20limpieza%20de%20piscina",
+      "https://wa.me/51999888777?text=Hola,%20solicito%20cotización%20para%20limpieza%20de%20piscina",
       "_blank"
     );
   });
@@ -246,7 +246,7 @@ describe("Mobile Conversion Journey", () => {
 
     cy.get("@windowOpen").should(
       "have.been.calledWith",
-      Cypress.sinon.match("https://wa.me/51946398228"),
+      Cypress.sinon.match("https://wa.me/51999888777"),
       "_blank"
     );
   });
@@ -354,11 +354,11 @@ Object.defineProperty(window, 'open', { value: mockOpen });
 
     await waitFor(() => {
       expect(mockOpen).toHaveBeenCalledWith(
+        expect.stringContaining('wa.me/51999888777'),
+        '_blank'
+      );
+    });
 
-expect.stringContaining('wa.me/51946398228'),
-'\_blank'
-);
-});
 });
 });
 
@@ -432,7 +432,7 @@ describe("JefraPools Conversion Flow", () => {
     // Contact form submission
     cy.get('[data-testid="contact-form"]').within(() => {
       cy.get('input[name="name"]').type("Test User");
-      cy.get('input[name="phone"]').type("+51946398228");
+      cy.get('input[name="phone"]').type("+51999888777");
       cy.get('input[name="email"]').type("test@email.com");
       cy.get('select[name="poolSize"]').select("medium");
 
@@ -462,7 +462,7 @@ describe("JefraPools Conversion Flow", () => {
       .its("open")
       .should(
         "have.been.calledWith",
-        Cypress.sinon.match(/wa\.me\/51946398228/)
+        Cypress.sinon.match(/wa\.me\/51999888777/)
       );
   });
 

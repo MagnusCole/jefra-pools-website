@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
-import { A11y, Keyboard, Navigation } from 'swiper/modules';
+import { A11y, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { WHATSAPP_PHONE } from '../config/contact';
 
@@ -51,11 +51,34 @@ const slides: Slide[] = [
   },
 ];
 
+// Simple ErrorBoundary local para capturar errores de Swiper y mostrar fallback
+class SwiperErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; msg?: string }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(err: unknown) {
+    return { hasError: true, msg: err instanceof Error ? err.message : String(err) };
+  }
+  componentDidCatch(error: unknown, info: unknown) {
+    // Log en consola (ya tenemos panel global)
+    console.error('[SwiperErrorBoundary]', error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="p-4 border border-red-300 rounded bg-red-50 text-red-700 text-sm" role="alert">
+          Error en carrusel: {this.state.msg}
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const OtrosServicios: React.FC = React.memo(() => {
-  const swiperRef = useRef<SwiperType | null>(null);
   const [active, setActive] = useState(0);
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50">
@@ -71,43 +94,33 @@ const OtrosServicios: React.FC = React.memo(() => {
   <div className="mb-6 relative">
           {/* Botones navegación personalizados (desktop) */}
           <button
-            ref={prevRef}
             type="button"
             aria-label="Anterior"
-            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-10 w-11 h-11 items-center justify-center rounded-lg border-2 border-sky-500 bg-white/85 backdrop-blur-sm text-sky-500 font-bold text-xl transition hover:bg-sky-50 active:scale-95 shadow-sm"
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-10 w-12 h-12 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:shadow-[0_0_16px_3px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
           >
             <span aria-hidden="true">‹</span>
           </button>
           <button
-            ref={nextRef}
             type="button"
             aria-label="Siguiente"
-            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-10 w-11 h-11 items-center justify-center rounded-lg border-2 border-sky-500 bg-white/85 backdrop-blur-sm text-sky-500 font-bold text-xl transition hover:bg-sky-50 active:scale-95 shadow-sm"
+            onClick={() => swiperRef.current?.slideNext()}
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-10 w-12 h-12 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:shadow-[0_0_16px_3px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
           >
             <span aria-hidden="true">›</span>
           </button>
           {/* Swiper con navegación y paginación externa (los bullets se muestran debajo) */}
-          <Swiper
-            modules={[Navigation, A11y, Keyboard]}
-            onSwiper={(instance) => {
-              swiperRef.current = instance;
-              // Asignar botones personalizados a navegación
-              if (prevRef.current && nextRef.current) {
-                instance.params.navigation = {
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                };
-                instance.navigation.init();
-                instance.navigation.update();
-              }
-            }}
-            onSlideChange={(swiper) => setActive(swiper.activeIndex)}
-            keyboard={{ enabled: true }}
-            a11y={{ enabled: true }}
-            slidesPerView={1}
-            spaceBetween={24}
-            className="!py-4"
-          >
+          <SwiperErrorBoundary>
+            <Swiper
+              modules={[A11y, Keyboard]}
+              onSwiper={(sw) => { swiperRef.current = sw; }}
+              onSlideChange={(swiper) => setActive(swiper.activeIndex)}
+              keyboard={{ enabled: true }}
+              a11y={{ enabled: true }}
+              slidesPerView={1}
+              spaceBetween={24}
+              className="!py-4 min-h-[300px]"
+            >
             {slides.map((s) => (
               <SwiperSlide key={s.title}>
                 <div className="max-w-3xl mx-auto h-auto md:h-[280px] bg-white rounded-lg overflow-hidden shadow-sm flex flex-col md:flex-row">
@@ -146,7 +159,8 @@ const OtrosServicios: React.FC = React.memo(() => {
                 </div>
               </SwiperSlide>
             ))}
-          </Swiper>
+            </Swiper>
+          </SwiperErrorBoundary>
           {/* Paginación personalizada sin estilos absolutos de Swiper */}
           <div className="otros-bullet-zone mt-4 md:mt-6" aria-label="Paginación carrusel otros servicios">
             <div className="flex justify-center">

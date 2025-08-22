@@ -3,6 +3,8 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* Import Swiper base styles (necesario para layout horizontal consistente) */
+@import 'swiper/css';
 
 @layer base {
   html {
@@ -113,99 +115,4 @@
   .animation-delay-900 {
     animation-delay: 900ms;
   }
-
-  /* Paginación personalizada OtrosServicios (utiliza utilidades Tailwind en JSX) */
-  .otros-bullet-zone { min-height: 46px; }
-
-  /* Water overlay styles (SVG filter based caustics) */
-  .water-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  opacity: 0.12; /* tweak for intensity */
-  mix-blend-mode: soft-light; /* softer, more natural caustics; try 'screen' or 'overlay' if desired */
-  z-index: 5; /* sits above the background but below the content */
-  }
-
-  .water-overlay svg { width: 100%; height: 100%; display: block; }
-
-  /* Reduced motion: lower intensity / stop animation by hiding animate elements */
-  @media (prefers-reduced-motion: reduce) {
-    .water-overlay { opacity: 0.06; }
-    /* Best-effort: stop SVG animate by setting display none on animation nodes */
-    .water-overlay svg animate { display: none; }
-  }
-
-  /* helper to ensure section content sits above overlays */
-  .content-above { z-index: 10; position: relative; }
-  
-  /* Video overlay (semi-transparent, muted, looping) */
-  .video-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 6; /* above background but below .content-above */
-    /* stronger blend by default for more visible caustics; can be 'soft-light' or 'screen' */
-    mix-blend-mode: screen;
-  }
-
-  .video-overlay__video {
-    width: 120%;
-    height: 120%;
-    object-fit: cover;
-    transform: translate(-10%, -10%); /* center and oversize to avoid edges */
-    /* stronger color/contrast to make caustics pop */
-    filter: saturate(1.2) contrast(1.06) brightness(1.04);
-    display: block;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .video-overlay__video { display: none; }
-  }
-
-}
-
-/* --- Carousel navigation (OtrosServicios) (placed after Tailwind layers to win cascade) --- */
-#otros-servicios .swiper-button-prev,
-#otros-servicios .swiper-button-next {
-  width: 42px;
-  height: 42px;
-  border: 2px solid #0ea5e9;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(2px);
-  display: none; /* hide on mobile */
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background .18s ease, transform .18s ease;
-  font-size: 0; /* hide fallback text */
-  overflow: hidden;
-}
-@media (min-width:768px){
-  #otros-servicios .swiper-button-prev,
-  #otros-servicios .swiper-button-next { display:flex; }
-}
-#otros-servicios .swiper-button-prev::after,
-#otros-servicios .swiper-button-next::after {
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1;
-  color: #0ea5e9;
-  font-family: system-ui,sans-serif;
-  text-shadow:none;
-}
-#otros-servicios .swiper-button-prev::after { content:'<'; }
-#otros-servicios .swiper-button-next::after { content:'>'; }
-#otros-servicios .swiper-button-prev:hover,
-#otros-servicios .swiper-button-next:hover { background:#f0f9ff; }
-#otros-servicios .swiper-button-prev:active,
-#otros-servicios .swiper-button-next:active { transform:scale(.94); }
-#otros-servicios .swiper-button-disabled { opacity:.35; cursor:not-allowed; }
-
-/* (Legacy) If Swiper internal pagination still rendered somewhere in cache, neutralize absolute positioning */
-#otros-servicios .swiper-pagination {
-  position: static !important;
-  margin-top: 22px;
 }

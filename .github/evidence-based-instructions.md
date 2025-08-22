@@ -182,13 +182,13 @@ useEffect(() => {
 test("Hero CTA opens WhatsApp with correct number", () => {
   render(<Hero />);
   fireEvent.click(screen.getByText(/cotización gratuita/i));
-  expect(window.open).toHaveBeenCalledWith("https://wa.me/51946398228");
+  expect(window.open).toHaveBeenCalledWith("https://wa.me/51999888777");
 });
 
 // 2. Form → Success (Lead generation optimization)
 test("Contact form submits with LATAM phone format", async () => {
   render(<ContactForm />);
-  await userEvent.type(screen.getByLabelText(/teléfono/i), "+51946398228");
+  await userEvent.type(screen.getByLabelText(/teléfono/i), "+51999888777");
   await userEvent.click(screen.getByRole("button", { name: /enviar/i }));
   expect(screen.getByText(/mensaje enviado/i)).toBeInTheDocument();
 });
@@ -235,7 +235,7 @@ expect(bundleSize).toBeLessThan(204800); // 200KB research target
 
 ```bash
 # Evidence-based essentials only
-VITE_WHATSAPP_NUMBER=51946398228  # Direct conversion path
+VITE_WHATSAPP_NUMBER=51999888777  # Direct conversion path
 VITE_GOOGLE_ANALYTICS=G-XXXXXXXXXX  # Performance tracking
 ```
 

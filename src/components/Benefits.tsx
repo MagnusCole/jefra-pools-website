@@ -1,9 +1,7 @@
 import { CheckBadgeIcon, HeartIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import React, { useCallback } from 'react';
 import { WHATSAPP_PHONE } from '../config/contact';
-// Video overlay is preferred for realistic caustics; drop a video in public/videos/caustics.mp4
 import VideoOverlay from './VideoOverlay';
-// import WaterOverlay from './WaterOverlay'; // fallback
 
 /**
  * Benefits Component - Evidence-Based Emotional Psychology
@@ -14,14 +12,12 @@ import VideoOverlay from './VideoOverlay';
 const Benefits: React.FC = React.memo(() => {
   // WhatsApp integration (consistent across components)
   const handleWhatsAppClick = useCallback(() => {
-    const message = "¡Hola JefraPools! Quiero información sobre los beneficios del servicio de limpieza profesional.";
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+  const message = "¡Hola JefraPools! Quiero información sobre los beneficios del servicio de limpieza profesional.";
+  const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
 
   // (removed unused benefits list to keep component lean)
-  // Toggle to true once you add /public/videos/caustics.mp4
-  const USE_VIDEO_OVERLAY = true;
 
   return (
 
@@ -29,14 +25,9 @@ const Benefits: React.FC = React.memo(() => {
 
 
 
-  <section id="beneficios" aria-labelledby="benefits-title" className="py-14 bg-primary-600 relative overflow-hidden">
-      {/* Video caustics overlay (place your video at /public/videos/caustics.mp4) */}
-      {USE_VIDEO_OVERLAY ? (
-        <VideoOverlay src="/videos/caustics.mp4" opacity={0.20} playbackRate={1.0} scale={1.25} objectPosition="center right" />
-      ) : null}
-      <div className="container-custom">
-        <div className="content-above">
-        {/* If you prefer SVG filter fallback use <WaterOverlay /> */}
+    <section id="beneficios" aria-labelledby="benefits-title" className="relative py-14 bg-primary-600 overflow-hidden">
+      <VideoOverlay />
+      <div className="relative z-10 container-custom">
         <div className="text-center mb-8 text-white">
           <h2 id="benefits-title" className="text-3xl md:text-4xl font-black">
             Beneficios garantizados
@@ -44,7 +35,7 @@ const Benefits: React.FC = React.memo(() => {
           <p className="opacity-90 mt-1">Lo esencial para una piscina perfecta</p>
         </div>
 
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* 1 */}
           <div className="p-5 rounded-xl border border-gray-200 bg-white">
             <div className="mb-3 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-sky-100">
@@ -82,7 +73,7 @@ const Benefits: React.FC = React.memo(() => {
             </div>
             <h3 className="font-bold text-lg">Garantía de satisfacción</h3>
             <p className="text-gray-600 mt-1">Si no queda perfecta, repetimos gratis hasta dejarla impecable.</p>
-            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias satisfechas</span>.</p>
+            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias</span> atendidas al mes.</p>
             {/* micro-CTA removed */}
           </div>
         </div>
@@ -92,9 +83,8 @@ const Benefits: React.FC = React.memo(() => {
             onClick={handleWhatsAppClick}
       className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-300 text-amber-100 bg-transparent font-semibold shadow-sm hover:bg-amber-50/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 transition min-h-[48px]"
           >
-      Solicitar inspección gratis
+      Solicitar gratis mi inspección
           </button>
-        </div>
         </div>
       </div>
     </section>

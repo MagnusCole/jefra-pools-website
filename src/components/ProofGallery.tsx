@@ -7,7 +7,7 @@ const images: { src: string; caption: string }[] = [
   { src: 'images/7482029c-d9f0-4c51-b951-6985d88550d4.jpg', caption: 'Surco — Balanceo químico' },
   { src: 'images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', caption: 'La Molina — Mantenimiento semanal' },
   { src: 'images/aadf19d5-b8ee-4901-b8a2-1acc7f09162b.jpg', caption: 'San Borja — Limpieza completa (2h)' },
-  { src: 'images/ab302bdf-c230-46ec-8c4a-ce8e3cffb414.jpg', caption: 'La Molina — Resultado' },
+  { src: 'images/Construccion2.png', caption: 'La Molina — Resultado' },
   { src: 'images/ad2639cd-5294-4eab-bd0b-eed2e85cdeb0.jpg', caption: 'Surco — Filtrado y cepillado' },
   { src: 'images/aed6151e-23b6-419b-93e0-033abe1d207c.jpg', caption: 'La Molina — Agua cristalina' },
   { src: 'images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg', caption: 'San Borja — Hogar familiar' },
@@ -15,9 +15,10 @@ const images: { src: string; caption: string }[] = [
   { src: 'images/d00dd42c-080d-43bc-ac1f-fc21367258a9.jpg', caption: 'Surco — Shock de limpieza' },
   { src: 'images/d0b8119c-04fc-4b77-a8ec-9c9f4d7f4331.jpg', caption: 'La Molina — Listo para usar' },
   { src: 'images/d5366dfa-97e8-473e-9286-c70af2b7adf0.jpg', caption: 'San Borja — Agua perfecta' },
-  { src: 'images/d85fddcd-42c5-4f42-8d69-fb78dae065b4.jpg', caption: 'La Molina — Condominio' },
+  { src: 'images/piscina-gozu.png', caption: 'La Molina — Condominio' },
   { src: 'images/fb922e80-a67e-4d6d-a188-679e111f5554.jpg', caption: 'Surco — Detalle cristalino' },
   { src: 'images/fd186c97-4c8d-4ef2-a4d4-5b13f36140c3.jpg', caption: 'La Molina — Post-mantenimiento' },
+  { src: 'images/piscina-pacman.png', caption: 'San Isidro — Condominio' },
 ];
 
 const ProofGallery: React.FC = React.memo(() => {
@@ -29,15 +30,15 @@ const ProofGallery: React.FC = React.memo(() => {
             Resultados reales
           </h2>
           <p className="text-gray-600 mt-2">Trabajos reales de esta semana en La Molina, Surco y San Borja.</p>
-        </div>
+  </div>
   <LightboxGrid images={images} />
 
         <div className="mt-8 text-center">
-          <a
-            href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola, quiero reservar una inspección gratuita para mi piscina.')}`}
+              <a
+                href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola, quiero reservar una inspección gratuita para mi piscina.')}`}
             className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
           >
-            Reservar inspección gratis
+            Reservar gratis mi inspección
           </a>
         </div>
       </div>

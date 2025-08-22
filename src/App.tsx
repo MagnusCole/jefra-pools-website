@@ -7,7 +7,6 @@ import Benefits from './components/Benefits';
 import FAQ from './components/FAQ';
 import HeroFunnel from './components/HeroFunnel';
 import MidCTA from './components/MidCTA';
-import OtrosServicios from './components/OtrosServicios';
 import Process from './components/Process';
 
 // Utils imports
@@ -16,10 +15,11 @@ import { trackLead, type LeadSource } from './utils/tracking';
 // Lazy loaded components for performance optimization
 const ProofGallery = lazy(() => import('./components/ProofGallery'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
+const OtrosServicios = lazy(() => import('./components/OtrosServicios'));
 
 // Constants for WhatsApp integration
-import { WHATSAPP_PHONE } from './config/contact';
-const WHATSAPP_MESSAGE = 'Hola JefraPools, quiero reservar mi limpieza GRATIS ahora. ¿Pueden atender hoy en La Molina?';
+import { WHATSAPP_MESSAGE_DEFAULT, WHATSAPP_PHONE } from './config/contact';
+const WHATSAPP_MESSAGE = WHATSAPP_MESSAGE_DEFAULT;
 
 /**
  * Main App Component
@@ -78,11 +78,13 @@ function App() {
         
         {/* Benefits Section - Why choose us */}
         <Benefits />
-        
-  {/* Otros servicios - colocado después de Benefits */}
-  <OtrosServicios />
 
-  {/* Proof Gallery - Before/after photos (lazy loaded) */}
+        {/* Other Services Carousel - Complementary offerings */}
+        <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando servicios…</div>}>
+          <OtrosServicios />
+        </Suspense>
+        
+        {/* Proof Gallery - Before/after photos (lazy loaded) */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando pruebas…</div>}>
           <ProofGallery />
         </Suspense>
@@ -111,9 +113,9 @@ function App() {
             <button
               onClick={() => handleWhatsAppContact('final-cta')}
               className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
-              aria-label="RESERVAR GRATIS AHORA"
+              aria-label="RESERVA GRATIS AHORA"
             >
-              📞 RESERVAR GRATIS AHORA
+              📞 RESERVA GRATIS AHORA
             </button>
           </div>
         </section>

@@ -18,8 +18,9 @@ interface Testimonial {
 const Testimonials: React.FC = React.memo(() => {
   // WhatsApp integration
   const handleWhatsAppClick = useCallback(() => {
+    const phone = WHATSAPP_PHONE;
     const message = "¡Hola JefraPools! Vi las recomendaciones y me interesa una cotización para mi piscina.";
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
 
@@ -129,7 +130,7 @@ const Testimonials: React.FC = React.memo(() => {
             onClick={handleWhatsAppClick}
             className="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold text-lg px-8 py-4 rounded-lg transition-colors"
           >
-            Obtener Mi Cotización Gratis
+            ¡Quiero ser el próximo!
           </button>
         </div>
       </div>

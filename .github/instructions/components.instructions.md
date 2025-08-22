@@ -194,7 +194,7 @@ const ContactForm: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     // WhatsApp integration (preferred contact method LATAM)
-    const whatsappUrl = `https://wa.me/51946398228?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/51999888777?text=${encodeURIComponent(
       `Hola, soy ${data.name}. Tel: ${data.phone}. ${
         data.message || "Solicito cotización para limpieza de piscina."
       }`
@@ -231,7 +231,7 @@ const ContactForm: React.FC = () => {
             required: "Teléfono es requerido",
             pattern: {
               value: /^(\+51)?[0-9]{9}$/,
-              message: "Formato: 999888777 o +51946398228",
+              message: "Formato: 999888777 o +51999888777",
             },
           })}
           id="phone"
@@ -281,11 +281,11 @@ const TrustSignals: React.FC = () => (
     <div className="flex items-center space-x-2">
       <span className="text-2xl">📞</span>
       <a
-        href="tel:+51946398228"
+        href="tel:+51999888777"
         className="font-semibold text-blue-600 hover:underline"
         aria-label="Llamar a JefraPools"
       >
-        +51 946 398 228
+        +51 999 888 777
       </a>
     </div>
   </section>

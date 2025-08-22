@@ -121,12 +121,10 @@ const FAQ: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <section aria-labelledby="faq-title" className="py-14 bg-primary-600 relative overflow-hidden">
-      {/* Video caustics overlay */}
-  <VideoOverlay src="/videos/caustics.mp4" opacity={0.20} playbackRate={1.0} scale={1.25} objectPosition="center right" />
-      <div className="container-custom">
-        <div className="content-above">
-          <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-white text-center mb-8">
+    <section aria-labelledby="faq-title" className="relative py-14 bg-primary-600 overflow-hidden">
+      <VideoOverlay />
+      <div className="relative z-10 container-custom">
+        <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-white text-center mb-8">
           Preguntas frecuentes
         </h2>
 
@@ -162,7 +160,6 @@ const FAQ: React.FC = React.memo(() => {
           })}
         </div>
   {/* CTA removed here to keep hierarchy; closing push will be the global primary CTA */}
-        </div>
       </div>
     </section>
   );

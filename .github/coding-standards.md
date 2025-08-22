@@ -116,7 +116,7 @@ const phoneValidation = {
   required: "Teléfono requerido",
   pattern: {
     value: /^(\+51|51)?[0-9]{9}$/,
-    message: "Formato: 999888777 o +51946398228",
+    message: "Formato: 999888777 o +51999888777",
   },
 };
 
@@ -124,7 +124,7 @@ const phoneValidation = {
 const handleSubmit = (data) => {
   const message = `Hola, soy ${data.name}. Tel: ${data.phone}`;
   window.open(
-    `https://wa.me/51946398228?text=${encodeURIComponent(message)}`,
+    `https://wa.me/51999888777?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 };

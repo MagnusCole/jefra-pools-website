@@ -51,7 +51,7 @@ const ContactForm: React.FC = () => {
       // Secondary: WhatsApp redirect (Hispanic market preference)
       const whatsappMessage = generateWhatsAppMessage(data);
       window.open(
-        `https://wa.me/51946398228?text=${encodeURIComponent(whatsappMessage)}`,
+        `https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`,
         "_blank"
       );
 
@@ -60,7 +60,7 @@ const ContactForm: React.FC = () => {
       // Fallback: Direct WhatsApp only
       const fallbackMessage = generateWhatsAppMessage(data);
       window.open(
-        `https://wa.me/51946398228?text=${encodeURIComponent(fallbackMessage)}`,
+        `https://wa.me/51999888777?text=${encodeURIComponent(fallbackMessage)}`,
         "_blank"
       );
     }
@@ -86,7 +86,7 @@ const phoneValidation = {
   required: "Teléfono es requerido para cotización",
   pattern: {
     value: /^(\+51|51)?[0-9]{9}$/,
-  message: "Formato válido: 999888777 o +51946398228"
+    message: "Formato válido: 999888777 o +51999888777"
   },
   minLength: {
     value: 9,
@@ -163,7 +163,7 @@ const nameValidation = {
     <div className="bg-green-50 border border-green-200 rounded-lg p-4">
       <CheckCircleIcon className="w-5 h-5 text-green-500" />
       <p>¡Cotización enviada! Te contactaremos en WhatsApp.</p>
-      <button onClick={() => window.open(`https://wa.me/51946398228`)}>
+      <button onClick={() => window.open(`https://wa.me/51999888777`)}>
         Abrir WhatsApp
       </button>
     </div>
@@ -185,7 +185,7 @@ const nameValidation = {
 ```tsx
 // Mostrar WhatsApp button si JavaScript falla
 <noscript>
-  <a href="https://wa.me/51946398228" className="btn-primary">
+  <a href="https://wa.me/51999888777" className="btn-primary">
     Contactar por WhatsApp
   </a>
 </noscript>;
@@ -194,7 +194,7 @@ const nameValidation = {
 const handleFormError = (data: ContactFormData) => {
   const whatsappMessage = `Hola! Solicito cotización para piscina ${data.poolSize}. Nombre: ${data.name}, Tel: ${data.phone}`;
   window.open(
-    `https://wa.me/51946398228?text=${encodeURIComponent(whatsappMessage)}`
+    `https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`
   );
 };
 ```
