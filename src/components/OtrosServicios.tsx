@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { A11y, Keyboard, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -52,21 +52,10 @@ const slides: Slide[] = [
 ];
 
 const OtrosServicios: React.FC = React.memo(() => {
-  // Add accessible labels to default nav buttons after mount
-  useEffect(() => {
-    const assign = () => {
-      const prev = document.querySelector<HTMLDivElement>('#otros-servicios .swiper-button-prev');
-      const next = document.querySelector<HTMLDivElement>('#otros-servicios .swiper-button-next');
-      if (prev) prev.setAttribute('aria-label', 'Anterior');
-      if (next) next.setAttribute('aria-label', 'Siguiente');
-    };
-    assign();
-    const t = setTimeout(assign, 300); // retry after hydration
-    return () => clearTimeout(t);
-  }, []);
-
   const swiperRef = useRef<SwiperType | null>(null);
   const [active, setActive] = useState(0);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   return (
     <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50">
@@ -80,11 +69,38 @@ const OtrosServicios: React.FC = React.memo(() => {
         </div>
 
   <div className="mb-6 relative">
+          {/* Botones navegación personalizados (desktop) */}
+          <button
+            ref={prevRef}
+            type="button"
+            aria-label="Anterior"
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-10 w-11 h-11 items-center justify-center rounded-lg border-2 border-sky-500 bg-white/85 backdrop-blur-sm text-sky-500 font-bold text-xl transition hover:bg-sky-50 active:scale-95 shadow-sm"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <button
+            ref={nextRef}
+            type="button"
+            aria-label="Siguiente"
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-10 w-11 h-11 items-center justify-center rounded-lg border-2 border-sky-500 bg-white/85 backdrop-blur-sm text-sky-500 font-bold text-xl transition hover:bg-sky-50 active:scale-95 shadow-sm"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
           {/* Swiper con navegación y paginación externa (los bullets se muestran debajo) */}
           <Swiper
             modules={[Navigation, A11y, Keyboard]}
-            navigation
-            onSwiper={(instance) => { swiperRef.current = instance; }}
+            onSwiper={(instance) => {
+              swiperRef.current = instance;
+              // Asignar botones personalizados a navegación
+              if (prevRef.current && nextRef.current) {
+                instance.params.navigation = {
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                };
+                instance.navigation.init();
+                instance.navigation.update();
+              }
+            }}
             onSlideChange={(swiper) => setActive(swiper.activeIndex)}
             keyboard={{ enabled: true }}
             a11y={{ enabled: true }}
