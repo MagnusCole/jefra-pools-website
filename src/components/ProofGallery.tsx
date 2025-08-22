@@ -7,7 +7,7 @@ const images: { src: string; caption: string }[] = [
   { src: 'images/7482029c-d9f0-4c51-b951-6985d88550d4.jpg', caption: 'Surco — Balanceo químico' },
   { src: 'images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', caption: 'La Molina — Mantenimiento semanal' },
   { src: 'images/aadf19d5-b8ee-4901-b8a2-1acc7f09162b.jpg', caption: 'San Borja — Limpieza completa (2h)' },
-  { src: 'images/Construccion2.png', caption: 'La Molina — Resultado' },
+  { src: 'images/Construccion2.png', caption: 'La Molina — Construcción' },
   { src: 'images/ad2639cd-5294-4eab-bd0b-eed2e85cdeb0.jpg', caption: 'Surco — Filtrado y cepillado' },
   { src: 'images/aed6151e-23b6-419b-93e0-033abe1d207c.jpg', caption: 'La Molina — Agua cristalina' },
   { src: 'images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg', caption: 'San Borja — Hogar familiar' },

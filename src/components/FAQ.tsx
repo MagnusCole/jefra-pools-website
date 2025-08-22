@@ -15,7 +15,7 @@ const FAQ: React.FC = React.memo(() => {
       q: '¿Cuánto tiempo toma el servicio?',
       a: (
         <p>
-          Inspección rápida y limpieza profunda en ~2 horas según tamaño. Podemos iniciar el mismo día si hay cupo.
+          Inspección rápida y limpieza profunda en 1 hora aproximadamente. Podemos iniciar el mismo día si hay cupo.
           No necesitas estar presente todo el tiempo.
         </p>
       )

@@ -44,7 +44,8 @@ const HeroFunnel: React.FC = React.memo(() => {
       {/* Content */}
   <div className="relative z-10 w-full max-w-3xl mx-auto px-6 pt-10 md:pt-12 text-center">
   <h1 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
-          Piscina cristalina - Resultados en 24h
+          <span className="block">Piscina cristalina</span>
+          <span className="block">Resultados en 24h</span>
         </h1>
 
   <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
