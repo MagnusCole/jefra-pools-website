@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { WHATSAPP_PHONE } from '../config/contact';
@@ -62,6 +62,8 @@ const OtrosServicios: React.FC = React.memo(() => {
   return (
     <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50">
       <div className="container-custom">
+  {/* Defensive cleanup: remove any stray text ('prev'/'next') inserted by Swiper before CSS loads */}
+  <VisuallyHiddenSanitizer />
         <div className="text-center mb-6">
           <h3 id="otros-servicios-title" className="text-2xl md:text-3xl font-extrabold text-gray-900">
             Otros servicios
@@ -135,3 +137,23 @@ const OtrosServicios: React.FC = React.memo(() => {
 
 OtrosServicios.displayName = 'OtrosServicios';
 export default OtrosServicios;
+
+// Component that runs an effect to sanitize navigation button text nodes (Netlify fallback issue)
+const VisuallyHiddenSanitizer: React.FC = () => {
+  useEffect(() => {
+    const clean = () => {
+      document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(btn => {
+        btn.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = '';
+          }
+        });
+      });
+    };
+    clean();
+    // attempt again after a tick in case Swiper injects later
+    const t = setTimeout(clean, 300);
+    return () => clearTimeout(t);
+  }, []);
+  return null;
+};
