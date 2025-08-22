@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { WHATSAPP_PHONE } from '../config/contact';
@@ -59,10 +59,6 @@ const OtrosServicios: React.FC = React.memo(() => {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   }, []);
 
-  // Refs for custom navigation buttons (avoid duplicated default buttons)
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-
   return (
     <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50">
       <div className="container-custom">
@@ -76,13 +72,7 @@ const OtrosServicios: React.FC = React.memo(() => {
         <div className="mb-6 relative">
           <Swiper
             modules={[Navigation, Pagination, A11y, Keyboard]}
-            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-            onBeforeInit={(swiper) => {
-              // @ts-expect-error - allow dynamic assignment before init
-              swiper.params.navigation.prevEl = prevRef.current;
-              // @ts-expect-error
-              swiper.params.navigation.nextEl = nextRef.current;
-            }}
+            navigation
             pagination={{
               el: '#otros-servicios-pagination',
               clickable: true,
@@ -133,23 +123,6 @@ const OtrosServicios: React.FC = React.memo(() => {
               </SwiperSlide>
             ))}
           </Swiper>
-          {/* Custom navigation buttons rendered AFTER Swiper for stable refs */}
-          <button
-            ref={prevRef}
-            type="button"
-            className="hidden md:flex items-center justify-center absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md border border-primary-500 bg-white/70 backdrop-blur-sm text-primary-500 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition select-none z-10"
-            aria-label="Anterior"
-          >
-            <span aria-hidden="true" className="text-2xl leading-none">&#60;</span>
-          </button>
-          <button
-            ref={nextRef}
-            type="button"
-            className="hidden md:flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md border border-primary-500 bg-white/70 backdrop-blur-sm text-primary-500 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition select-none z-10"
-            aria-label="Siguiente"
-          >
-            <span aria-hidden="true" className="text-2xl leading-none">&#62;</span>
-          </button>
           {/* pagination rendered outside the slide card so it doesn't overlap the image */}
           <div id="otros-servicios-pagination" className="mt-4 flex justify-center" />
         </div>
