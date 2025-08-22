@@ -114,29 +114,8 @@
     animation-delay: 900ms;
   }
 
-  /* Custom pagination bullets for OtrosServicios (Amber, larger touch area) */
-  #otros-servicios-pagination .otros-custom-bullet {
-    width: 10px;
-    height: 10px;
-    background: #f59e0b; /* amber-400 */
-    opacity: 0.45;
-    margin: 0 8px;
-    border-radius: 9999px;
-    transition: transform .18s ease, opacity .18s ease, background .18s ease;
-    display: inline-block;
-    position: relative;
-  }
-  /* enlarge the clickable area without changing visual size */
-  #otros-servicios-pagination .otros-custom-bullet::after {
-    content: '';
-    position: absolute;
-    inset: -8px; /* increases hit area */
-  }
-  #otros-servicios-pagination .swiper-pagination-bullet-active.otros-custom-bullet {
-    opacity: 1;
-    transform: scale(1.2);
-    background: #f59e0b;
-  }
+  /* Paginación personalizada OtrosServicios (utiliza utilidades Tailwind en JSX) */
+  .otros-bullet-zone { min-height: 46px; }
 
   /* Water overlay styles (SVG filter based caustics) */
   .water-overlay {
@@ -184,4 +163,49 @@
   @media (prefers-reduced-motion: reduce) {
     .video-overlay__video { display: none; }
   }
+
+}
+
+/* --- Carousel navigation (OtrosServicios) (placed after Tailwind layers to win cascade) --- */
+#otros-servicios .swiper-button-prev,
+#otros-servicios .swiper-button-next {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #0ea5e9;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(2px);
+  display: none; /* hide on mobile */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+  font-size: 0; /* hide fallback text */
+  overflow: hidden;
+}
+@media (min-width:768px){
+  #otros-servicios .swiper-button-prev,
+  #otros-servicios .swiper-button-next { display:flex; }
+}
+#otros-servicios .swiper-button-prev::after,
+#otros-servicios .swiper-button-next::after {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  color: #0ea5e9;
+  font-family: system-ui,sans-serif;
+  text-shadow:none;
+}
+#otros-servicios .swiper-button-prev::after { content:'<'; }
+#otros-servicios .swiper-button-next::after { content:'>'; }
+#otros-servicios .swiper-button-prev:hover,
+#otros-servicios .swiper-button-next:hover { background:#f0f9ff; }
+#otros-servicios .swiper-button-prev:active,
+#otros-servicios .swiper-button-next:active { transform:scale(.94); }
+#otros-servicios .swiper-button-disabled { opacity:.35; cursor:not-allowed; }
+
+/* (Legacy) If Swiper internal pagination still rendered somewhere in cache, neutralize absolute positioning */
+#otros-servicios .swiper-pagination {
+  position: static !important;
+  margin-top: 22px;
 }
