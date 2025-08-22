@@ -69,10 +69,25 @@ const OtrosServicios: React.FC = React.memo(() => {
           <p className="text-gray-600 mt-2">Servicios complementarios pensados para mantener tu piscina en perfecto estado.</p>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 relative">
+          {/* Custom navigation buttons (avoid relying on swiper-icons font) */}
+          <button
+            type="button"
+            className="otros-prev hidden md:flex items-center justify-center absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md border border-primary-500 text-primary-500 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition select-none"
+            aria-label="Anterior"
+          >
+            <span aria-hidden="true" className="text-2xl leading-none">&#60;</span>
+          </button>
+          <button
+            type="button"
+            className="otros-next hidden md:flex items-center justify-center absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md border border-primary-500 text-primary-500 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition select-none"
+            aria-label="Siguiente"
+          >
+            <span aria-hidden="true" className="text-2xl leading-none">&#62;</span>
+          </button>
           <Swiper
             modules={[Navigation, Pagination, A11y, Keyboard]}
-            navigation
+            navigation={{ prevEl: '.otros-prev', nextEl: '.otros-next' }}
             pagination={{
               el: '#otros-servicios-pagination',
               clickable: true,
