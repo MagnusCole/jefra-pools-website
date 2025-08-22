@@ -20,36 +20,35 @@ interface ComponentNameProps {
 }
 
 // React.memo for performance (STRONG evidence: mobile LATAM)
-const ComponentName: React.FC<ComponentNameProps> = React.memo(({ 
-  title, 
-  optional = false,
-  children,
-  onClick 
-}) => {
-  // Hooks order: useState, useEffect, custom hooks
-  const [state, setState] = useState<boolean>(false);
-  
-  // useMemo for expensive calculations (LATAM mobile optimization)
-  const memoizedValue = useMemo(() => {
-    // Expensive operation
-    return processedData;
-  }, [dependency]);
+const ComponentName: React.FC<ComponentNameProps> = React.memo(
+  ({ title, optional = false, children, onClick }) => {
+    // Hooks order: useState, useEffect, custom hooks
+    const [state, setState] = useState<boolean>(false);
 
-  // useCallback for event handlers (prevents re-renders)
-  const handleClick = useCallback(() => {
-    onClick?.();
-  }, [onClick]);
+    // useMemo for expensive calculations (LATAM mobile optimization)
+    const memoizedValue = useMemo(() => {
+      // Expensive operation
+      return processedData;
+    }, [dependency]);
 
-  return (
-    // Semantic HTML5 (WCAG 2.1 AA compliance: +15-30% conversion)
-    <section className="component-name" role="region" aria-labelledby="title">
-      <h2 id="title" className="sr-only">{title}</h2>
-      {children}
-    </section>
-  );
-});
+    // useCallback for event handlers (prevents re-renders)
+    const handleClick = useCallback(() => {
+      onClick?.();
+    }, [onClick]);
 
-ComponentName.displayName = 'ComponentName'; // Required for React.memo
+    return (
+      // Semantic HTML5 (WCAG 2.1 AA compliance: +15-30% conversion)
+      <section className="component-name" role="region" aria-labelledby="title">
+        <h2 id="title" className="sr-only">
+          {title}
+        </h2>
+        {children}
+      </section>
+    );
+  }
+);
+
+ComponentName.displayName = "ComponentName"; // Required for React.memo
 
 export default ComponentName;
 ```
@@ -88,8 +87,8 @@ useEffect(() => {}, []); // +40% bug probability
 /* xl: 1280px+ (desktop grande) - Rich experience */
 
 /* Touch targets: 48x48dp minimum (25% accuracy improvement 40+ demos) */
-.btn-mobile { 
-  @apply min-h-[48px] min-w-[48px]; 
+.btn-mobile {
+  @apply min-h-[48px] min-w-[48px];
   /* +25% accuracy research for 40+ demographics */
 }
 
@@ -105,7 +104,7 @@ useEffect(() => {}, []); // +40% bug probability
 
 ```tsx
 // Evidence-based accessibility patterns
-<button 
+<button
   className="bg-primary-500 text-white min-h-[48px] min-w-[48px]"
   aria-label="Cotización gratuita por WhatsApp"
   type="button"
@@ -130,12 +129,12 @@ useEffect(() => {}, []); // +40% bug probability
   Formato: +51 seguido del número
 </span>
 
-// Navigation accessibility  
+// Navigation accessibility
 <nav role="navigation" aria-label="Navegación principal">
   <ul className="flex space-x-4">
     <li>
-      <a 
-        href="#servicios" 
+      <a
+        href="#servicios"
         className="min-h-[48px] flex items-center"
         aria-current={currentSection === 'servicios' ? 'page' : undefined}
       >
@@ -175,7 +174,7 @@ useEffect(() => {}, []); // +40% bug probability
 **STRONG EVIDENCE**: React Hook Form + mobile optimization → **20-30% form abandonment reduction**
 
 ```tsx
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 interface FormData {
   name: string;
@@ -185,20 +184,22 @@ interface FormData {
 }
 
 const ContactForm: React.FC = () => {
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting } 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    mode: 'onBlur' // Reduces abandonment 20-30%
+    mode: "onBlur", // Reduces abandonment 20-30%
   });
 
   const onSubmit = async (data: FormData) => {
     // WhatsApp integration (preferred contact method LATAM)
-    const whatsappUrl = `https://wa.me/51999888777?text=${encodeURIComponent(
-      `Hola, soy ${data.name}. Tel: ${data.phone}. ${data.message || 'Solicito cotización para limpieza de piscina.'}`
+    const whatsappUrl = `https://wa.me/51946398228?text=${encodeURIComponent(
+      `Hola, soy ${data.name}. Tel: ${data.phone}. ${
+        data.message || "Solicito cotización para limpieza de piscina."
+      }`
     )}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -209,7 +210,7 @@ const ContactForm: React.FC = () => {
           Nombre completo
         </label>
         <input
-          {...register('name', { required: 'Nombre es requerido' })}
+          {...register("name", { required: "Nombre es requerido" })}
           id="name"
           type="text"
           className="min-h-[48px] w-full text-base border rounded-lg px-3"
@@ -226,12 +227,12 @@ const ContactForm: React.FC = () => {
           Teléfono
         </label>
         <input
-          {...register('phone', { 
-            required: 'Teléfono es requerido',
+          {...register("phone", {
+            required: "Teléfono es requerido",
             pattern: {
               value: /^(\+51)?[0-9]{9}$/,
-              message: 'Formato: 999888777 o +51999888777'
-            }
+              message: "Formato: 999888777 o +51946398228",
+            },
           })}
           id="phone"
           type="tel"
@@ -250,7 +251,7 @@ const ContactForm: React.FC = () => {
         className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-6 rounded-xl min-h-[48px] disabled:opacity-50"
         aria-label="Enviar solicitud de cotización por WhatsApp"
       >
-        {isSubmitting ? 'Enviando...' : '📞 Enviar por WhatsApp'}
+        {isSubmitting ? "Enviando..." : "📞 Enviar por WhatsApp"}
       </button>
     </form>
   );
@@ -269,20 +270,22 @@ const TrustSignals: React.FC = () => (
       <span className="text-2xl">✅</span>
       <span className="font-semibold">100+ piscinas limpias en La Molina</span>
     </div>
-    
+
     <div className="flex items-center space-x-2 mb-4">
       <span className="text-2xl">🏆</span>
-      <span className="font-semibold">5+ años de experiencia en el distrito</span>
+      <span className="font-semibold">
+        5+ años de experiencia en el distrito
+      </span>
     </div>
-    
+
     <div className="flex items-center space-x-2">
       <span className="text-2xl">📞</span>
-      <a 
-        href="tel:+51999888777" 
+      <a
+        href="tel:+51946398228"
         className="font-semibold text-blue-600 hover:underline"
         aria-label="Llamar a JefraPools"
       >
-        +51 999 888 777
+        +51 946 398 228
       </a>
     </div>
   </section>
@@ -295,47 +298,48 @@ const TrustSignals: React.FC = () => (
 
 ```typescript
 // Required tests for all components
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 // 1. Rendering test
-test('Component renders without crashing', () => {
+test("Component renders without crashing", () => {
   render(<ComponentName title="Test" />);
-  expect(screen.getByText('Test')).toBeInTheDocument();
+  expect(screen.getByText("Test")).toBeInTheDocument();
 });
 
-// 2. Accessibility test  
-test('Component is accessible', () => {
+// 2. Accessibility test
+test("Component is accessible", () => {
   render(<ComponentName title="Test" />);
-  const element = screen.getByRole('button'); // or appropriate role
+  const element = screen.getByRole("button"); // or appropriate role
   expect(element).toBeInTheDocument();
-  expect(element).toHaveAttribute('aria-label');
+  expect(element).toHaveAttribute("aria-label");
 });
 
 // 3. Mobile interaction test (70% traffic)
-test('Component works on mobile', async () => {
+test("Component works on mobile", async () => {
   const user = userEvent.setup();
   render(<ComponentName title="Test" onClick={mockFn} />);
-  
-  const button = screen.getByRole('button');
-  expect(button).toHaveStyle('min-height: 48px'); // Touch target
-  
+
+  const button = screen.getByRole("button");
+  expect(button).toHaveStyle("min-height: 48px"); // Touch target
+
   await user.click(button);
   expect(mockFn).toHaveBeenCalled();
 });
 
 // 4. Performance test (conversion correlation)
-test('Component loads efficiently', () => {
+test("Component loads efficiently", () => {
   const start = performance.now();
   render(<ComponentName title="Test" />);
   const end = performance.now();
-  
+
   expect(end - start).toBeLessThan(16); // 60fps threshold
 });
 ```
 
 **RESEARCH FOUNDATION**: Evidence-based patterns from Aug 2025 investigation with statistical significance p<0.05, sample sizes >500-1000.const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-```
+
+````
 
 ### CRO-Focused Component Guidelines
 
@@ -347,7 +351,7 @@ test('Component loads efficiently', () => {
 - Icons relevantes: 📞, ⭐, 🏊‍♀️
 - Loading states para mejor UX
 
-#### Trust Signal Components  
+#### Trust Signal Components
 - "100+ piscinas limpias La Molina"
 - Fotos antes/después con geo-referencias
 - Testimonials con nombres + ubicaciones
@@ -371,7 +375,7 @@ const [error, setError] = useState<string | null>(null);
 
 if (loading) return <LoadingSpinner />;
 if (error) return <ErrorMessage message={error} />;
-```
+````
 
 ### SEO Component Requirements
 

@@ -12,7 +12,7 @@ applyTo: **/*.test.{ts,tsx}
 
 ```
      🔺 E2E Tests (5%)     - Critical user journeys only
-    🔺🔺 Integration (15%)  - Form submissions, API calls  
+    🔺🔺 Integration (15%)  - Form submissions, API calls
    🔺🔺🔺 Unit Tests (80%)   - Components, hooks, utilities
 ```
 
@@ -28,7 +28,7 @@ import { ContactForm } from '../ContactForm';
 
 describe('ContactForm - Conversion Critical', () => {
   const user = userEvent.setup();
-  
+
   beforeEach(() => {
     // Clean slate for each test
     render(<ContactForm />);
@@ -39,7 +39,7 @@ describe('ContactForm - Conversion Critical', () => {
     const start = performance.now();
     render(<ContactForm />);
     const end = performance.now();
-    
+
     expect(end - start).toBeLessThan(16); // 60fps requirement
   });
 
@@ -49,12 +49,12 @@ describe('ContactForm - Conversion Critical', () => {
     const submitButton = screen.getByRole('button', { name: /cotización/i });
     expect(submitButton).toHaveStyle('min-height: 48px');
     expect(submitButton).toHaveStyle('min-width: 48px');
-    
+
     // ARIA labels present
     expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/teléfono/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    
+
     // Color contrast (programmatic check if possible)
     const nameInput = screen.getByLabelText(/nombre/i);
     expect(nameInput).toHaveAttribute('aria-required', 'true');
@@ -63,39 +63,39 @@ describe('ContactForm - Conversion Critical', () => {
   // 3. LATAM Phone Validation (Critical for Peru market)
   it('validates Peru phone number formats correctly', async () => {
     const phoneInput = screen.getByLabelText(/teléfono/i);
-    
+
     // Test invalid format
     await user.type(phoneInput, '123456');
     await user.tab(); // Trigger onBlur validation
-    
+
     expect(screen.getByText(/formato válido: 999888777/i)).toBeInTheDocument();
-    
+
     // Test valid formats
     await user.clear(phoneInput);
     await user.type(phoneInput, '999888777');
     await user.tab();
-    
+
     expect(screen.queryByText(/formato válido/i)).not.toBeInTheDocument();
-    
+
     // Test international format
     await user.clear(phoneInput);
-    await user.type(phoneInput, '+51999888777');
+  await user.type(phoneInput, '+51946398228');
     await user.tab();
-    
+
     expect(screen.queryByText(/formato válido/i)).not.toBeInTheDocument();
   });
 
   // 4. Mobile Touch Interaction (70% traffic validation)
   it('handles mobile touch events correctly', async () => {
     const submitButton = screen.getByRole('button', { name: /cotización/i });
-    
+
     // Simulate touch events
     fireEvent.touchStart(submitButton);
     fireEvent.touchEnd(submitButton);
-    
+
     // Should work with touch
     await user.click(submitButton);
-    
+
     // Verify mobile-friendly interaction
     expect(submitButton).toHaveClass('min-h-[48px]');
   // 5. WhatsApp Integration (Hispanic Market Preference)
@@ -106,39 +106,39 @@ describe('ContactForm - Conversion Critical', () => {
 
     // Fill form with valid data
     await user.type(screen.getByLabelText(/nombre/i), 'María González');
-    await user.type(screen.getByLabelText(/teléfono/i), '+51999888777');
+  await user.type(screen.getByLabelText(/teléfono/i), '+51946398228');
     await user.type(screen.getByLabelText(/email/i), 'maria@email.com');
-    
+
     // Submit form
     await user.click(screen.getByRole('button', { name: /cotización/i }));
 
     await waitFor(() => {
       expect(mockWindowOpen).toHaveBeenCalledWith(
-        expect.stringContaining('https://wa.me/51999888777'),
+  expect.stringContaining('https://wa.me/51946398228'),
         '_blank'
       );
-      
+
       // Verify message contains user data
       const whatsappUrl = mockWindowOpen.mock.calls[0][0];
       expect(whatsappUrl).toContain('María González');
-      expect(whatsappUrl).toContain('+51999888777');
+  expect(whatsappUrl).toContain('+51946398228');
     });
   });
 
   // 6. Form Performance Under Load
   it('maintains performance with multiple rapid interactions', async () => {
     const nameInput = screen.getByLabelText(/nombre/i);
-    
+
     const start = performance.now();
-    
+
     // Rapid typing simulation
     for (let i = 0; i < 10; i++) {
       await user.type(nameInput, 'a');
       await user.clear(nameInput);
     }
-    
+
     const end = performance.now();
-    
+
     // Should remain responsive under 100ms for 10 interactions
     expect(end - start).toBeLessThan(100);
   });
@@ -149,64 +149,64 @@ describe('ContactForm - Conversion Critical', () => {
 
 ```typescript
 // Hero → WhatsApp Click (Direct Conversion Path)
-describe('Hero to WhatsApp Integration', () => {
-  it('converts visitor to WhatsApp lead successfully', async () => {
+describe("Hero to WhatsApp Integration", () => {
+  it("converts visitor to WhatsApp lead successfully", async () => {
     const user = userEvent.setup();
     window.open = jest.fn();
-    
+
     render(<App />);
-    
+
     // Find and click primary CTA
-    const ctaButton = screen.getByRole('button', { 
-      name: /cotización gratuita whatsapp/i 
+    const ctaButton = screen.getByRole("button", {
+      name: /cotización gratuita whatsapp/i,
     });
-    
+
     expect(ctaButton).toBeInTheDocument();
-    expect(ctaButton).toHaveClass('bg-accent-500'); // Yellow CTA
-    
+    expect(ctaButton).toHaveClass("bg-accent-500"); // Yellow CTA
+
     await user.click(ctaButton);
-    
+
     // Verify WhatsApp opens with business number
     expect(window.open).toHaveBeenCalledWith(
-      'https://wa.me/51999888777?text=Hola,%20solicito%20cotización%20para%20limpieza%20de%20piscina',
-      '_blank'
+      "https://wa.me/51946398228?text=Hola,%20solicito%20cotización%20para%20limpieza%20de%20piscina",
+      "_blank"
     );
   });
 });
 
 // Form Submission → Success Flow
-describe('Contact Form Integration', () => {
-  it('completes full form submission flow', async () => {
+describe("Contact Form Integration", () => {
+  it("completes full form submission flow", async () => {
     const user = userEvent.setup();
-    
+
     // Mock successful Netlify submission
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      status: 200
+      status: 200,
     });
-    
+
     render(<App />);
-    
+
     // Navigate to contact form
-    const contactSection = screen.getByRole('region', { name: /contacto/i });
+    const contactSection = screen.getByRole("region", { name: /contacto/i });
     contactSection.scrollIntoView();
-    
+
     // Fill complete form
-    await user.type(screen.getByLabelText(/nombre/i), 'Carlos Rivera');
-    await user.type(screen.getByLabelText(/teléfono/i), '987654321');
-    await user.type(screen.getByLabelText(/email/i), 'carlos@email.com');
-    await user.selectOptions(screen.getByLabelText(/servicio/i), 'limpieza');
-    
+    await user.type(screen.getByLabelText(/nombre/i), "Carlos Rivera");
+    await user.type(screen.getByLabelText(/teléfono/i), "987654321");
+    await user.type(screen.getByLabelText(/email/i), "carlos@email.com");
+    await user.selectOptions(screen.getByLabelText(/servicio/i), "limpieza");
+
     // Submit form
-    await user.click(screen.getByRole('button', { name: /enviar/i }));
-    
+    await user.click(screen.getByRole("button", { name: /enviar/i }));
+
     // Verify success message appears
     await waitFor(() => {
       expect(screen.getByText(/mensaje enviado/i)).toBeInTheDocument();
     });
-    
+
     // Verify form resets
-    expect(screen.getByLabelText(/nombre/i)).toHaveValue('');
+    expect(screen.getByLabelText(/nombre/i)).toHaveValue("");
   });
 });
 ```
@@ -215,54 +215,57 @@ describe('Contact Form Integration', () => {
 
 ```typescript
 // Cypress E2E - Mobile-First Critical Journey
-describe('Mobile Conversion Journey', () => {
+describe("Mobile Conversion Journey", () => {
   beforeEach(() => {
     // Set mobile viewport (70% traffic reality)
     cy.viewport(375, 667);
-    cy.visit('/');
+    cy.visit("/");
   });
 
-  it('completes mobile hero to WhatsApp conversion', () => {
+  it("completes mobile hero to WhatsApp conversion", () => {
     // Performance check - sub-1s load
     cy.window().then((win) => {
-      const loadTime = win.performance.timing.loadEventEnd - win.performance.timing.navigationStart;
+      const loadTime =
+        win.performance.timing.loadEventEnd -
+        win.performance.timing.navigationStart;
       expect(loadTime).to.be.lessThan(1000); // 8-10% conversion uplift
     });
-    
+
     // Accessibility check - touch targets
     cy.get('[data-testid="cta-primary"]')
-      .should('have.css', 'min-height', '48px')  // 25% accuracy improvement
-      .should('be.visible')
-      .should('contain.text', 'Cotización Gratuita WhatsApp');
-    
+      .should("have.css", "min-height", "48px") // 25% accuracy improvement
+      .should("be.visible")
+      .should("contain.text", "Cotización Gratuita WhatsApp");
+
     // Conversion action
     cy.window().then((win) => {
-      cy.stub(win, 'open').as('windowOpen');
+      cy.stub(win, "open").as("windowOpen");
     });
-    
+
     cy.get('[data-testid="cta-primary"]').click();
-    
-    cy.get('@windowOpen').should('have.been.calledWith',
-      Cypress.sinon.match('https://wa.me/51999888777'),
-      '_blank'
+
+    cy.get("@windowOpen").should(
+      "have.been.calledWith",
+      Cypress.sinon.match("https://wa.me/51946398228"),
+      "_blank"
     );
   });
 
-  it('completes mobile form submission successfully', () => {
+  it("completes mobile form submission successfully", () => {
     // Navigate to contact form
     cy.get('[data-testid="contact-form"]').scrollIntoView();
-    
+
     // Fill form with mobile-optimized interactions
-    cy.get('[data-testid="input-name"]').type('Ana Torres');
-    cy.get('[data-testid="input-phone"]').type('+51987654321');
-    cy.get('[data-testid="input-email"]').type('ana@email.com');
-    
+    cy.get('[data-testid="input-name"]').type("Ana Torres");
+    cy.get('[data-testid="input-phone"]').type("+51987654321");
+    cy.get('[data-testid="input-email"]').type("ana@email.com");
+
     // Submit and verify
     cy.get('[data-testid="submit-button"]').click();
-    
+
     cy.get('[data-testid="success-message"]')
-      .should('be.visible')
-      .should('contain.text', 'mensaje enviado');
+      .should("be.visible")
+      .should("contain.text", "mensaje enviado");
   });
 });
 ```
@@ -271,21 +274,24 @@ describe('Mobile Conversion Journey', () => {
 
 ```typescript
 // Performance benchmarks based on research
-describe('Performance Benchmarks', () => {
-  it('meets evidence-based performance thresholds', async () => {
+describe("Performance Benchmarks", () => {
+  it("meets evidence-based performance thresholds", async () => {
     // Bundle size check
-    const bundleStats = await import('../dist/stats.json');
-    const totalSize = bundleStats.assets.reduce((sum, asset) => sum + asset.size, 0);
-    
+    const bundleStats = await import("../dist/stats.json");
+    const totalSize = bundleStats.assets.reduce(
+      (sum, asset) => sum + asset.size,
+      0
+    );
+
     expect(totalSize).toBeLessThan(204800); // 200KB research target
   });
-  
-  it('maintains Lighthouse scores above research thresholds', () => {
+
+  it("maintains Lighthouse scores above research thresholds", () => {
     // These would be run in CI with lighthouse-ci
     // Performance: >90 (conversion correlation)
     // Accessibility: >95 (15-30% conversion boost)
     // SEO: >90 (local business optimization)
-    
+
     expect(performanceScore).toBeGreaterThan(90);
     expect(accessibilityScore).toBeGreaterThan(95);
     expect(seoScore).toBeGreaterThan(90);
@@ -298,47 +304,47 @@ describe('Performance Benchmarks', () => {
 ```typescript
 // jest.config.js - Performance-first testing
 module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-  
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+
   // Coverage thresholds based on research ROI
   collectCoverageFrom: [
-    'src/components/**/*.{ts,tsx}',
-    'src/hooks/**/*.{ts,tsx}',
-    '!src/**/*.d.ts',
+    "src/components/**/*.{ts,tsx}",
+    "src/hooks/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
   ],
   coverageThreshold: {
     global: {
-      branches: 80,     // Critical paths covered
-      functions: 85,    // Hook and component logic
-      lines: 80,        // Practical coverage target
-      statements: 80
-    }
+      branches: 80, // Critical paths covered
+      functions: 85, // Hook and component logic
+      lines: 80, // Practical coverage target
+      statements: 80,
+    },
   },
-  
+
   // Fast testing for rapid iteration
-  maxWorkers: '50%',
+  maxWorkers: "50%",
   cache: true,
-  
+
   // Mobile-first testing setup
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-    '<rootDir>/src/**/*.(test|spec).{js,jsx,ts,tsx}'
-  ]
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.(test|spec).{js,jsx,ts,tsx}",
+  ],
 };
 ```
 
 **RESEARCH FOUNDATION**: Evidence-based testing strategy prioritizing conversion-critical paths with quantified ROI expectations.
-        })
-      );
-    });
-  });
+})
+);
+});
+});
 
-  // WhatsApp fallback test
-  it('opens WhatsApp on form error', async () => {
-    const mockOpen = jest.fn();
-    Object.defineProperty(window, 'open', { value: mockOpen });
-    
+// WhatsApp fallback test
+it('opens WhatsApp on form error', async () => {
+const mockOpen = jest.fn();
+Object.defineProperty(window, 'open', { value: mockOpen });
+
     // Mock failed form submission
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
@@ -348,13 +354,15 @@ module.exports = {
 
     await waitFor(() => {
       expect(mockOpen).toHaveBeenCalledWith(
-        expect.stringContaining('wa.me/51999888777'),
-        '_blank'
-      );
-    });
-  });
+
+expect.stringContaining('wa.me/51946398228'),
+'\_blank'
+);
 });
-```
+});
+});
+
+````
 
 ### Integration Testing (Component Interactions)
 
@@ -392,82 +400,87 @@ describe('Hero to CTA Journey', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
-```
+````
 
 ### E2E Testing Critical Paths (Cypress)
 
 ```typescript
 // cypress/e2e/conversion-flow.cy.ts
-describe('JefraPools Conversion Flow', () => {
+describe("JefraPools Conversion Flow", () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit("/");
     cy.viewport(375, 667); // Mobile-first testing
   });
 
-  it('completes full conversion journey', () => {
+  it("completes full conversion journey", () => {
     // Hero interaction
-    cy.contains('Cotización Gratuita WhatsApp').should('be.visible');
-    
+    cy.contains("Cotización Gratuita WhatsApp").should("be.visible");
+
     // Gallery browsing
     cy.get('[data-testid="gallery-image"]').first().click();
-    cy.get('[data-testid="gallery-modal"]').should('be.visible');
-    cy.get('body').type('{esc}'); // Close modal
+    cy.get('[data-testid="gallery-modal"]').should("be.visible");
+    cy.get("body").type("{esc}"); // Close modal
 
     // Benefits section
     cy.scrollTo(0, 1000);
-    cy.contains('Disfruta con Amigos').should('be.visible');
+    cy.contains("Disfruta con Amigos").should("be.visible");
 
     // Services pricing
-    cy.contains('S/. 80/mes').should('be.visible');
-    cy.contains('S/. 180/mes').should('be.visible');
+    cy.contains("S/. 80/mes").should("be.visible");
+    cy.contains("S/. 180/mes").should("be.visible");
 
     // Contact form submission
     cy.get('[data-testid="contact-form"]').within(() => {
-      cy.get('input[name="name"]').type('Test User');
-      cy.get('input[name="phone"]').type('+51999888777');
-      cy.get('input[name="email"]').type('test@email.com');
-      cy.get('select[name="poolSize"]').select('medium');
-      
+      cy.get('input[name="name"]').type("Test User");
+      cy.get('input[name="phone"]').type("+51946398228");
+      cy.get('input[name="email"]').type("test@email.com");
+      cy.get('select[name="poolSize"]').select("medium");
+
       // Intercept Netlify form submission
-      cy.intercept('POST', '/', { statusCode: 200 }).as('formSubmit');
-      
+      cy.intercept("POST", "/", { statusCode: 200 }).as("formSubmit");
+
       cy.get('button[type="submit"]').click();
-      cy.wait('@formSubmit');
+      cy.wait("@formSubmit");
     });
 
     // Success state
-    cy.contains('Cotización enviada').should('be.visible');
+    cy.contains("Cotización enviada").should("be.visible");
   });
 
-  it('handles WhatsApp fallback on form error', () => {
+  it("handles WhatsApp fallback on form error", () => {
     // Mock failed form submission
-    cy.intercept('POST', '/', { statusCode: 500 }).as('formError');
+    cy.intercept("POST", "/", { statusCode: 500 }).as("formError");
 
     cy.get('[data-testid="contact-form"]').within(() => {
-      cy.get('input[name="name"]').type('Test User');
+      cy.get('input[name="name"]').type("Test User");
       cy.get('button[type="submit"]').click();
-      cy.wait('@formError');
+      cy.wait("@formError");
     });
 
     // Should open WhatsApp (in new tab)
-    cy.window().its('open').should('have.been.calledWith', 
-      Cypress.sinon.match(/wa\.me\/51999888777/)
-    );
+    cy.window()
+      .its("open")
+      .should(
+        "have.been.calledWith",
+        Cypress.sinon.match(/wa\.me\/51946398228/)
+      );
   });
 
-  it('maintains performance under load', () => {
+  it("maintains performance under load", () => {
     // Performance testing
-    cy.window().its('performance.timing').then((timing) => {
-      const loadTime = timing.loadEventEnd - timing.navigationStart;
-      expect(loadTime).to.be.lessThan(1000); // Sub-1s requirement
-    });
+    cy.window()
+      .its("performance.timing")
+      .then((timing) => {
+        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        expect(loadTime).to.be.lessThan(1000); // Sub-1s requirement
+      });
 
     // Lighthouse audit simulation
     cy.lighthouse({
       performance: 90,
       accessibility: 95,
-      'best-practices': 90,
-      seo: 85
+      "best-practices": 90,
+      seo: 85,
     });
   });
 });
@@ -477,17 +490,17 @@ describe('JefraPools Conversion Flow', () => {
 
 ```typescript
 // Percy.io or similar for visual changes
-describe('Visual Regression Tests', () => {
+describe("Visual Regression Tests", () => {
   const breakpoints = [375, 768, 1024, 1280];
 
-  breakpoints.forEach(width => {
+  breakpoints.forEach((width) => {
     it(`renders correctly at ${width}px`, () => {
       cy.viewport(width, 800);
-      cy.visit('/');
-      
+      cy.visit("/");
+
       // Let page fully load
-      cy.get('[data-testid="hero-section"]').should('be.visible');
-      
+      cy.get('[data-testid="hero-section"]').should("be.visible");
+
       // Take screenshot
       cy.percySnapshot(`Homepage - ${width}px`);
     });
@@ -499,15 +512,15 @@ describe('Visual Regression Tests', () => {
 
 ```typescript
 // Web Vitals monitoring in tests
-describe('Performance Metrics', () => {
-  it('meets Core Web Vitals thresholds', () => {
-    cy.visit('/', {
+describe("Performance Metrics", () => {
+  it("meets Core Web Vitals thresholds", () => {
+    cy.visit("/", {
       onBeforeLoad: (win) => {
         // Monitor Largest Contentful Paint
         new PerformanceObserver((list) => {
           const lcpEntry = list.getEntries().pop();
           expect(lcpEntry.value).to.be.lessThan(2500); // 2.5s threshold
-        }).observe({ entryTypes: ['largest-contentful-paint'] });
+        }).observe({ entryTypes: ["largest-contentful-paint"] });
 
         // Monitor Cumulative Layout Shift
         let cls = 0;
@@ -518,8 +531,8 @@ describe('Performance Metrics', () => {
             }
           });
           expect(cls).to.be.lessThan(0.1); // CLS threshold
-        }).observe({ entryTypes: ['layout-shift'] });
-      }
+        }).observe({ entryTypes: ["layout-shift"] });
+      },
     });
   });
 });

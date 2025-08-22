@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import React, { useCallback, useMemo, useState } from 'react';
+import VideoOverlay from './VideoOverlay';
 
 type FaqItem = {
   id: string;
@@ -120,9 +121,12 @@ const FAQ: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <section aria-labelledby="faq-title" className="py-14 bg-primary-600">
+    <section aria-labelledby="faq-title" className="py-14 bg-primary-600 relative overflow-hidden">
+      {/* Video caustics overlay */}
+  <VideoOverlay src="/videos/caustics.mp4" opacity={0.20} playbackRate={1.0} scale={1.25} objectPosition="center right" />
       <div className="container-custom">
-        <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-white text-center mb-8">
+        <div className="content-above">
+          <h2 id="faq-title" className="text-3xl md:text-4xl font-black text-white text-center mb-8">
           Preguntas frecuentes
         </h2>
 
@@ -158,6 +162,7 @@ const FAQ: React.FC = React.memo(() => {
           })}
         </div>
   {/* CTA removed here to keep hierarchy; closing push will be the global primary CTA */}
+        </div>
       </div>
     </section>
   );

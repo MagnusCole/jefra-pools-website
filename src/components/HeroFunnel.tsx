@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { WHATSAPP_PHONE } from '../config/contact';
 import { trackLead } from '../utils/tracking';
 import OfferBanner from './OfferBanner';
 
@@ -13,10 +14,9 @@ const HeroFunnel: React.FC = React.memo(() => {
   const objPos = '50% 55%';
 
   const handleWhatsApp = useCallback(() => {
-    const phone = '51999888777';
     const msg = '¡Hola JefraPools! Quiero agendar una inspección sin costo y aprovechar la limpieza GRATIS esta semana en La Molina.';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
-  trackLead('hero');
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+    trackLead('hero');
   }, []);
 
   return (
@@ -44,7 +44,7 @@ const HeroFunnel: React.FC = React.memo(() => {
       {/* Content */}
   <div className="relative z-10 w-full max-w-3xl mx-auto px-6 pt-10 md:pt-12 text-center">
   <h1 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
-          Piscina <span className="text-blue-300">cristalina</span> en 24h
+          Piscina cristalina - resultados en 24h
         </h1>
 
   <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
@@ -65,9 +65,9 @@ const HeroFunnel: React.FC = React.memo(() => {
             onClick={handleWhatsApp}
             data-testid="cta-primary"
             className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-9 py-5 md:py-6 rounded-2xl min-h-[56px] min-w-[64px] text-xl md:text-2xl ring-1 ring-amber-300 shadow-[0_10px_25px_rgba(245,158,11,0.45)] transform transition duration-200 hover:scale-[1.02] active:scale-[0.99]"
-            aria-label="Reservar mi limpieza GRATIS ahora"
+            aria-label="RESERVAR GRATIS AHORA"
           >
-            📞 RESERVAR MI LIMPIEZA GRATIS AHORA
+            📞 RESERVAR GRATIS AHORA
           </button>
         </div>
       </div>

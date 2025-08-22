@@ -1,5 +1,9 @@
+import { CheckBadgeIcon, HeartIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import React, { useCallback } from 'react';
-import { ShieldCheckIcon, SparklesIcon, HeartIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
+import { WHATSAPP_PHONE } from '../config/contact';
+// Video overlay is preferred for realistic caustics; drop a video in public/videos/caustics.mp4
+import VideoOverlay from './VideoOverlay';
+// import WaterOverlay from './WaterOverlay'; // fallback
 
 /**
  * Benefits Component - Evidence-Based Emotional Psychology
@@ -10,13 +14,14 @@ import { ShieldCheckIcon, SparklesIcon, HeartIcon, CheckBadgeIcon } from '@heroi
 const Benefits: React.FC = React.memo(() => {
   // WhatsApp integration (consistent across components)
   const handleWhatsAppClick = useCallback(() => {
-    const phone = "51999888777";
     const message = "¡Hola JefraPools! Quiero información sobre los beneficios del servicio de limpieza profesional.";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
 
   // (removed unused benefits list to keep component lean)
+  // Toggle to true once you add /public/videos/caustics.mp4
+  const USE_VIDEO_OVERLAY = true;
 
   return (
 
@@ -24,8 +29,14 @@ const Benefits: React.FC = React.memo(() => {
 
 
 
-    <section id="beneficios" aria-labelledby="benefits-title" className="py-14 bg-primary-600">
+  <section id="beneficios" aria-labelledby="benefits-title" className="py-14 bg-primary-600 relative overflow-hidden">
+      {/* Video caustics overlay (place your video at /public/videos/caustics.mp4) */}
+      {USE_VIDEO_OVERLAY ? (
+        <VideoOverlay src="/videos/caustics.mp4" opacity={0.20} playbackRate={1.0} scale={1.25} objectPosition="center right" />
+      ) : null}
       <div className="container-custom">
+        <div className="content-above">
+        {/* If you prefer SVG filter fallback use <WaterOverlay /> */}
         <div className="text-center mb-8 text-white">
           <h2 id="benefits-title" className="text-3xl md:text-4xl font-black">
             Beneficios garantizados
@@ -33,7 +44,7 @@ const Benefits: React.FC = React.memo(() => {
           <p className="opacity-90 mt-1">Lo esencial para una piscina perfecta</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* 1 */}
           <div className="p-5 rounded-xl border border-gray-200 bg-white">
             <div className="mb-3 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-sky-100">
@@ -71,7 +82,7 @@ const Benefits: React.FC = React.memo(() => {
             </div>
             <h3 className="font-bold text-lg">Garantía de satisfacción</h3>
             <p className="text-gray-600 mt-1">Si no queda perfecta, repetimos gratis hasta dejarla impecable.</p>
-            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias</span> atendidas al mes.</p>
+            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias satisfechas</span>.</p>
             {/* micro-CTA removed */}
           </div>
         </div>
@@ -83,6 +94,7 @@ const Benefits: React.FC = React.memo(() => {
           >
       Solicitar inspección gratis
           </button>
+        </div>
         </div>
       </div>
     </section>

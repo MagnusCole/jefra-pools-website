@@ -8,8 +8,15 @@
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <!-- Apple touch icon -->
     <link rel="apple-touch-icon" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0891b2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0891b2" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://jefrapools.com/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <!-- Preconnect critical third-party origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -20,27 +27,34 @@
     <meta name="description" content="Servicio profesional de limpieza y mantenimiento de piscinas. Piscina libre de algas y bacterias, lista para las visitas. Cotización gratuita." />
     <meta name="keywords" content="limpieza piscinas, mantenimiento piscinas, químicos piscina, servicio piscinas, limpieza profesional" />
     
-    <!-- Structured Data -->
+    <!-- Structured Data (LocalBusiness) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "JefraPools - Servicios de Limpieza de Piscinas",
-      "description": "Servicio profesional de limpieza y mantenimiento de piscinas",
-      "telephone": "+51-999-888-777",
+      "description": "Servicio profesional de limpieza y mantenimiento de piscinas en La Molina, Lima.",
+      "telephone": "+51946398228",
       "serviceType": "Limpieza y mantenimiento de piscinas",
-      "areaServed": "Ciudad y alrededores",
-      "priceRange": "$$$"
+      "areaServed": ["La Molina", "Surco", "San Borja"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "La Molina",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      },
+      "priceRange": "$$$",
+      "sameAs": ["https://www.facebook.com/profile.php?id=100054298849546"]
     }
     </script>
     
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDZTTF6NSV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
+      gtag('config', 'G-FDZTTF6NSV');
     </script>
 
     <!-- Meta Pixel Code (Meta/Facebook) -->
@@ -59,6 +73,15 @@
     <!-- End Meta Pixel Code -->
   </head>
   <body>
+    <!-- SVG filters for water caustics (hidden, used by overlays) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+      <filter id="water-filter">
+        <feTurbulence id="turb" baseFrequency="0.02 0.03" numOctaves="2" seed="2" stitchTiles="stitch" type="fractalNoise">
+          <animate class="water-anim" attributeName="baseFrequency" dur="8s" values="0.02 0.03;0.01 0.04;0.02 0.03" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="12" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
     <!-- Meta Pixel (noscript) -->
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=712815701724579&ev=PageView&noscript=1"/></noscript>
     <!-- End Meta Pixel (noscript) -->

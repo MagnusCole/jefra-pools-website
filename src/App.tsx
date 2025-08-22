@@ -3,11 +3,12 @@ import { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 // Components imports
-import HeroFunnel from './components/HeroFunnel';
-import Process from './components/Process';
 import Benefits from './components/Benefits';
-import MidCTA from './components/MidCTA';
 import FAQ from './components/FAQ';
+import HeroFunnel from './components/HeroFunnel';
+import MidCTA from './components/MidCTA';
+import OtrosServicios from './components/OtrosServicios';
+import Process from './components/Process';
 
 // Utils imports
 import { trackLead, type LeadSource } from './utils/tracking';
@@ -17,7 +18,7 @@ const ProofGallery = lazy(() => import('./components/ProofGallery'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
 
 // Constants for WhatsApp integration
-const WHATSAPP_PHONE = '51999888777';
+import { WHATSAPP_PHONE } from './config/contact';
 const WHATSAPP_MESSAGE = 'Hola JefraPools, quiero reservar mi limpieza GRATIS ahora. ¿Pueden atender hoy en La Molina?';
 
 /**
@@ -78,7 +79,10 @@ function App() {
         {/* Benefits Section - Why choose us */}
         <Benefits />
         
-        {/* Proof Gallery - Before/after photos (lazy loaded) */}
+  {/* Otros servicios - colocado después de Benefits */}
+  <OtrosServicios />
+
+  {/* Proof Gallery - Before/after photos (lazy loaded) */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando pruebas…</div>}>
           <ProofGallery />
         </Suspense>
@@ -107,9 +111,9 @@ function App() {
             <button
               onClick={() => handleWhatsAppContact('final-cta')}
               className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
-              aria-label="Reservar mi limpieza GRATIS ahora"
+              aria-label="RESERVAR GRATIS AHORA"
             >
-              📞 RESERVAR MI LIMPIEZA GRATIS AHORA
+              📞 RESERVAR GRATIS AHORA
             </button>
           </div>
         </section>

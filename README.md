@@ -7,14 +7,16 @@
 Professional landing page for pool cleaning and maintenance services targeting middle-to-upper class homeowners in La Molina, Lima, Peru. Optimized for mobile-first conversion with WhatsApp integration.
 
 ### 🔬 Evidence-Based Development
+
 - **Performance**: Sub-1s load time → 8-10% conversion uplift
-- **Mobile**: 70% traffic optimization + 40% higher LATAM sensitivity  
+- **Mobile**: 70% traffic optimization + 40% higher LATAM sensitivity
 - **Accessibility**: WCAG 2.1 AA → 15-30% conversion boost
 - **Psychology**: Blue (trust) vs Green (algae) color optimization
 
 ## 🚀 Quick Start for GitHub Copilot
 
 ### Context Loading
+
 ```bash
 # Load project context
 npm run copilot:context
@@ -24,6 +26,7 @@ npm run dev
 ```
 
 ### Copilot Commands
+
 ```
 @workspace Explain the business goals and conversion strategy
 @workspace Show me the component architecture patterns
@@ -42,12 +45,14 @@ npm run dev
 ## 📱 Mobile-First Performance
 
 ### Targets (Evidence-Based)
+
 - **Load Time**: <1s (conversion correlation)
 - **Bundle Size**: <200KB (LATAM mobile networks)
 - **Touch Targets**: 48x48dp (25% accuracy improvement)
 - **Lighthouse**: Performance >90, Accessibility >95
 
 ### LATAM Optimizations
+
 - WhatsApp as primary contact method
 - Peru phone number validation (+51 format)
 - Local trust signals for La Molina market
@@ -56,16 +61,17 @@ npm run dev
 
 ## 🎨 Psicología de Colores para Piscinas
 
-| Color | Uso | Psicología |
-|-------|-----|------------|
-| 🔵 **Azul (#0ea5e9)** | Primario | Agua cristalina = Solución perfecta |
-| ⚪ **Blanco/Gris** | Secundario | Pureza y limpieza profesional |
-| 🟡 **Amarillo (#f59e0b)** | CTAs | Urgencia suave, acción inmediata |
-| ❌ **Verde** | EVITAR | Algas, agua sucia = Problema |
+| Color                     | Uso        | Psicología                          |
+| ------------------------- | ---------- | ----------------------------------- |
+| 🔵 **Azul (#0ea5e9)**     | Primario   | Agua cristalina = Solución perfecta |
+| ⚪ **Blanco/Gris**        | Secundario | Pureza y limpieza profesional       |
+| 🟡 **Amarillo (#f59e0b)** | CTAs       | Urgencia suave, acción inmediata    |
+| ❌ **Verde**              | EVITAR     | Algas, agua sucia = Problema        |
 
 ## 📱 Funcionalidades de Conversión
 
 ### ✅ Implementado
+
 - Hero section con countdown timer
 - Sección de problemas y soluciones
 - Servicios detallados con precios
@@ -128,18 +134,19 @@ El proyecto está configurado para deploy automático en Netlify:
 ## 📞 Configuración
 
 ### Variables de entorno (opcional):
+
 ```bash
 VITE_GOOGLE_ANALYTICS_ID=GA_MEASUREMENT_ID
-VITE_WHATSAPP_NUMBER=51999888777
+VITE_WHATSAPP_NUMBER=51946398228
 ```
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
 ```js
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
 
@@ -154,40 +161,40 @@ export default tseslint.config([
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
       // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
+      reactX.configs["recommended-typescript"],
       // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```
