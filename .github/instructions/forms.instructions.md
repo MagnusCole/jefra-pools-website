@@ -15,14 +15,14 @@ applyTo: **/components/*Form*.tsx
 ### Required Architecture (Performance-Optimized)
 
 ```typescript
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface ContactFormData {
   name: string;
-  phone: string;    // +51 999 888 777 format (LATAM standard)
+  phone: string; // +51 999 888 777 format (LATAM standard)
   email: string;
-  poolSize: 'small' | 'medium' | 'large';
-  service: 'limpieza' | 'mantenimiento' | 'reparacion';
+  poolSize: "small" | "medium" | "large";
+  service: "limpieza" | "mantenimiento" | "reparacion";
   message?: string;
 }
 
@@ -32,14 +32,14 @@ const ContactForm: React.FC = () => {
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
-    watch
+    watch,
   } = useForm<ContactFormData>({
-    mode: 'onBlur',    // Evidence: Reduces abandonment 20-30%
-    reValidateMode: 'onChange',
+    mode: "onBlur", // Evidence: Reduces abandonment 20-30%
+    reValidateMode: "onChange",
     defaultValues: {
-      poolSize: 'medium',
-      service: 'limpieza'
-    }
+      poolSize: "medium",
+      service: "limpieza",
+    },
   });
 
   // WhatsApp integration (preferred contact LATAM)
@@ -47,22 +47,28 @@ const ContactForm: React.FC = () => {
     try {
       // Primary: Netlify form submission
       await submitToNetlify(data);
-      
+
       // Secondary: WhatsApp redirect (Hispanic market preference)
       const whatsappMessage = generateWhatsAppMessage(data);
-      window.open(`https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-      
+      window.open(
+        `https://wa.me/51946398228?text=${encodeURIComponent(whatsappMessage)}`,
+        "_blank"
+      );
+
       reset(); // Clear form on success
     } catch (error) {
       // Fallback: Direct WhatsApp only
       const fallbackMessage = generateWhatsAppMessage(data);
-      window.open(`https://wa.me/51999888777?text=${encodeURIComponent(fallbackMessage)}`, '_blank');
+      window.open(
+        `https://wa.me/51946398228?text=${encodeURIComponent(fallbackMessage)}`,
+        "_blank"
+      );
     }
   };
 
   return (
-    <form 
-      onSubmit={handleSubmit(onSubmit)} 
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 max-w-md mx-auto"
       noValidate // Custom validation for better UX
     >
@@ -80,7 +86,7 @@ const phoneValidation = {
   required: "Teléfono es requerido para cotización",
   pattern: {
     value: /^(\+51|51)?[0-9]{9}$/,
-    message: "Formato válido: 999888777 o +51999888777"
+  message: "Formato válido: 999888777 o +51946398228"
   },
   minLength: {
     value: 9,
@@ -132,54 +138,64 @@ const nameValidation = {
 
 ```tsx
 // Loading state durante submission
-{isSubmitting && (
-  <div className="flex items-center gap-2">
-    <Spinner className="w-4 h-4" />
-    <span>Enviando cotización...</span>
-  </div>
-)}
+{
+  isSubmitting && (
+    <div className="flex items-center gap-2">
+      <Spinner className="w-4 h-4" />
+      <span>Enviando cotización...</span>
+    </div>
+  );
+}
 
 // Error states user-friendly
-{errors.phone && (
-  <span className="text-red-500 text-sm flex items-center gap-1">
-    <ExclamationCircleIcon className="w-4 h-4" />
-    {errors.phone.message}
-  </span>
-)}
+{
+  errors.phone && (
+    <span className="text-red-500 text-sm flex items-center gap-1">
+      <ExclamationCircleIcon className="w-4 h-4" />
+      {errors.phone.message}
+    </span>
+  );
+}
 
 // Success state con next action
-{submitSuccess && (
-  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-    <CheckCircleIcon className="w-5 h-5 text-green-500" />
-    <p>¡Cotización enviada! Te contactaremos en WhatsApp.</p>
-    <button onClick={() => window.open(`https://wa.me/51999888777`)}>
-      Abrir WhatsApp
-    </button>
-  </div>
-)}
+{
+  submitSuccess && (
+    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+      <CheckCircleIcon className="w-5 h-5 text-green-500" />
+      <p>¡Cotización enviada! Te contactaremos en WhatsApp.</p>
+      <button onClick={() => window.open(`https://wa.me/51946398228`)}>
+        Abrir WhatsApp
+      </button>
+    </div>
+  );
+}
 ```
 
 ### Conversion Optimization
 
 #### Form Friction Reduction
+
 - **Máximo 4 campos**: nombre, teléfono, tamaño piscina, mensaje opcional
 - **Autocompletar habilitado**: `autoComplete="tel"`, `autoComplete="email"`
 - **Placeholders informativos**: "+51 999 888 777", "contacto@jefrapools.com"
 - **Mobile-friendly inputs**: `type="tel"`, `inputMode="numeric"`
 
 #### Progressive Enhancement
+
 ```tsx
 // Mostrar WhatsApp button si JavaScript falla
 <noscript>
-  <a href="https://wa.me/51999888777" className="btn-primary">
+  <a href="https://wa.me/51946398228" className="btn-primary">
     Contactar por WhatsApp
   </a>
-</noscript>
+</noscript>;
 
 // Fallback a WhatsApp en caso de error
 const handleFormError = (data: ContactFormData) => {
   const whatsappMessage = `Hola! Solicito cotización para piscina ${data.poolSize}. Nombre: ${data.name}, Tel: ${data.phone}`;
-  window.open(`https://wa.me/51999888777?text=${encodeURIComponent(whatsappMessage)}`);
+  window.open(
+    `https://wa.me/51946398228?text=${encodeURIComponent(whatsappMessage)}`
+  );
 };
 ```
 
@@ -188,7 +204,7 @@ const handleFormError = (data: ContactFormData) => {
 ```typescript
 // Input sanitization
 const sanitizeInput = (input: string): string => {
-  return input.trim().replace(/[<>]/g, '');
+  return input.trim().replace(/[<>]/g, "");
 };
 
 // Rate limiting (client-side hint)
@@ -219,10 +235,10 @@ const checkRateLimit = (): boolean => {
 >
   {/* Honeypot para bots */}
   <input type="hidden" name="bot-field" />
-  
+
   {/* Netlify form name */}
   <input type="hidden" name="form-name" value="contact" />
-  
+
   {/* Form fields */}
 </form>
 ```
@@ -232,19 +248,19 @@ const checkRateLimit = (): boolean => {
 ```typescript
 // Track form interactions for optimization
 const trackFormEvent = (event: string, field?: string) => {
-  if (typeof gtag !== 'undefined') {
-    gtag('event', event, {
-      event_category: 'Form',
-      event_label: field || 'contact_form',
-      value: 1
+  if (typeof gtag !== "undefined") {
+    gtag("event", event, {
+      event_category: "Form",
+      event_label: field || "contact_form",
+      value: 1,
     });
   }
 };
 
 // Track field focus para heatmaps
 <input
-  {...register('phone', phoneValidation)}
-  onFocus={() => trackFormEvent('field_focus', 'phone')}
-  onBlur={() => trackFormEvent('field_blur', 'phone')}
-/>
+  {...register("phone", phoneValidation)}
+  onFocus={() => trackFormEvent("field_focus", "phone")}
+  onBlur={() => trackFormEvent("field_blur", "phone")}
+/>;
 ```

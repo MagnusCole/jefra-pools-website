@@ -5,26 +5,31 @@
 ## 🏆 5 REGLAS FUNDAMENTALES (No-Negociables)
 
 ### 1. PERFORMANCE BRUTAL
+
 - **Target**: <1s load time, siempre
 - **Method**: Vite + Tailwind purging + lazy loading
 - **Test**: Si tarda >1s, algo está mal
 
-### 2. MOBILE-FIRST ABSOLUTO  
+### 2. MOBILE-FIRST ABSOLUTO
+
 - **Reality**: 70% usuarios son móvil en Perú
 - **Rule**: Diseñar para 375px, expandir después
 - **Test**: Si no funciona perfecto en móvil, no ship
 
 ### 3. CONVERSIÓN SOBRE BELLEZA
-- **Goal**: Leads WhatsApp, no likes Instagram  
+
+- **Goal**: Leads WhatsApp, no likes Instagram
 - **Psychology**: Azul agua cristalina vs Verde algas
 - **CTA**: "📞 Cotización Gratuita WhatsApp" - nada más
 
 ### 4. ACCESIBILIDAD SIN COMPROMISO
+
 - **Standard**: WCAG 2.1 AA
 - **Real Impact**: 15% más usuarios pueden convertir
 - **Non-negotiable**: Contrast 4.5:1, keyboard nav, ARIA
 
 ### 5. CODE PERFECTO, SIMPLE
+
 - **Stack**: React 18 + TypeScript + Tailwind
 - **Principle**: Si necesitas comentar qué hace, refactoriza
 - **Rule**: Una cosa bien > tres cosas regular
@@ -37,7 +42,7 @@ const LazyComponent = React.lazy(() => import('./Component'));
 const memoizedValue = useMemo(() => expensiveCalc(), [deps]);
 <img loading="lazy" alt="descriptive" />
 
-// ❌ NUNCA HACER  
+// ❌ NUNCA HACER
 import './huge-library'; // Solo si absolutamente necesario
 <div style={{background: dynamicStyle}}> // Inline styles kill performance
 useEffect(() => {}, []); // Sin deps array
@@ -50,7 +55,7 @@ useEffect(() => {}, []); // Sin deps array
 ```css
 /* COLORES - Solo estos, nada más */
 primary: #0ea5e9    /* Agua cristalina = confianza */
-secondary: #94a3b8  /* Gris profesional = autoridad */  
+secondary: #94a3b8  /* Gris profesional = autoridad */
 accent: #f59e0b     /* Amarillo urgencia = acción */
 /* PROHIBIDO: Verde (= algas, problema) */
 
@@ -68,19 +73,28 @@ text-3xl: 30px  /* Hero */
 
 ```css
 /* DEFAULT: Mobile 375px */
-.component { /* Mobile styles */ }
+.component {
+  /* Mobile styles */
+}
 
 /* EXPANSIÓN: Tablet+ */
-@media (min-width: 768px) { /* Tablet adjustments */ }
-@media (min-width: 1024px) { /* Desktop enhancements */ }
+@media (min-width: 768px) {
+  /* Tablet adjustments */
+}
+@media (min-width: 1024px) {
+  /* Desktop enhancements */
+}
 
 /* TOUCH TARGETS: Mínimo 44px */
-.btn { @apply min-h-[44px] min-w-[44px]; }
+.btn {
+  @apply min-h-[44px] min-w-[44px];
+}
 ```
 
 ## 🎯 CONVERSIÓN (Psychology-Driven)
 
 ### CTAs Hierarchy
+
 ```tsx
 // PRIMARIO: Solo uno por página
 <button className="bg-accent-500 text-white font-bold py-4 px-8 rounded-xl">
@@ -97,6 +111,7 @@ text-3xl: 30px  /* Hero */
 ```
 
 ### Trust Signals
+
 - "100+ piscinas limpias La Molina" (social proof local)
 - Fotos antes/después (proof visual)
 - "+51 999 888 777" (contacto directo)
@@ -105,6 +120,7 @@ text-3xl: 30px  /* Hero */
 ## 🔧 CODE QUALITY (Elegancia Funcional)
 
 ### TypeScript Minimalista
+
 ```typescript
 // ✅ Interfaces claras, simples
 interface Props {
@@ -128,9 +144,14 @@ type ComplexProps<T extends Record<string, unknown>> = T & {
 ```
 
 ### Hooks Esenciales
+
 ```typescript
 // Form handling - Solo React Hook Form
-const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm<FormData>();
 
 // State - Solo useState para simple, useReducer para complejo
 const [loading, setLoading] = useState(false);
@@ -144,31 +165,33 @@ useEffect(() => {
 ## 🧪 TESTING (Critical Paths Only)
 
 ### User Journeys Críticos
+
 ```typescript
 // 1. Hero → WhatsApp (conversión directa)
-test('Hero CTA opens WhatsApp', () => {
+test("Hero CTA opens WhatsApp", () => {
   render(<Hero />);
   fireEvent.click(screen.getByText(/cotización gratuita/i));
-  expect(window.open).toHaveBeenCalledWith(expect.stringContaining('wa.me'));
+  expect(window.open).toHaveBeenCalledWith(expect.stringContaining("wa.me"));
 });
 
-// 2. Form → Submission (lead generation)  
-test('Contact form submits successfully', async () => {
+// 2. Form → Submission (lead generation)
+test("Contact form submits successfully", async () => {
   render(<ContactForm />);
-  await userEvent.type(screen.getByLabelText(/nombre/i), 'Test User');
-  await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+  await userEvent.type(screen.getByLabelText(/nombre/i), "Test User");
+  await userEvent.click(screen.getByRole("button", { name: /enviar/i }));
   expect(screen.getByText(/enviado/i)).toBeInTheDocument();
 });
 
 // 3. Mobile navigation (70% traffic)
-test('Mobile menu works correctly', () => {
+test("Mobile menu works correctly", () => {
   render(<Header />);
   fireEvent.click(screen.getByLabelText(/menu/i));
-  expect(screen.getByRole('navigation')).toBeVisible();
+  expect(screen.getByRole("navigation")).toBeVisible();
 });
 ```
 
 ### Performance Testing
+
 ```typescript
 // Lighthouse thresholds - No compromises
 expect(performanceScore).toBeGreaterThan(90);
@@ -179,6 +202,7 @@ expect(loadTime).toBeLessThan(1000); // 1s max
 ## 🚀 DEPLOYMENT (Zero-Friction)
 
 ### Netlify Setup
+
 ```toml
 # netlify.toml - Minimal, efectivo
 [build]
@@ -193,24 +217,27 @@ expect(loadTime).toBeLessThan(1000); // 1s max
 ```
 
 ### Environment Variables
+
 ```bash
 # Solo lo esencial
-VITE_WHATSAPP_NUMBER=51999888777
+VITE_WHATSAPP_NUMBER=51946398228
 VITE_GOOGLE_ANALYTICS=G-XXXXXXXXXX
 ```
 
 ## 🎪 MANTRA OPERACIONAL
 
 ### Antes de cada commit:
+
 1. ¿Esto ayuda a convertir visitantes en clientes? ✅/❌
-2. ¿Funciona perfecto en móvil? ✅/❌  
+2. ¿Funciona perfecto en móvil? ✅/❌
 3. ¿Carga en <1s? ✅/❌
 4. ¿Es accesible para todos? ✅/❌
 5. ¿Es la solución más simple posible? ✅/❌
 
 ### Métricas que importan:
+
 - **WhatsApp clicks**: +25% target
-- **Form submissions**: +15% target  
+- **Form submissions**: +15% target
 - **Bounce rate**: <40%
 - **Load time**: <1s always
 - **Mobile score**: 95+ Lighthouse

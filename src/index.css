@@ -113,4 +113,75 @@
   .animation-delay-900 {
     animation-delay: 900ms;
   }
+
+  /* Custom pagination bullets for OtrosServicios (Amber, larger touch area) */
+  #otros-servicios-pagination .otros-custom-bullet {
+    width: 10px;
+    height: 10px;
+    background: #f59e0b; /* amber-400 */
+    opacity: 0.45;
+    margin: 0 8px;
+    border-radius: 9999px;
+    transition: transform .18s ease, opacity .18s ease, background .18s ease;
+    display: inline-block;
+    position: relative;
+  }
+  /* enlarge the clickable area without changing visual size */
+  #otros-servicios-pagination .otros-custom-bullet::after {
+    content: '';
+    position: absolute;
+    inset: -8px; /* increases hit area */
+  }
+  #otros-servicios-pagination .swiper-pagination-bullet-active.otros-custom-bullet {
+    opacity: 1;
+    transform: scale(1.2);
+    background: #f59e0b;
+  }
+
+  /* Water overlay styles (SVG filter based caustics) */
+  .water-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  opacity: 0.12; /* tweak for intensity */
+  mix-blend-mode: soft-light; /* softer, more natural caustics; try 'screen' or 'overlay' if desired */
+  z-index: 5; /* sits above the background but below the content */
+  }
+
+  .water-overlay svg { width: 100%; height: 100%; display: block; }
+
+  /* Reduced motion: lower intensity / stop animation by hiding animate elements */
+  @media (prefers-reduced-motion: reduce) {
+    .water-overlay { opacity: 0.06; }
+    /* Best-effort: stop SVG animate by setting display none on animation nodes */
+    .water-overlay svg animate { display: none; }
+  }
+
+  /* helper to ensure section content sits above overlays */
+  .content-above { z-index: 10; position: relative; }
+  
+  /* Video overlay (semi-transparent, muted, looping) */
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 6; /* above background but below .content-above */
+    /* stronger blend by default for more visible caustics; can be 'soft-light' or 'screen' */
+    mix-blend-mode: screen;
+  }
+
+  .video-overlay__video {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    transform: translate(-10%, -10%); /* center and oversize to avoid edges */
+    /* stronger color/contrast to make caustics pop */
+    filter: saturate(1.2) contrast(1.06) brightness(1.04);
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-overlay__video { display: none; }
+  }
 }

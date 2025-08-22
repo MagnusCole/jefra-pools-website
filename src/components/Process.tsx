@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
+import { WHATSAPP_PHONE } from '../config/contact';
 import { trackLead } from '../utils/tracking';
-
-const phone = '51999888777';
 
 // Proceso / ¿Qué incluye la oferta?
 // 1) Evaluación (antes S/.100 → ahora S/.0.00), 2) Cotización clara, 3) 4 visitas + 1 gratis, 4) Revisión final
 const Process: React.FC = React.memo(() => {
   const handleWhatsApp = useCallback(() => {
     const msg = 'Hola JefraPools, quiero conocer su proceso y reservar una inspección gratuita.';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     trackLead('process-cta');
   }, []);
 
@@ -64,6 +63,12 @@ const Process: React.FC = React.memo(() => {
             </li>
           ))}
         </ol>
+
+        <div className="prose prose-sm text-gray-700 max-w-2xl mx-auto text-center my-6">
+          <p className="text-sm">
+            <strong>Importante:</strong> La visita técnica no tiene costo siempre y cuando contraten el mantenimiento completo. La visita técnica cuenta como primera visita.
+          </p>
+        </div>
 
     <div className="text-center mt-8">
           <button

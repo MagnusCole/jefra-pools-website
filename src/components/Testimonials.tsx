@@ -1,5 +1,6 @@
+import { ShieldCheckIcon, TrophyIcon, UsersIcon } from '@heroicons/react/24/solid';
 import React, { useCallback } from 'react';
-import { UsersIcon, TrophyIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
+import { WHATSAPP_PHONE } from '../config/contact';
 
 interface Testimonial {
   name: string;
@@ -17,9 +18,8 @@ interface Testimonial {
 const Testimonials: React.FC = React.memo(() => {
   // WhatsApp integration
   const handleWhatsAppClick = useCallback(() => {
-    const phone = "51999888777";
     const message = "¡Hola JefraPools! Vi las recomendaciones y me interesa una cotización para mi piscina.";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
 
