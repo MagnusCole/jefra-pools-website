@@ -43,10 +43,20 @@ const HeroFunnel: React.FC = React.memo(() => {
 
       {/* Content */}
   <div className="relative z-10 w-full max-w-3xl mx-auto px-6 pt-10 md:pt-12 text-center">
-  <h1 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
-          <span className="block">Piscina cristalina</span>
-          <span className="block">Resultados en 24h</span>
-        </h1>
+  {/* Logo discreto arriba del headline */}
+  <img
+    src="/jefrapoolslogo.svg"
+    alt="JefraPools"
+    className="mx-auto mb-3 md:mb-4 w-[143px] sm:w-[170px] md:w-[188px] h-auto opacity-90 select-none pointer-events-none"
+    decoding="async"
+    loading="eager"
+    width={148}
+    height={48}
+  />
+  <h1 className="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)] [text-shadow:0_0_2px_#000,0_2px_6px_rgba(0,0,0,0.55)]">
+    <span className="block font-outfit">Piscina cristalina</span>
+    <span className="block font-outfit">Resultados en 24h</span>
+  </h1>
 
   <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
           GRATIS: Inspección + 1 limpieza extra
@@ -69,7 +79,7 @@ const HeroFunnel: React.FC = React.memo(() => {
             className="btn-cta bg-amber-400 hover:bg-amber-300 text-gray-900 font-extrabold px-9 py-5 md:py-6 rounded-2xl min-h-[56px] min-w-[64px] text-xl md:text-2xl ring-1 ring-amber-300 shadow-[0_10px_25px_rgba(245,158,11,0.45)] transform transition duration-200 hover:scale-[1.02] active:scale-[0.99]"
             aria-label="RESERVA GRATIS AHORA"
           >
-            📞 RESERVA GRATIS AHORA
+            RESERVA GRATIS AHORA
           </button>
         </div>
       </div>

@@ -23,7 +23,7 @@ const MidCTA: React.FC = React.memo(() => {
           className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
           aria-label="RESERVA GRATIS AHORA"
         >
-          📞 RESERVA GRATIS AHORA
+          RESERVA GRATIS AHORA
         </button>
         <p className="mt-2 text-xs md:text-sm text-white/90">Inspección sin costo • Sin compromiso</p>
       </div>

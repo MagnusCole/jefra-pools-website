@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { WHATSAPP_PHONE } from '../config/contact';
+import React, { useEffect, useRef, useState } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
+import { A11y, Keyboard } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Minimal proof gallery using public/images assets with captions
 const images: { src: string; caption: string }[] = [
@@ -21,37 +23,55 @@ const images: { src: string; caption: string }[] = [
   { src: 'images/piscina-pacman.png', caption: 'San Isidro — Condominio' },
 ];
 
-const ProofGallery: React.FC = React.memo(() => {
+// Componente interno para video adaptativo (detecta orientación)
+interface AdaptiveVideoProps {
+  src: string;
+  poster?: string;
+  borderClass?: string;
+}
+
+const AdaptiveVideo: React.FC<AdaptiveVideoProps> = ({ src, poster, borderClass }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [portrait, setPortrait] = useState(false);
+  const handleMeta = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.videoWidth && v.videoHeight) {
+      setPortrait(v.videoHeight > v.videoWidth);
+    }
+  };
+  const baseVideoClasses = 'w-full object-cover block';
+  /* Contenedores cuadrados para consistencia PC/móvil (recorte centrado) */
+  const landscapeSizing = 'aspect-square';
+  const portraitSizing = 'aspect-square';
   return (
-    <section id="trabajos" aria-labelledby="proof-title" className="py-16 bg-white">
-      <div className="container-custom">
-        <div className="text-center mb-8">
-          <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-gray-900">
-            Resultados reales
-          </h2>
-          <p className="text-gray-600 mt-2">Trabajos reales de esta semana en La Molina, Surco y San Borja.</p>
-  </div>
-  <LightboxGrid images={images} />
-
-        <div className="mt-8 text-center">
-              <a
-                href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola, quiero reservar una inspección gratuita para mi piscina.')}`}
-            className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-400 text-amber-600 bg-white font-semibold shadow-sm hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[48px]"
-          >
-            Reservar gratis mi inspección
-          </a>
-        </div>
-      </div>
-    </section>
+    <figure className={`relative rounded-lg overflow-hidden shadow-md border ${borderClass || 'border-sky-100'} bg-black/5`}>
+      <video
+        ref={videoRef}
+        className={`${baseVideoClasses} ${portrait ? portraitSizing : landscapeSizing}`}
+        src={src}
+        poster={poster}
+        preload="metadata"
+        playsInline
+        muted
+        loop
+        autoPlay
+        controls
+        onLoadedMetadata={handleMeta}
+      />
+    </figure>
   );
-});
+};
 
-ProofGallery.displayName = 'ProofGallery';
-export default ProofGallery;
-
-// Simple lightbox grid with clickable figures
-function LightboxGrid({ images }: { images: { src: string; caption: string }[] }) {
+const ProofGallery: React.FC = React.memo(() => {
   const [open, setOpen] = useState<number | null>(null);
+  const [isDesktop, setIsDesktop] = useState(() => 
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : false
+  );
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  // Escape listener for lightbox
+  const swiperRef = useRef<SwiperType | null>(null);
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -60,34 +80,226 @@ function LightboxGrid({ images }: { images: { src: string; caption: string }[] }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
-  return (
-    <>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
-        {images.map((img, i) => (
-          <Figure key={img.src} index={i} img={img} onOpen={() => setOpen(i)} />
-        ))}
-      </div>
-      {open !== null && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" role="dialog" aria-modal="true" onClick={() => setOpen(null)}>
-          <img src={`/${images[open].src}`} alt={images[open].caption} className="max-h-[85vh] w-auto object-contain" />
-        </div>
-      )}
-    </>
-  );
-}
 
-function Figure({ img, index, onOpen }: { img: { src: string; caption: string }; index: number; onOpen: () => void }) {
+  // Desktop: disable drag/touch, enable arrows only
+  useEffect(() => {
+    const handleResize = () => {
+      const desktop = window.matchMedia('(min-width: 1024px)').matches;
+      setIsDesktop(desktop);
+      if (swiperRef.current) {
+        swiperRef.current.allowTouchMove = !desktop; // false en desktop, true en mobile
+      }
+    };
+
+    // Set initial state
+    handleResize();
+    
+    // Listen for window resize
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleImageClick = (index: number, event: React.MouseEvent) => {
+    if (isDesktop) {
+      const slideElement = (event.currentTarget as HTMLElement).closest('.swiper-slide');
+      if (slideElement && !slideElement.classList.contains('swiper-slide-active')) return;
+    }
+    setOpen(index);
+  };
+
+  // Dynamic mobile progress-based transforms (restaurado)
+  useEffect(() => {
+    const sw = swiperRef.current;
+    if (!sw) return;
+    if (isDesktop) return;
+    const mq = window.matchMedia('(max-width: 639px)');
+    if (!mq.matches) return;
+    const wrapperEl = wrapperRef.current;
+    wrapperEl?.classList.add('pg-mobile-dyn');
+    const root = wrapperEl?.querySelector('.proof-swiper') as HTMLElement | null;
+    const styles = root ? getComputedStyle(root) : null;
+    const ACTIVE_SCALE = styles ? parseFloat(styles.getPropertyValue('--pg-active-scale') || '1.06') : 1.06;
+    const SIDE_SCALE = styles ? parseFloat(styles.getPropertyValue('--pg-side-scale') || '0.66') : 0.66;
+    const BASE_SHIFT = styles ? parseFloat((styles.getPropertyValue('--pg-side-shift-max') || styles.getPropertyValue('--pg-side-shift') || '40%').replace('%','')) : 40;
+    const SIDE_OPACITY = 0.50;
+    const SIDE_BRIGHT = 0.60;
+    const SIDE_SAT = 0.85;
+    const ACTIVE_BRIGHT = 1.0;
+    const ACTIVE_SAT = 1.05;
+    const apply = () => {
+  sw.slides.forEach((slideEl: HTMLElement) => {
+        const progress = (slideEl as { progress?: number }).progress ?? 2;
+        const p = Math.max(-1, Math.min(1, progress));
+        const t = 1 - Math.abs(p);
+        const e = Math.pow(t, 0.85);
+        const scale = SIDE_SCALE + (ACTIVE_SCALE - SIDE_SCALE) * e;
+        const shiftMagnitude = BASE_SHIFT * (1 - e);
+        const direction = p > 0 ? -1 : 1;
+        const shift = shiftMagnitude * direction;
+        const opacity = SIDE_OPACITY + (1 - SIDE_OPACITY) * e;
+        const bright = SIDE_BRIGHT + (ACTIVE_BRIGHT - SIDE_BRIGHT) * e;
+        const sat = SIDE_SAT + (ACTIVE_SAT - SIDE_SAT) * e;
+        const inner = slideEl.querySelector('.slide-inner') as HTMLElement | null;
+        if (!inner) return;
+        inner.style.transform = `translateX(${shift}%) scale(${scale})`;
+        inner.style.opacity = opacity.toString();
+        inner.style.zIndex = (10 + Math.round(e * 20)).toString();
+        inner.style.filter = `brightness(${bright}) saturate(${sat})`;
+        const caption = inner.querySelector('.pg-caption') as HTMLElement | null;
+        if (caption) {
+          caption.style.opacity = e > 0.90 ? '1' : '0';
+          caption.style.pointerEvents = e > 0.90 ? 'auto' : 'none';
+        }
+      });
+    };
+    const onProgress = () => apply();
+    const onSetTranslate = () => apply();
+    const onTouchStart = () => { wrapperEl?.classList.add('pg-touching'); };
+    const onTouchEnd = () => { wrapperEl?.classList.remove('pg-touching'); apply(); };
+    sw.on('progress', onProgress);
+    sw.on('setTranslate', onSetTranslate);
+    sw.on('touchStart', onTouchStart);
+    sw.on('touchEnd', onTouchEnd);
+    apply();
+    const handleResize = () => {
+      const nowDesktop = window.matchMedia('(min-width: 1024px)').matches;
+      if (nowDesktop) {
+  sw.slides.forEach((slideEl: HTMLElement) => {
+          const inner = slideEl.querySelector('.slide-inner') as HTMLElement | null;
+          if (inner) {
+            inner.style.transform = '';
+            inner.style.opacity = '';
+            inner.style.zIndex = '';
+            inner.style.filter = '';
+          }
+          const caption = slideEl.querySelector('.pg-caption') as HTMLElement | null;
+          if (caption) { caption.style.opacity = ''; caption.style.pointerEvents = ''; }
+        });
+        wrapperEl?.classList.remove('pg-mobile-dyn', 'pg-touching');
+      } else {
+        apply();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      sw.off('progress', onProgress);
+      sw.off('setTranslate', onSetTranslate);
+      sw.off('touchStart', onTouchStart);
+      sw.off('touchEnd', onTouchEnd);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isDesktop]);
+
+  const few = images.length < 3;
+
   return (
-    <figure className="group overflow-hidden rounded-lg border border-gray-200 bg-white relative cursor-zoom-in" onClick={onOpen}>
-      <img
-        src={`/${img.src}`}
-        alt={`Trabajo de limpieza de piscina ${index + 1}`}
-        className="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        loading="lazy"
-        decoding="async"
-        sizes="(max-width: 768px) 50vw, 25vw"
-      />
-      <figcaption className="px-2 py-2 text-[11px] sm:text-xs text-gray-600">{img.caption}</figcaption>
-    </figure>
+    <section id="trabajos" aria-labelledby="proof-title" className="py-16 bg-white">
+      <div className="container-custom">
+        <div className="text-center mb-8">
+          <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-gray-900">
+            Resultados reales
+          </h2>
+          <p className="text-gray-600 mt-2">Trabajos reales de esta semana en La Molina, Surco y San Borja.</p>
+        </div>
+
+        {/* Bloque videos antes / después (adaptativo orientación) */}
+        <div className="mb-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex flex-col items-center">
+              <AdaptiveVideo src="/videos/antes.mp4" poster="/pool.png" borderClass="border-sky-100" />
+              <p className="mt-2 text-sm font-semibold text-gray-700 tracking-wide uppercase">Antes</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <AdaptiveVideo src="/videos/despues.mp4" poster="/pool-real.jpg" borderClass="border-emerald-100" />
+              <p className="mt-2 text-sm font-semibold text-gray-700 tracking-wide uppercase">Después</p>
+            </div>
+          </div>
+        </div>
+
+  <div ref={wrapperRef} className={`proof-swiper-wrapper ${few ? 'few' : ''} relative pg-mobile-effect`}>
+          {/* Arrows (desktop) */}
+          <button
+            type="button"
+            aria-label="Anterior"
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 left-2 w-11 h-11 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_10px_2px_rgba(14,165,233,0.45)] hover:shadow-[0_0_14px_3px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <button
+            type="button"
+            aria-label="Siguiente"
+            onClick={() => swiperRef.current?.slideNext()}
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 right-2 w-11 h-11 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_10px_2px_rgba(14,165,233,0.45)] hover:shadow-[0_0_14px_3px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+          <Swiper
+            modules={[A11y, Keyboard]}
+            a11y={{ enabled: true }}
+            keyboard={{ enabled: true }}
+            centeredSlides
+            /* Restaurado baseline estable anterior */
+            slidesPerView={1.15}
+            spaceBetween={0}
+            watchSlidesProgress
+            simulateTouch={!isDesktop}
+            breakpoints={{
+              640: { slidesPerView: 2.2, spaceBetween: 16 },
+              1024: { slidesPerView: 3, spaceBetween: 18 }
+            }}
+            className="proof-swiper overflow-visible"
+            aria-roledescription="carousel"
+            aria-label="Galería de resultados"
+            onSwiper={(sw) => { 
+              swiperRef.current = sw;
+              // Set initial allowTouchMove based on current screen size
+              sw.allowTouchMove = !isDesktop;
+            }}
+          >
+            {images.map((img, i) => (
+              <SwiperSlide key={img.src} role="group" aria-label={`Trabajo ${i + 1} de ${images.length}`} className="cursor-pointer">
+                <div className="slide-inner">
+                  <figure
+                    onClick={(e) => handleImageClick(i, e)}
+                    className="relative aspect-[4/3] rounded-xl overflow-hidden select-none group"
+                  >
+                    <img
+                      src={`/${img.src}`}
+                      alt={img.caption}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      sizes="(max-width:640px) 75vw, (max-width:1024px) 45vw, 30vw"
+                    />
+                    <figcaption className="pg-caption text-[11px] sm:text-xs">
+                      {img.caption}
+                    </figcaption>
+                  </figure>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {open !== null && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Imagen ampliada"
+            onClick={() => setOpen(null)}
+          >
+            <img
+              src={`/${images[open].src}`}
+              alt={images[open].caption}
+              className="max-h-[85vh] w-auto object-contain shadow-2xl"
+            />
+          </div>
+        )}
+      </div>
+    </section>
   );
-}
+});
+
+ProofGallery.displayName = 'ProofGallery';
+export default ProofGallery;

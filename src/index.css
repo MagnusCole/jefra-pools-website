@@ -2,7 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
 /* Import Swiper base styles (necesario para layout horizontal consistente) */
 @import 'swiper/css';
 
@@ -23,6 +23,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
+  }
+  /* Aplicar Outfit a todos los titulares y pesos fuertes */
+  h1, h2, h3, h4, h5, h6,
+  strong, b,
+  .font-semibold, .font-bold, .font-extrabold, .font-black {
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
   }
   
   /* Enhanced focus indicators for accessibility */
@@ -114,5 +120,105 @@
   
   .animation-delay-900 {
     animation-delay: 900ms;
+  }
+
+  /* ProofGallery carousel emphasis */
+  .proof-swiper { padding-bottom: 0.5rem; }
+  .proof-swiper .swiper-wrapper { align-items: center; }
+  .proof-swiper .swiper-slide {
+    transition: transform .45s cubic-bezier(.4,.15,.2,1), opacity .45s, filter .45s;
+    transform-origin: center center;
+  }
+  .proof-swiper .swiper-slide-active {
+    transform: scale(1.05);
+    opacity: 1;
+    filter: brightness(1) saturate(1.05);
+    z-index: 10;
+  }
+  .proof-swiper .swiper-slide-prev,
+  .proof-swiper .swiper-slide-next {
+    transform: scale(.8);
+    opacity: .55;
+    filter: brightness(.65) saturate(.85);
+  }
+  /* If very few images, disable transforms */
+  .proof-swiper-wrapper.few .swiper-slide { transform:none !important; opacity:1 !important; filter:none !important; }
+
+  /* ProofGallery caption overlay */
+  .pg-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.45rem 0.5rem 0.55rem;
+    line-height: 1.15;
+    color: #f1f5f9; /* slate-100 */
+    font-weight: 500;
+    backdrop-filter: blur(2px);
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0) 100%);
+    /* No border, no solid bar; respects parent border-radius */
+  }
+  .pg-caption:hover { color: #ffffff; }
+  .slide-inner figure { position: relative; }
+  .slide-inner figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 70%, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.25) 75%);
+    opacity: 0.85;
+    transition: opacity .4s ease;
+  }
+  .swiper-slide-active .slide-inner figure::after { opacity: 0.35; }
+  .swiper-slide-active .pg-caption { color: #fff; }
+  
+  
+  /* Desktop overlap enhancement (only >=1024px) */
+  @media (min-width:1024px) {
+    /* Neutralize outer slide transform; apply to inner wrapper for safer overlap */
+    .proof-swiper .swiper-slide { transform: none !important; }
+    .proof-swiper .swiper-slide .slide-inner { transition: transform .55s cubic-bezier(.4,.15,.2,1), opacity .55s, filter .55s; transform-origin: center center; position: relative; }
+    /* Centro más dominante y laterales más comprimidos hacia el centro para real overlap */
+    .proof-swiper .swiper-slide-active .slide-inner {
+      transform: scale(1.08);
+      box-shadow: 0 14px 40px -10px rgba(0,0,0,0.45);
+      z-index: 30;
+    }
+    .proof-swiper .swiper-slide-prev .slide-inner,
+    .proof-swiper .swiper-slide-next .slide-inner {
+      transform: scale(.70);
+      opacity: .68;
+      filter: brightness(.68) saturate(.92);
+      z-index: 10;
+    }
+    /* Inward shift (menor para evitar huecos) */
+    .proof-swiper .swiper-slide-prev .slide-inner { transform: scale(.70) translateX(26%); }
+    .proof-swiper .swiper-slide-next .slide-inner { transform: scale(.70) translateX(-26%); }
+    /* Extra padding so overlapped sides are not clipped */
+    .proof-swiper-wrapper { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+
+  /* Mobile overlap & focus (<=639px) opt-in via wrapper class to avoid leaking to desktop */
+  @media (max-width:639px) {
+    /* Para activar el efecto móvil añade la clase 'pg-mobile-effect' al contenedor .proof-swiper-wrapper */
+  .pg-mobile-effect .proof-swiper { /* Baseline anterior (edge-entry paso 1) */ --pg-active-scale:1.06; --pg-side-scale:.66; --pg-side-shift:30%; --pg-side-shift-max:55%; }
+    .pg-mobile-effect .proof-swiper .swiper-slide { transform: none !important; }
+    .pg-mobile-effect .proof-swiper .swiper-slide .slide-inner { transition: transform .5s cubic-bezier(.4,.15,.2,1), opacity .5s, filter .5s; }
+  .pg-mobile-effect .proof-swiper .swiper-slide-active .slide-inner { transform: scale(var(--pg-active-scale)); z-index:30; box-shadow:0 8px 22px -8px rgba(0,0,0,.40); }
+  .pg-mobile-effect .proof-swiper .swiper-slide-prev .slide-inner { transform: scale(var(--pg-side-scale)) translateX(var(--pg-side-shift)); opacity:.50; filter:brightness(.60) saturate(.85); }
+  .pg-mobile-effect .proof-swiper .swiper-slide-next .slide-inner { transform: scale(var(--pg-side-scale)) translateX(calc(var(--pg-side-shift) * -1)); opacity:.50; filter:brightness(.60) saturate(.85); }
+    /* Caption sólo en activo */
+    .pg-mobile-effect .proof-swiper .swiper-slide .pg-caption { opacity:0; pointer-events:none; transition: opacity .35s ease; }
+    .pg-mobile-effect .proof-swiper .swiper-slide-active .pg-caption { opacity:1; pointer-events:auto; }
+  /* Ajustes rápidos (editar variables arriba):
+  - Laterales más escondidos: subir --pg-side-shift-max (55% -> 60%) o bajar --pg-side-scale (.66 -> .64)
+  - Laterales más visibles: bajar --pg-side-shift-max (55% -> 48%) o subir --pg-side-scale (.66 -> .70)
+  - Centro más dominante: subir --pg-active-scale (1.06 -> 1.08)
+  - Centro menos dominante: bajar --pg-active-scale (1.06 -> 1.04)
+  - Aparición más suave: reducir --pg-side-shift (30% -> 24%) */
+  /* Modo dinámico (JS progress) neutraliza transforms estáticos para usar inline styles */
+  .pg-mobile-dyn.pg-mobile-effect .proof-swiper .swiper-slide-prev .slide-inner,
+  .pg-mobile-dyn.pg-mobile-effect .proof-swiper .swiper-slide-next .slide-inner,
+  .pg-mobile-dyn.pg-mobile-effect .proof-swiper .swiper-slide-active .slide-inner { transform:none !important; opacity:1 !important; filter:none !important; box-shadow:none !important; }
+  .pg-mobile-dyn.pg-mobile-effect .proof-swiper .swiper-slide .slide-inner { transition:none !important; }
+  .pg-mobile-dyn.pg-mobile-effect.pg-touching .proof-swiper .swiper-slide .slide-inner { transition:none !important; }
   }
 }

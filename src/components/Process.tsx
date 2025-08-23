@@ -17,7 +17,7 @@ const Process: React.FC = React.memo(() => {
   <section aria-labelledby="process-title" className="pt-8 pb-14 sm:pt-10 sm:pb-16 bg-white">
       <div className="container-custom">
   <h2 id="process-title" className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-6">
-          ¿Qué incluye el <span className="align-baseline rounded-lg bg-amber-100 text-amber-800 px-2 py-0.5 font-extrabold">servicio</span>?
+          ¿Qué incluye el servicio?
         </h2>
 
         <ol className="max-w-3xl mx-auto space-y-4">
