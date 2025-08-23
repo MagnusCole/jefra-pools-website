@@ -8,7 +8,7 @@ const phone = WHATSAPP_PHONE;
 // 1) Evaluación (antes S/.100 → ahora S/.0.00), 2) Cotización clara, 3) 4 visitas + 1 gratis, 4) Revisión final
 const Process: React.FC = React.memo(() => {
   const handleWhatsApp = useCallback(() => {
-    const msg = 'Hola JefraPools, quiero conocer su proceso y reservar una inspección gratuita.';
+    const msg = '¡Hola Jefra Pools! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.';
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     trackLead('process-cta');
   }, []);

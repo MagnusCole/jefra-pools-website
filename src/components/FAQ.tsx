@@ -96,7 +96,7 @@ const FAQ: React.FC = React.memo(() => {
       q: '¿Qué zonas cubren?',
       a: (
         <p>
-          La Molina y alrededores (Surco, San Borja). Escríbenos por WhatsApp y confirmamos disponibilidad hoy.
+          La Molina y alrededores (Surco, San Borja y San Isidro). Escríbenos por WhatsApp y confirmamos disponibilidad hoy.
         </p>
       )
     },

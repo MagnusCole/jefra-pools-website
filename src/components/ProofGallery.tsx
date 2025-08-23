@@ -222,7 +222,7 @@ const ProofGallery: React.FC = React.memo(() => {
             type="button"
             aria-label="Anterior"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 left-2 w-11 h-11 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_10px_2px_rgba(14,165,233,0.45)] hover:shadow-[0_0_14px_3px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 left-2 w-11 h-11 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_10px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_16px_4px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -230,7 +230,7 @@ const ProofGallery: React.FC = React.memo(() => {
             type="button"
             aria-label="Siguiente"
             onClick={() => swiperRef.current?.slideNext()}
-            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 right-2 w-11 h-11 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_10px_2px_rgba(14,165,233,0.45)] hover:shadow-[0_0_14px_3px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 right-2 w-11 h-11 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_10px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_16px_4px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">›</span>
           </button>

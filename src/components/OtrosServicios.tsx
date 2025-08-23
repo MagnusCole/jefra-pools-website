@@ -10,18 +10,20 @@ type Slide = {
   img: string;
   alt: string;
   features?: string[];
+  whatsappMessage?: string; // Mensaje personalizado para CTA WhatsApp
 };
 
 const slides: Slide[] = [
   {
     title: 'Construcción',
     description: 'Soluciones desde obra nueva hasta reformas de terminación.',
-  img: '/images/construction.png',
+    img: '/images/construction.png',
     alt: 'Construcción de piscina',
     features: [
-  'Diseño personalizado según espacio y uso.',
-  'Materiales antideslizantes y garantía de acabado.',
+      'Diseño personalizado según espacio y uso.',
+      'Materiales antideslizantes y garantía de acabado.',
     ],
+    whatsappMessage: '¡Hola Jefra Pools! Estoy interesado en construir una piscina nueva. ¿Podemos hablar de opciones?'
   },
   {
     title: 'Ionización de agua',
@@ -29,9 +31,10 @@ const slides: Slide[] = [
     img: '/images/ionizador.png',
     alt: 'Ionización de agua en piscina',
     features: [
-  'Menos químicos: agua más estable y cristalina.',
-  'Ahorro en cloro y mantenimiento a medio plazo.',
+      'Menos químicos: agua más estable y cristalina.',
+      'Ahorro en cloro y mantenimiento a medio plazo.',
     ],
+    whatsappMessage: '¡Hola Jefra Pools! Quiero ionizar el agua de mi piscina. Detalles por favor.'
   },
   {
     title: 'Reparación',
@@ -39,15 +42,17 @@ const slides: Slide[] = [
     img: '/images/reparacion.png',
     alt: 'Reparación de filtro',
     features: [
-  'Diagnóstico rápido y presupuesto claro.',
-  'Repuestos originales o equivalentes certificados.',
+      'Diagnóstico rápido y presupuesto claro.',
+      'Repuestos originales o equivalentes certificados.',
     ],
+    whatsappMessage: '¡Hola Jefra Pools! Necesito reparar mi filtro dañado o piscina con problemas. ¿Cuándo pueden inspeccionar?'
   },
   {
     title: 'Servicios generales',
     description: 'Mantenimiento interno en seco y reparaciones preventivas.',
     img: '/images/servicios-generales.png',
     alt: 'Mantenimiento general de piscina',
+    whatsappMessage: '¡Hola Jefra Pools! Busco servicios generales. ¿Qué opciones ofrecen?'
   },
 ];
 
@@ -97,7 +102,7 @@ const OtrosServicios: React.FC = React.memo(() => {
             type="button"
             aria-label="Anterior"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-10 w-12 h-12 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:shadow-[0_0_16px_3px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-10 w-12 h-12 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_18px_4px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -105,7 +110,7 @@ const OtrosServicios: React.FC = React.memo(() => {
             type="button"
             aria-label="Siguiente"
             onClick={() => swiperRef.current?.slideNext()}
-            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-10 w-12 h-12 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm text-sky-400 shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:shadow-[0_0_16px_3px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400"
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-10 w-12 h-12 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_12px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_18px_4px_rgba(14,165,233,0.70)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">›</span>
           </button>
@@ -139,7 +144,7 @@ const OtrosServicios: React.FC = React.memo(() => {
                       )}
                     <div className="flex items-center gap-3">
                       <button
-                        onClick={() => handleWhatsAppClickInner(s.title)}
+                        onClick={() => handleWhatsAppClickInner(s)}
                         className="w-full md:inline-flex mt-3 md:mt-0 items-center justify-center px-4 py-2 rounded-lg bg-amber-400 text-gray-900 text-sm font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
                         aria-label={`RESERVAR GRATIS AHORA - ${s.title}`}
                       >
@@ -185,12 +190,10 @@ const OtrosServicios: React.FC = React.memo(() => {
   );
 });
 
-// Shared WhatsApp handler
-const handleWhatsAppClickInner = (service?: string) => {
+// Shared WhatsApp handler (usa mensaje personalizado si existe, si no uno genérico con el título)
+const handleWhatsAppClickInner = (slide: Slide) => {
   const phone = WHATSAPP_PHONE;
-  const message = service
-    ? `Hola JefraPools, quiero reservar gratis ahora para: ${service}`
-    : 'Hola JefraPools, quiero reservar gratis ahora para mi piscina.';
+  const message = slide.whatsappMessage ?? `Hola JefraPools, quiero reservar gratis ahora para: ${slide.title}`;
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 };
 

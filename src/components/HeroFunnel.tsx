@@ -14,7 +14,7 @@ const HeroFunnel: React.FC = React.memo(() => {
   const objPos = '50% 55%';
 
   const handleWhatsApp = useCallback(() => {
-  const msg = '¡Hola JefraPools! Quiero agendar una inspección sin costo y aprovechar la limpieza GRATIS esta semana en La Molina.';
+  const msg = '¡Hola Jefra Pools! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.';
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
   trackLead('hero');
   }, []);

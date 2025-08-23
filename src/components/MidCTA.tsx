@@ -5,7 +5,7 @@ import VideoOverlay from './VideoOverlay';
 
 const MidCTA: React.FC = React.memo(() => {
   const handleClick = useCallback(() => {
-  const msg = 'Hola JefraPools, quiero mi limpieza GRATIS. ¿Pueden atender hoy en La Molina?';
+  const msg = '¡Hola Jefra Pools! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.';
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
   trackLead('mid-cta');
   }, []);
@@ -17,7 +17,7 @@ const MidCTA: React.FC = React.memo(() => {
         <h2 id="mid-cta-title" className="text-2xl md:text-3xl font-black mb-3">
           ¿Listo para tu piscina cristalina hoy?
         </h2>
-        <p className="opacity-90 mb-5">Inspección sin costo en La Molina • Respuesta en minutos</p>
+        <p className="opacity-90 mb-5">Reserva sin compromiso • Respuesta en minutos</p>
         <button
           onClick={handleClick}
           className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
@@ -25,7 +25,6 @@ const MidCTA: React.FC = React.memo(() => {
         >
           RESERVA GRATIS AHORA
         </button>
-        <p className="mt-2 text-xs md:text-sm text-white/90">Inspección sin costo • Sin compromiso</p>
       </div>
     </section>
   );

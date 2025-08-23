@@ -19,7 +19,7 @@ const Testimonials: React.FC = React.memo(() => {
   // WhatsApp integration
   const handleWhatsAppClick = useCallback(() => {
     const phone = WHATSAPP_PHONE;
-    const message = "¡Hola JefraPools! Vi las recomendaciones y me interesa una cotización para mi piscina.";
+    const message = "¡Hola Jefra Pools! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
@@ -95,7 +95,7 @@ const Testimonials: React.FC = React.memo(() => {
             <div className="flex flex-col items-center">
               <UsersIcon className="w-7 h-7 text-primary-600 mb-2" />
               <div className="text-3xl font-bold text-primary-600 mb-1">200+</div>
-              <div className="text-sm text-gray-600">Familias al mes</div>
+              <div className="text-sm text-gray-600">Familias al año</div>
             </div>
             <div className="flex flex-col items-center">
               <TrophyIcon className="w-7 h-7 text-primary-600 mb-2" />

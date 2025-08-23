@@ -12,7 +12,7 @@ import VideoOverlay from './VideoOverlay';
 const Benefits: React.FC = React.memo(() => {
   // WhatsApp integration (consistent across components)
   const handleWhatsAppClick = useCallback(() => {
-  const message = "¡Hola JefraPools! Quiero información sobre los beneficios del servicio de limpieza profesional.";
+  const message = "¡Hola JefraPool! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.";
   const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
