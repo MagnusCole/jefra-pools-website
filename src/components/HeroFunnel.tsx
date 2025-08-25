@@ -58,8 +58,9 @@ const HeroFunnel: React.FC = React.memo(() => {
     <span className="block font-outfit">Resultados en 24h</span>
   </h1>
 
-  <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
-          GRATIS: Inspección + 1 limpieza extra
+  <p className="mt-3 text-lg md:text-xl text-gray-100 font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)] [text-shadow:0_0_2px_#000,0_2px_6px_rgba(0,0,0,0.55)]">
+          <span className="block">Especialistas Nro. 1 en piscinas</span>
+          <span className="block">GRATIS: Inspección + 1 limpieza extra</span>
         </p>
 
         {/* Garantía (removida temporalmente para reducir distracción y peso visual)

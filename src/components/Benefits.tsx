@@ -43,7 +43,7 @@ const Benefits: React.FC = React.memo(() => {
             </div>
             <h3 className="font-bold text-lg">Agua cristalina sin esfuerzo</h3>
             <p className="text-gray-600 mt-1">Disfruta tu piscina lista para usar, sin que tú hagas nada.</p>
-            <p className="text-gray-600 text-sm mt-1">En solo <span className="font-semibold">2 horas</span>.</p>
+            <p className="text-gray-600 text-sm mt-1">En menos de <span className="font-semibold">24 horas</span>.</p>
             {/* micro-CTA removed to keep a single section CTA */}
           </div>
           {/* 2 */}
@@ -73,7 +73,7 @@ const Benefits: React.FC = React.memo(() => {
             </div>
             <h3 className="font-bold text-lg">Garantía de satisfacción</h3>
             <p className="text-gray-600 mt-1">Si no queda perfecta, repetimos gratis hasta dejarla impecable.</p>
-            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+200 familias</span> atendidas al mes.</p>
+            <p className="text-gray-600 text-sm mt-1"><span className="font-semibold">+100 mantenimientos</span> al mes.</p>
             {/* micro-CTA removed */}
           </div>
         </div>

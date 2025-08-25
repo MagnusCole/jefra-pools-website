@@ -32,7 +32,7 @@ const Process: React.FC = React.memo(() => {
                   <span className="align-middle rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-extrabold">S/.0.00</span>
                 </>
               ),
-              desc: 'Revisión del agua, materiales, salada de maqúina (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Heco por expertos, ahorrándote horas y detectando problemas temprano.'
+              desc: 'Revisión del agua, materiales, caseta de maqúinas (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Heco por expertos, ahorrándote horas y detectando problemas temprano.'
             },
             {
               title: 'Cotización transparente y personalizada',
@@ -45,7 +45,7 @@ const Process: React.FC = React.memo(() => {
                   <span className="rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-bold whitespace-nowrap">1 Limpieza Gratis</span>
                 </>
               ),
-              desc: 'Mantenimiento completo de la piscina, limpieza de paredes, piso y canaletas; disminución de agua, limpieza de filtro, etc. Resultados visibles en semanas, con reportes digitales para seguimiento fácil.'
+              desc: 'Mantenimiento completo de la piscina, limpieza de paredes, piso y canaletas; fuga de agua, limpieza de filtro, etc. Resolvemos todo tipo de problemas de la piscina, con reportes para seguimiento fácil.'
             },
             {
               title: 'Informe detallado por visita',
@@ -72,7 +72,7 @@ const Process: React.FC = React.memo(() => {
           role="note"
         >
           <span className="font-semibold text-amber-700">Importante:</span> La visita técnica inicial es gratuita únicamente al
-          contratar el servicio de mantenimiento completo (plan de 4 visitas) y cuenta como la primera visita del plan.
+          contratar el servicio de mantenimiento completo (plan de 4 visitas + 1 limpieza extra) y cuenta como la primera visita del plan.
         </p>
 
     <div className="text-center mt-8">

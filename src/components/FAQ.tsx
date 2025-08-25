@@ -60,17 +60,22 @@ const FAQ: React.FC = React.memo(() => {
       id: 'incluye',
       q: '¿Qué incluye el servicio estándar?',
       a: (
-        <ul className="list-disc pl-5 space-y-1">
-          <li>
-            <span className="font-semibold">Inspección</span>: diagnóstico del agua y revisión básica de equipos.
-          </li>
-          <li>
-            <span className="font-semibold">Limpieza</span>: cepillado, aspirado y filtrado para recuperar el brillo.
-          </li>
-          <li>
-            <span className="font-semibold">Mantenimiento</span>: balance químico y recomendaciones para que se mantenga cristalina.
-          </li>
-        </ul>
+        <div>
+          <p className="mb-2 text-gray-700 text-base">
+            En condiciones normales el servicio estándar incluye:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>
+              <span className="font-semibold">Inspección</span>: Diagnóstico del agua y revisión básica de equipos.
+            </li>
+            <li>
+              <span className="font-semibold">Limpieza</span>: Cepillado, aspirado y filtrado para recuperar el brillo.
+            </li>
+            <li>
+              <span className="font-semibold">Mantenimiento</span>: Balance químico y recomendaciones para que se mantenga cristalina.
+            </li>
+          </ul>
+        </div>
       )
     },
     {
@@ -78,16 +83,7 @@ const FAQ: React.FC = React.memo(() => {
       q: '¿Puedo reservar para este fin de semana?',
       a: (
         <p>
-          Sí. Agenda ahora por WhatsApp y confirmamos tu horario disponible para sábado o domingo.
-        </p>
-      )
-    },
-    {
-      id: 'precio',
-      q: '¿Cuál es el precio después de la promo?',
-      a: (
-        <p>
-          Limpieza puntual desde S/149 (según tamaño). La inspección inicial es sin costo y sin compromiso.
+          Sí. Agenda ahora por WhatsApp y confirmamos tu horario disponible para viernes o sábado.
         </p>
       )
     },
@@ -96,7 +92,7 @@ const FAQ: React.FC = React.memo(() => {
       q: '¿Qué zonas cubren?',
       a: (
         <p>
-          La Molina y alrededores (Surco, San Borja y San Isidro). Escríbenos por WhatsApp y confirmamos disponibilidad hoy.
+          La Molina, Surco, San Borja y San Isidro , así también en Lima metropolitana. Escríbenos por WhatsApp y confirmamos disponibilidad hoy.
         </p>
       )
     },

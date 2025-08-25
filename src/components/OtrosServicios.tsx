@@ -16,7 +16,7 @@ type Slide = {
 const slides: Slide[] = [
   {
     title: 'Construcción',
-    description: 'Soluciones desde obra nueva hasta reformas de terminación.',
+    description: 'Construcción desde inicio del proyecto hasta el fin de la obra.',
     img: '/images/construction.png',
     alt: 'Construcción de piscina',
     features: [
@@ -27,18 +27,18 @@ const slides: Slide[] = [
   },
   {
     title: 'Ionización de agua',
-    description: 'Tecnologías para mantener agua estable y reducir químicos.',
+    description: 'Tratamientos del agua para que la piel se mantenga joven.',
     img: '/images/ionizador.png',
     alt: 'Ionización de agua en piscina',
     features: [
-      'Menos químicos: agua más estable y cristalina.',
-      'Ahorro en cloro y mantenimiento a medio plazo.',
+      'Sistema para mantener la piel joven',
+      'Reducción de cloro.',
     ],
     whatsappMessage: '¡Hola Jefra Pools! Quiero ionizar el agua de mi piscina. Detalles por favor.'
   },
   {
     title: 'Reparación',
-    description: 'Cartuchos de filtro, limpieza express deck/borde y reparaciones menores.',
+    description: 'Detectamos anomalías no visibles de la piscina (ej. fugas).',
     img: '/images/reparacion.png',
     alt: 'Reparación de filtro',
     features: [
@@ -54,6 +54,13 @@ const slides: Slide[] = [
     alt: 'Mantenimiento general de piscina',
     whatsappMessage: '¡Hola Jefra Pools! Busco servicios generales. ¿Qué opciones ofrecen?'
   },
+  {
+    title: 'Temperado de piscinas premium',
+    description: '¡Disfruta agua tibia todo el año! Con el servicio de temperado de Jefra Pools, transforma tu piscina en un oasis cálido',
+    img: '/images/calefactor2.png',
+    alt: 'Mantenimiento general de piscina',
+    whatsappMessage: '¡Hola Jefra Pools! Quiero información sobre el servicio de temperado de piscinas para disfrutar agua tibia. Me gustaría coordinar.'
+  }
 ];
 
 // Simple ErrorBoundary local para capturar errores de Swiper y mostrar fallback

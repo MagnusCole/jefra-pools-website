@@ -27,15 +27,15 @@ const Testimonials: React.FC = React.memo(() => {
   // Simplified testimonials
   const testimonials: Testimonial[] = [
     {
-      name: "Carmen Rodriguez",
-      location: "Los Fresnos, La Molina",
-  text: "Mi piscina estaba verde y mis hijos no podían usarla. En <strong>solo 2 horas</strong> la dejó <strong>cristalina</strong>. Ahora viene cada semana y nunca más tuvimos problemas.",
+      name: "Zoila",
+      location: "La Molina",
+  text: "Recomendé a Jefra Pools para que arreglen una bomba de agua; entonces los llamaron y solucionaron el problema <strong>¡Son unos Expertos!</strong>",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
-      name: "Roberto Mendoza", 
-      location: "Rinconada del Lago, La Molina",
-  text: "Probé 3 servicios diferentes antes de encontrar JefraPools. Es el único que realmente mantiene el agua <strong>cristalina</strong> todo el año.",
+      name: "Roberto Torres", 
+      location: "Chorrillos",
+  text: "Vinieron muchos técnicos para que arreglen mi piscina y ninguno pudo; después vino Jefra Pools y en <strong>15 minutos</strong> solucionó el problema.",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
     },
     {
