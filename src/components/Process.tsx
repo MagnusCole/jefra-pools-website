@@ -32,7 +32,7 @@ const Process: React.FC = React.memo(() => {
                   <span className="align-middle rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-extrabold">S/.0.00</span>
                 </>
               ),
-              desc: 'Revisión del agua, materiales, caseta de maqúinas (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Heco por expertos, ahorrándote horas y detectando problemas temprano.'
+              desc: 'Revisión del agua, materiales, caseta de maqúinas (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Hecho por expertos, ahorrándote horas y detectando problemas tempranos.'
             },
             {
               title: 'Cotización transparente y personalizada',
