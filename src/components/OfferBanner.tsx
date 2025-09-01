@@ -58,7 +58,7 @@ const OfferBanner: React.FC<OfferBannerProps> = React.memo(({ sticky = false, di
         </div>
         {/* Compact countdown */}
         <div className="shrink-0 flex items-center gap-2">
-          <Countdown label="Termina en" emphasis size="sm" urgentThresholdHours={12} />
+          <Countdown label="Termina en" emphasis size="sm" urgentThresholdHours={12} target="2025-09-13T23:59:59" />
           {dismissible && (
             <button
               type="button"
