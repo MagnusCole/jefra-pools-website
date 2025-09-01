@@ -11,6 +11,7 @@ type Slide = {
   alt: string;
   features?: string[];
   whatsappMessage?: string; // Mensaje personalizado para CTA WhatsApp
+  buttonText?: string; // Texto personalizado para el botón CTA
 };
 
 const slides: Slide[] = [
@@ -23,18 +24,20 @@ const slides: Slide[] = [
       'Diseño personalizado según espacio y uso.',
       'Materiales antideslizantes y garantía de acabado.',
     ],
-    whatsappMessage: '¡Hola Jefra Pools! Estoy interesado en construir una piscina nueva. ¿Podemos hablar de opciones?'
+    whatsappMessage: '¡Hola Jefra Pools! Estoy interesado en construir una piscina nueva. ¿Podemos hablar de opciones?',
+    buttonText: 'QUIERO CONSTRUIR MI PISCINA'
   },
   {
-    title: 'Ionización de agua',
-    description: 'Tratamientos del agua para que la piel se mantenga joven.',
+    title: 'Transforma tu piscina en un spa rejuvenecedor',
+    description: 'Ionización avanzada para reducir químicos agresivos y cuidar tu piel cada vez que entres a la piscina.',
     img: '/images/ionizador.png',
     alt: 'Ionización de agua en piscina',
     features: [
-      'Sistema para mantener la piel joven',
-      'Reducción de cloro.',
+      'Cuida tu piel con cada baño.',
+      'Ideal para pieles sensibles y familias exigentes.',
     ],
-    whatsappMessage: '¡Hola Jefra Pools! Quiero ionizar el agua de mi piscina. Detalles por favor.'
+    whatsappMessage: '¡Hola Jefra Pools! Quiero ionizar el agua de mi piscina. Detalles por favor.',
+    buttonText: 'QUIERO MI PISCINA SALUDABLE'
   },
   {
     title: 'Reparación',
@@ -45,21 +48,24 @@ const slides: Slide[] = [
       'Diagnóstico rápido y presupuesto claro.',
       'Repuestos originales o equivalentes certificados.',
     ],
-    whatsappMessage: '¡Hola Jefra Pools! Necesito reparar mi filtro dañado o piscina con problemas. ¿Cuándo pueden inspeccionar?'
+    whatsappMessage: '¡Hola Jefra Pools! Necesito reparar mi filtro dañado o piscina con problemas. ¿Cuándo pueden inspeccionar?',
+    buttonText: 'Activa tu inspección gratuita'
   },
   {
     title: 'Servicios generales',
     description: 'Mantenimiento interno en seco y reparaciones preventivas.',
     img: '/images/servicios-generales.png',
     alt: 'Mantenimiento general de piscina',
-    whatsappMessage: '¡Hola Jefra Pools! Busco servicios generales. ¿Qué opciones ofrecen?'
+    whatsappMessage: '¡Hola Jefra Pools! Busco servicios generales. ¿Qué opciones ofrecen?',
+    buttonText: 'agenda gratis tu Diagnóstico'
   },
   {
     title: 'Temperado de piscinas premium',
     description: '¡Disfruta agua tibia todo el año! Con el servicio de temperado de Jefra Pools, transforma tu piscina en un oasis cálido',
     img: '/images/calefactor2.png',
     alt: 'Mantenimiento general de piscina',
-    whatsappMessage: '¡Hola Jefra Pools! Quiero información sobre el servicio de temperado de piscinas para disfrutar agua tibia. Me gustaría coordinar.'
+    whatsappMessage: '¡Hola Jefra Pools! Quiero información sobre el servicio de temperado de piscinas para disfrutar agua tibia. Me gustaría coordinar.',
+    buttonText: 'QUIERO AGUA TEMPERADA'
   }
 ];
 
@@ -152,10 +158,10 @@ const OtrosServicios: React.FC = React.memo(() => {
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() => handleWhatsAppClickInner(s)}
-                        className="w-full md:inline-flex mt-3 md:mt-0 items-center justify-center px-4 py-2 rounded-lg bg-amber-400 text-gray-900 text-sm font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition"
-                        aria-label={`RESERVAR GRATIS AHORA - ${s.title}`}
+                        className="w-full md:inline-flex mt-3 md:mt-0 items-center justify-center px-4 py-2 rounded-lg bg-amber-400 text-gray-900 text-sm font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition uppercase"
+                        aria-label={`Quiero mi piscina saludable - ${s.title}`}
                       >
-                        RESERVAR GRATIS AHORA
+                        {s.buttonText || 'Quiero mi piscina saludable'}
                       </button>
                     </div>
                   </div>
