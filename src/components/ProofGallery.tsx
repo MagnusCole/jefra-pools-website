@@ -5,22 +5,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Minimal proof gallery using public/images assets with captions
 const images: { src: string; caption: string }[] = [
-  { src: 'images/3a6bd5ad-729a-49c3-a9e5-07b6b40d7acf.jpg', caption: 'San Borja — Recuperación de brillo' },
-  { src: 'images/7482029c-d9f0-4c51-b951-6985d88550d4.jpg', caption: 'Surco — Balanceo químico' },
-  { src: 'images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', caption: 'La Molina — Mantenimiento semanal' },
-  { src: 'images/aadf19d5-b8ee-4901-b8a2-1acc7f09162b.jpg', caption: 'San Borja — Limpieza completa (2h)' },
-  { src: 'images/Construccion2.png', caption: 'La Molina — Construcción' },
-  { src: 'images/ad2639cd-5294-4eab-bd0b-eed2e85cdeb0.jpg', caption: 'Surco — Filtrado y cepillado' },
-  { src: 'images/aed6151e-23b6-419b-93e0-033abe1d207c.jpg', caption: 'La Molina — Agua cristalina' },
-  { src: 'images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg', caption: 'San Borja — Hogar familiar' },
-  { src: 'images/b651ee56-0c98-4bc4-8d01-87ee3d7bc715.jpg', caption: 'La Molina — Mantenimiento preventivo' },
-  { src: 'images/d00dd42c-080d-43bc-ac1f-fc21367258a9.jpg', caption: 'Surco — Shock de limpieza' },
-  { src: 'images/d0b8119c-04fc-4b77-a8ec-9c9f4d7f4331.jpg', caption: 'La Molina — Listo para usar' },
-  { src: 'images/d5366dfa-97e8-473e-9286-c70af2b7adf0.jpg', caption: 'San Borja — Agua perfecta' },
-  { src: 'images/piscina-gozu.png', caption: 'La Molina — Condominio' },
-  { src: 'images/fb922e80-a67e-4d6d-a188-679e111f5554.jpg', caption: 'Surco — Detalle cristalino' },
-  { src: 'images/fd186c97-4c8d-4ef2-a4d4-5b13f36140c3.jpg', caption: 'La Molina — Post-mantenimiento' },
-  { src: 'images/piscina-pacman.png', caption: 'San Isidro — Condominio' },
+  { src: 'images/3a6bd5ad-729a-49c3-a9e5-07b6b40d7acf.jpg', caption: 'Recuperación de brillo' },
+  { src: 'images/7482029c-d9f0-4c51-b951-6985d88550d4.jpg', caption: 'Balanceo químico' },
+  { src: 'images/a37b0152-c7c2-43a6-8095-8ed1fb416b49.jpg', caption: 'Mantenimiento semanal' },
+  { src: 'images/aadf19d5-b8ee-4901-b8a2-1acc7f09162b.jpg', caption: 'Limpieza completa' },
+  { src: 'images/Construccion2.png', caption: 'Construcción' },
+  { src: 'images/ad2639cd-5294-4eab-bd0b-eed2e85cdeb0.jpg', caption: 'Filtrado y cepillado' },
+  { src: 'images/aed6151e-23b6-419b-93e0-033abe1d207c.jpg', caption: 'Agua cristalina' },
+  { src: 'images/b03a52b6-923b-4a69-a5e2-6477b652c813.jpg', caption: 'Hogar familiar' },
+  { src: 'images/b651ee56-0c98-4bc4-8d01-87ee3d7bc715.jpg', caption: 'Mantenimiento preventivo' },
+  { src: 'images/d00dd42c-080d-43bc-ac1f-fc21367258a9.jpg', caption: 'Shock de limpieza' },
+  { src: 'images/d0b8119c-04fc-4b77-a8ec-9c9f4d7f4331.jpg', caption: 'Listo para usar' },
+  { src: 'images/d5366dfa-97e8-473e-9286-c70af2b7adf0.jpg', caption: 'Agua perfecta' },
+  { src: 'images/piscina-gozu.png', caption: 'Condominio' },
+  { src: 'images/fb922e80-a67e-4d6d-a188-679e111f5554.jpg', caption: 'Detalle cristalino' },
+  { src: 'images/fd186c97-4c8d-4ef2-a4d4-5b13f36140c3.jpg', caption: 'Post-mantenimiento' },
+  { src: 'images/piscina-pacman.png', caption: 'Limpieza en condominio' },
 ];
 
 // Componente interno para video adaptativo (detecta orientación)
