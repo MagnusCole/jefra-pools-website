@@ -26,13 +26,13 @@ const Process: React.FC = React.memo(() => {
               title: (
                 <>
                   Visita técnica inicial — <span className="text-gray-700">Antes</span>{' '}
-                  <span className="line-through decoration-4 decoration-primary-700 text-gray-600">S/.149</span>{' '}
+                  <span className="line-through text-gray-600" style={{textDecorationThickness: '3px'}}>S/.149</span>{' '}
                   <span className="mx-1">→</span>
-                  <span className="text-gray-700">Ahora</span>{' '}
-                  <span className="align-middle rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-extrabold">S/.0.00</span>
+                  <span className="text-red-600 font-bold">Ahora</span>{' '}
+                  <span className="text-red-600 font-bold">S/.0.00</span>
                 </>
               ),
-              desc: 'Revisión del agua, materiales, caseta de maqúinas (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Hecho por expertos, ahorrándote horas y detectando problemas tempranos.'
+              desc: 'Revisión del agua, materiales, caseta de máquinas (conexiones de tuberías), sistema de recirculación y filtrado; niveles de pH y cloro. Hecho por expertos, ahorrándote horas y detectando problemas tempranos.'
             },
             {
               title: 'Cotización transparente y personalizada',
@@ -42,7 +42,7 @@ const Process: React.FC = React.memo(() => {
               title: (
                 <>
                   4 visitas de mantenimiento <span className="font-black">+</span>{' '}
-                  <span className="rounded-md bg-amber-100 text-amber-800 px-1.5 py-0.5 text-[13px] font-bold whitespace-nowrap">1 Limpieza Gratis</span>
+                  <span className="text-red-600 font-bold">1 Limpieza Gratis</span>
                 </>
               ),
               desc: 'Mantenimiento completo de la piscina, limpieza de paredes, piso y canaletas; fuga de agua, limpieza de filtro, etc. Resolvemos todo tipo de problemas de la piscina, con reportes para seguimiento fácil.'

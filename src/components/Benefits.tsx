@@ -2,6 +2,7 @@ import { CheckBadgeIcon, HeartIcon, ShieldCheckIcon, SparklesIcon } from '@heroi
 import React, { useCallback } from 'react';
 import { WHATSAPP_PHONE } from '../config/contact';
 import VideoOverlay from './VideoOverlay';
+import { FaWhatsapp } from 'react-icons/fa';
 
 /**
  * Benefits Component - Evidence-Based Emotional Psychology
@@ -84,6 +85,7 @@ const Benefits: React.FC = React.memo(() => {
       className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-amber-300 text-amber-100 bg-transparent font-semibold shadow-sm hover:bg-amber-50/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-300 transition min-h-[48px]"
           >
       Solicitar gratis mi inspección
+      <FaWhatsapp className="inline-block ml-2" />
           </button>
         </div>
       </div>

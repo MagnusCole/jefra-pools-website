@@ -1,4 +1,4 @@
-import { ShieldCheckIcon, TrophyIcon, UsersIcon } from '@heroicons/react/24/solid';
+import { ShieldCheckIcon, TrophyIcon, UsersIcon, StarIcon } from '@heroicons/react/24/solid';
 import React, { useCallback } from 'react';
 import { WHATSAPP_PHONE } from '../config/contact';
 
@@ -7,6 +7,7 @@ interface Testimonial {
   location: string;
   text: string;
   avatar: string;
+  rating: number;
 }
 
 /**
@@ -30,19 +31,22 @@ const Testimonials: React.FC = React.memo(() => {
       name: "Zoila",
       location: "La Molina",
   text: "Recomendé a Jefra Pools para que arreglen una bomba de agua; entonces los llamaron y solucionaron el problema <strong>¡Son unos Expertos!</strong>",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face",
+      rating: 4.5
     },
     {
       name: "Roberto Torres", 
       location: "Chorrillos",
   text: "Vinieron muchos técnicos para que arreglen mi piscina y ninguno pudo; después vino Jefra Pools y en <strong>15 minutos</strong> solucionó el problema.",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face",
+      rating: 5
     },
     {
       name: "Patricia Vega",
       location: "Los Granados, La Molina", 
   text: "Como mamá, lo que más me importa es la <strong>seguridad</strong>. Mis gemelos de 4 años nadan tranquilos y <strong>sin irritaciones</strong>. Atención <strong>rapidísima</strong>.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=160&h=160&fit=crop&crop=face",
+      rating: 5
     }
   ];
 
@@ -74,8 +78,8 @@ const Testimonials: React.FC = React.memo(() => {
               {/* Testimonial Text */}
               <blockquote className="text-gray-700 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: `"${testimonial.text}"` }} />
 
-              {/* Author (no avatar) */}
-              <div className="flex items-start">
+              {/* Author with stars */}
+              <div className="flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-gray-900">
                     {testimonial.name}
@@ -83,6 +87,25 @@ const Testimonials: React.FC = React.memo(() => {
                   <p className="text-gray-600 text-sm">
                     {testimonial.location}
                   </p>
+                </div>
+
+                {/* Star Rating */}
+                <div className="flex">
+                  {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
+                    <StarIcon key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                  ))}
+                  {testimonial.rating % 1 !== 0 && (
+                    <div className="relative">
+                      <StarIcon className="w-4 h-4 text-gray-300" />
+                      <StarIcon 
+                        className="w-4 h-4 text-yellow-400 fill-current absolute top-0 left-0" 
+                        style={{clipPath: 'inset(0 50% 0 0)'}} 
+                      />
+                    </div>
+                  )}
+                  {[...Array(5 - Math.ceil(testimonial.rating))].map((_, i) => (
+                    <StarIcon key={`empty-${i}`} className="w-4 h-4 text-gray-300" />
+                  ))}
                 </div>
               </div>
             </div>
@@ -109,8 +132,8 @@ const Testimonials: React.FC = React.memo(() => {
             </div>
             <div className="flex flex-col items-center">
               <UsersIcon className="w-7 h-7 text-primary-600 mb-2" />
-              <div className="text-3xl font-bold text-primary-600 mb-1">5k+</div>
-              <div className="text-sm text-gray-600">Servicios realizados</div>
+              <div className="text-3xl font-bold text-primary-600 mb-1">4.9/5</div>
+              <div className="text-sm text-gray-600">Calificación promedio</div>
             </div>
           </div>
           <p className="text-gray-700 text-lg">Recupera tu tiempo y disfruta tu piscina sin preocupaciones.</p>

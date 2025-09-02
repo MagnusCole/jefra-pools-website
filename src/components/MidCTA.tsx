@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { WHATSAPP_PHONE } from '../config/contact';
 import { trackLead } from '../utils/tracking';
 import VideoOverlay from './VideoOverlay';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const MidCTA: React.FC = React.memo(() => {
   const handleClick = useCallback(() => {
@@ -24,6 +25,7 @@ const MidCTA: React.FC = React.memo(() => {
           aria-label="RESERVA GRATIS AHORA"
         >
           RESERVA GRATIS AHORA
+          <FaWhatsapp className="inline-block ml-2" />
         </button>
       </div>
     </section>

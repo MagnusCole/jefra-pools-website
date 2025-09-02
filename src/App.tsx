@@ -9,6 +9,9 @@ import HeroFunnel from './components/HeroFunnel';
 import MidCTA from './components/MidCTA';
 import Process from './components/Process';
 
+//whatsapp icon import
+import { FaWhatsapp } from 'react-icons/fa';
+
 // Utils imports
 import { trackLead, type LeadSource } from './utils/tracking';
 
@@ -116,6 +119,7 @@ function App() {
               aria-label="RESERVA GRATIS AHORA"
             >
               RESERVA GRATIS AHORA
+              <FaWhatsapp className="inline-block ml-2" />
             </button>
           </div>
         </section>

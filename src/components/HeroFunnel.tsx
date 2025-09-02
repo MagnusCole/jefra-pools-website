@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { WHATSAPP_PHONE } from '../config/contact';
 import { trackLead } from '../utils/tracking';
 import OfferBanner from './OfferBanner';
+import { FaWhatsapp } from 'react-icons/fa';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
 // Copy aligned to creative: "¿Cansado de limpiar tu piscina? +1 limpieza GRATIS esta semana + inspección sin costo"
@@ -81,6 +82,7 @@ const HeroFunnel: React.FC = React.memo(() => {
             aria-label="RESERVA GRATIS AHORA"
           >
             RESERVA GRATIS AHORA
+            <FaWhatsapp className="inline-block ml-2" />
           </button>
         </div>
       </div>
