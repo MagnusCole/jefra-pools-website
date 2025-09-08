@@ -5,12 +5,6 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   server: {
-    proxy: {
-      '/api/google-apps-script': {
-        target: 'https://script.google.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/google-apps-script/, '/macros/s/AKfycbwOHC8dRw5UHYVU-xT2RISidyjd60TQKajpDk9p9jLhXosmzLsIlNZlBSWU_B8XA_1M2w/exec')
-      }
-    }
+    // Proxy configuration removed - now using Google Forms directly
   }
 })
