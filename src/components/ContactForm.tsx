@@ -24,8 +24,9 @@ const ContactForm: React.FC = () => {
 
   // ⚠️ CONFIGURACIÓN IMPORTANTE:
   // 1. Reemplaza la URL de GAS_URL con tu URL real de Google Apps Script
-  // 2. Asegúrate de que tu Google Apps Script tenga los headers CORS configurados
+  // 2. Asegúrate de que tu Google Apps Script tenga los headers CORS configurados correctamente
   // 3. Verifica que el spreadsheet ID en Google Apps Script sea correcto
+  // 4. El GAS debe estar publicado como "Web App" con acceso "Anyone"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,15 +34,13 @@ const ContactForm: React.FC = () => {
     console.log('Enviando datos:', formData);
     
     try {
-      // URL del Google Apps Script con proxy CORS para evitar bloqueos
-      const GAS_URL = 'https://corsproxy.org/?' + encodeURIComponent('https://script.google.com/macros/s/AKfycbwjvbpNRBtM606TsNqWhmx10iBvr4NLH-fqgMcD3p5iAbNqhGw77qjG0gzy_CEsiItu4Q/exec');
+      // URL directa del Google Apps Script (sin proxy)
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQLH0HUvkmc-LlT2ioTXmaseSCQrt0DNJoLaBFe_96NO9NeVOI0eqhVlKiGWf1i4gizw/exec';
       
       const response = await fetch(GAS_URL, {
         method: 'POST',
-        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
         body: JSON.stringify(formData)
       });
@@ -53,8 +52,24 @@ const ContactForm: React.FC = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const result = await response.json();
-      console.log('Resultado parseado', result);
+      // Obtener el texto de la respuesta primero
+      const responseText = await response.text();
+      console.log('Respuesta cruda:', responseText);
+
+      // Intentar parsear como JSON
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log('Resultado parseado:', result);
+      } catch (parseError) {
+        console.error('Error parseando respuesta:', parseError);
+        // Si no es JSON válido, intentar extraer información útil
+        if (responseText.includes('success')) {
+          result = { success: true, message: 'Datos enviados correctamente' };
+        } else {
+          result = { success: false, message: 'Respuesta del servidor no válida' };
+        }
+      }
 
       if (result.success) {
         alert('¡Gracias! Nos contactaremos contigo pronto.');
