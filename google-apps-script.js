@@ -50,7 +50,7 @@ function doPost(e) {
     }
 
     // Obtener el spreadsheet (reemplaza con tu ID real)
-    var spreadsheetId = '1VaDVeIn8-cZbPR1ViY2-ssH_Su-4pRSb_8Z-rWwqs64'; // ⚠️ REEMPLAZA ESTO
+    var spreadsheetId = 'TU_SPREADSHEET_ID_AQUI'; // ⚠️ REEMPLAZA ESTO CON TU ID REAL
     var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
     var sheet = spreadsheet.getSheetByName('Contactos') || spreadsheet.getSheets()[0];
 
