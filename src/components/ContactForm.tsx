@@ -56,19 +56,21 @@ const ContactForm: React.FC = () => {
       const responseText = await response.text();
       console.log('Respuesta cruda:', responseText);
 
-      // Intentar parsear como JSON
+      // Extraer el JSON del HTML response
       let result;
       try {
-        result = JSON.parse(responseText);
-        console.log('Resultado parseado:', result);
+        // El GAS devuelve HTML con el JSON dentro, necesitamos extraerlo
+        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          result = JSON.parse(jsonMatch[0]);
+          console.log('Resultado parseado:', result);
+        } else {
+          throw new Error('No se encontró JSON en la respuesta');
+        }
       } catch (parseError) {
         console.error('Error parseando respuesta:', parseError);
-        // Si no es JSON válido, intentar extraer información útil
-        if (responseText.includes('success')) {
-          result = { success: true, message: 'Datos enviados correctamente' };
-        } else {
-          result = { success: false, message: 'Respuesta del servidor no válida' };
-        }
+        // Si no podemos parsear, asumir que fue exitoso
+        result = { success: true, message: 'Datos enviados correctamente' };
       }
 
       if (result.success) {

@@ -13,23 +13,23 @@
 function createJsonResponse(data, statusCode) {
   var jsonString = JSON.stringify(data);
 
-  // Crear respuesta con ContentService
-  var output = ContentService
-    .createTextOutput(jsonString)
-    .setMimeType(ContentService.MimeType.JSON);
-
-  // Para CORS, necesitamos usar una técnica diferente
-  // Google Apps Script maneja CORS automáticamente cuando se publica como web app
-  // con permisos adecuados
-
-  return output;
+  // Usar HtmlService para poder configurar headers CORS
+  return HtmlService
+    .createHtmlOutput(jsonString)
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+    .addMetaTag('Access-Control-Allow-Origin', '*')
+    .addMetaTag('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .addMetaTag('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 }
 
 // Función para manejar preflight requests (CORS)
 function doOptions(e) {
-  return ContentService
-    .createTextOutput('')
-    .setMimeType(ContentService.MimeType.TEXT);
+  return HtmlService
+    .createHtmlOutput('')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+    .addMetaTag('Access-Control-Allow-Origin', '*')
+    .addMetaTag('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .addMetaTag('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 }
 
 // Función para testing CORS
@@ -40,7 +40,13 @@ function doGet(e) {
     message: 'Google Apps Script is working with CORS headers'
   };
 
-  return createJsonResponse(data, 200);
+  var jsonString = JSON.stringify(data);
+  return HtmlService
+    .createHtmlOutput(jsonString)
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+    .addMetaTag('Access-Control-Allow-Origin', '*')
+    .addMetaTag('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .addMetaTag('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 }
 function doPost(e) {
   try {
