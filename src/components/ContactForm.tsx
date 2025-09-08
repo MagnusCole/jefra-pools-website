@@ -35,7 +35,9 @@ const ContactForm: React.FC = () => {
             type="email"
             name="email"
             className="w-full px-3 py-2 border rounded-lg"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             placeholder="tu@email.com"
+            title="Por favor ingresa un email válido"
           />
         </div>
 
@@ -46,7 +48,9 @@ const ContactForm: React.FC = () => {
             name="phone"
             className="w-full px-3 py-2 border rounded-lg"
             required
+            pattern='(\+51\s?)?9\d{8}'
             placeholder="+51 999 888 777"
+            title="Numero peruano: 999888777 o +51 999888777"
           />
         </div>
 
