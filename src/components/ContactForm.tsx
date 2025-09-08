@@ -33,9 +33,8 @@ const ContactForm: React.FC = () => {
     console.log('Enviando datos:', formData);
     
     try {
-      // URL del Google Apps Script con CORS configurado
-      // ⚠️ IMPORTANTE: Reemplaza esta URL con tu URL real de Google Apps Script
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwjvbpNRBtM606TsNqWhmx10iBvr4NLH-fqgMcD3p5iAbNqhGw77qjG0gzy_CEsiItu4Q/exec';
+      // URL del Google Apps Script con proxy CORS para evitar bloqueos
+      const GAS_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbwjvbpNRBtM606TsNqWhmx10iBvr4NLH-fqgMcD3p5iAbNqhGw77qjG0gzy_CEsiItu4Q/exec';
       
       const response = await fetch(GAS_URL, {
         method: 'POST',
