@@ -33,8 +33,8 @@ const ContactForm: React.FC = () => {
     console.log('Enviando datos:', formData);
     
     try {
-      // URL de la API route local (sin problemas CORS)
-      const GAS_URL = '/api/contact';
+      // URL del Google Apps Script con proxy CORS para evitar bloqueos
+      const GAS_URL = 'https://corsproxy.org/?' + encodeURIComponent('https://script.google.com/macros/s/AKfycbwjvbpNRBtM606TsNqWhmx10iBvr4NLH-fqgMcD3p5iAbNqhGw77qjG0gzy_CEsiItu4Q/exec');
       
       const response = await fetch(GAS_URL, {
         method: 'POST',
