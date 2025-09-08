@@ -4,10 +4,7 @@
 function doOptions() {
   return ContentService
     .createTextOutput('')
-    .setMimeType(ContentService.MimeType.TEXT)
-    .setHeader('Access-Control-Allow-Origin', '*')
-    .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-    .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+    .setMimeType(ContentService.MimeType.TEXT);
 }
 
 // Función para testing CORS
@@ -18,10 +15,7 @@ function doGet() {
       timestamp: new Date().toISOString(),
       message: 'Google Apps Script is working with CORS headers'
     }))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader('Access-Control-Allow-Origin', '*')
-    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+    .setMimeType(ContentService.MimeType.JSON);
 }
 function doPost(e) {
   try {
@@ -32,10 +26,7 @@ function doPost(e) {
     if (!e || !e.postData) {
       return ContentService
         .createTextOutput(JSON.stringify({success: false, message: 'No data received'}))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader('Access-Control-Allow-Origin', '*')
-        .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     // Parsear los datos JSON
@@ -47,10 +38,7 @@ function doPost(e) {
       console.log('Error parseando JSON:', parseError);
       return ContentService
         .createTextOutput(JSON.stringify({success: false, message: 'Invalid JSON format'}))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader('Access-Control-Allow-Origin', '*')
-        .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     // Validar campos requeridos
@@ -58,10 +46,7 @@ function doPost(e) {
       console.log('Campos faltantes:', {name: data.name, phone: data.phone, district: data.district});
       return ContentService
         .createTextOutput(JSON.stringify({success: false, message: 'Missing required fields'}))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader('Access-Control-Allow-Origin', '*')
-        .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     // Obtener el spreadsheet (reemplaza con tu ID real)
@@ -87,19 +72,13 @@ function doPost(e) {
     // Respuesta exitosa
     return ContentService
       .createTextOutput(JSON.stringify({success: true, message: 'Data saved successfully'}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', '*')
-      .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+      .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
     console.error('Error en doPost:', error);
     return ContentService
       .createTextOutput(JSON.stringify({success: false, message: 'Server error: ' + error.toString()}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', '*')
-      .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 

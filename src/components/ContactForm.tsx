@@ -35,7 +35,7 @@ const ContactForm: React.FC = () => {
     try {
       // URL del Google Apps Script con CORS configurado
       // ⚠️ IMPORTANTE: Reemplaza esta URL con tu URL real de Google Apps Script
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbyoWM8cA91Fexgab5ALLJseViTMlIOy-93FncqNd2PgSBz6plHxinMWG4r1V3a3D-Jg/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwjvbpNRBtM606TsNqWhmx10iBvr4NLH-fqgMcD3p5iAbNqhGw77qjG0gzy_CEsiItu4Q/exec';
       
       const response = await fetch(GAS_URL, {
         method: 'POST',
