@@ -35,7 +35,7 @@ const ContactForm: React.FC = () => {
     
     try {
       // URL directa del Google Apps Script (sin proxy)
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQLH0HUvkmc-LlT2ioTXmaseSCQrt0DNJoLaBFe_96NO9NeVOI0eqhVlKiGWf1i4gizw/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwRv5154uXwx3--RPAA_cXD_JetyF8IsNXDMJVeKLMIADxP5lMA8it-PQgYCVt0qfxKGw/exec';
       
       const response = await fetch(GAS_URL, {
         method: 'POST',
