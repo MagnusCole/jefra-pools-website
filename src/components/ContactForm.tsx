@@ -27,6 +27,7 @@ const ContactForm: React.FC = () => {
   // 2. Los datos se guardan automáticamente en Google Sheets
   // 3. No hay redirección - el usuario se queda en el sitio
   // 4. Los IDs de los campos están configurados para tu formulario específico
+  // 5. Última actualización: 2025-09-08 12:00 UTC - Force rebuild
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
