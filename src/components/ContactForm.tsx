@@ -23,10 +23,10 @@ const ContactForm: React.FC = () => {
   });
 
   // ⚠️ CONFIGURACIÓN IMPORTANTE:
-  // 1. Reemplaza la URL de GAS_URL con tu URL real de Google Apps Script
-  // 2. Asegúrate de que tu Google Apps Script tenga los headers CORS configurados correctamente
-  // 3. Verifica que el spreadsheet ID en Google Apps Script sea correcto
-  // 4. El GAS debe estar publicado como "Web App" con acceso "Anyone"
+  // 1. El formulario envía datos directamente a Google Forms
+  // 2. Los datos se guardan automáticamente en Google Sheets
+  // 3. No hay redirección - el usuario se queda en el sitio
+  // 4. Los IDs de los campos están configurados para tu formulario específico
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,48 +34,31 @@ const ContactForm: React.FC = () => {
     console.log('Enviando datos:', formData);
     
     try {
-      // URL directa del Google Apps Script (sin proxy)
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwRv5154uXwx3--RPAA_cXD_JetyF8IsNXDMJVeKLMIADxP5lMA8it-PQgYCVt0qfxKGw/exec';
+      // URL directa del Google Forms (sin redirección)
+      const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d/1TNGtDucIh_5o0FZ4D4ELtws64Kjaj0QkJLPduB_mFhc/formResponse';
       
-      const response = await fetch(GAS_URL, {
+      const response = await fetch(GOOGLE_FORMS_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(formData)
+        body: new URLSearchParams({
+          'entry.2005620554': formData.name,        // Nombre
+          'entry.1045781291': formData.email,       // Correo electrónico
+          'entry.1166974658': formData.phone,       // Teléfono
+          'entry.839337160': formData.district,     // Distrito
+          'entry.1065046570': formData.message,     // Mensaje
+        }).toString(),
+        redirect: 'manual'  // IMPORTANTE: Evita redirección automática
       });
 
       console.log('Respuesta del servidor:', response);
       console.log('Status:', response.status);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      // Google Forms responde con 200 si es exitoso
+      if (response.status === 200 || response.status === 0) {
+        console.log('Envío exitoso a Google Forms');
 
-      // Obtener el texto de la respuesta primero
-      const responseText = await response.text();
-      console.log('Respuesta cruda:', responseText);
-
-      // Extraer el JSON del HTML response
-      let result;
-      try {
-        // El GAS devuelve HTML con el JSON dentro, necesitamos extraerlo
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-          result = JSON.parse(jsonMatch[0]);
-          console.log('Resultado parseado:', result);
-        } else {
-          throw new Error('No se encontró JSON en la respuesta');
-        }
-      } catch (parseError) {
-        console.error('Error parseando respuesta:', parseError);
-        // Si no podemos parsear, asumir que fue exitoso
-        result = { success: true, message: 'Datos enviados correctamente' };
-      }
-
-      if (result.success) {
-        alert('¡Gracias! Nos contactaremos contigo pronto.');
-        
         // Limpiar formulario
         setFormData({
           name: '',
@@ -84,8 +67,10 @@ const ContactForm: React.FC = () => {
           district: '',
           message: ''
         });
+
+        alert('¡Gracias! Nos contactaremos contigo pronto.');
       } else {
-        alert('Hubo un error: ' + (result.message || 'Por favor, intenta de nuevo.'));
+        throw new Error(`Error al enviar: ${response.status}`);
       }
     } catch (error) {
       console.error('Error completo:', error);
