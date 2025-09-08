@@ -22,27 +22,44 @@ const ContactForm: React.FC = () => {
     message: ''
   });
 
+  // ⚠️ CONFIGURACIÓN IMPORTANTE:
+  // 1. Reemplaza la URL de GAS_URL con tu URL real de Google Apps Script
+  // 2. Asegúrate de que tu Google Apps Script tenga los headers CORS configurados
+  // 3. Verifica que el spreadsheet ID en Google Apps Script sea correcto
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     console.log('Enviando datos:', formData);
     
     try {
-      const response = await fetch('/api/google-apps-script', {
+      // URL del Google Apps Script con CORS configurado
+      // ⚠️ IMPORTANTE: Reemplaza esta URL con tu URL real de Google Apps Script
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbyoWM8cA91Fexgab5ALLJseViTMlIOy-93FncqNd2PgSBz6plHxinMWG4r1V3a3D-Jg/exec';
+      
+      const response = await fetch(GAS_URL, {
         method: 'POST',
+        mode: 'cors',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(formData)
       });
 
       console.log('Respuesta del servidor:', response);
+      console.log('Status:', response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
       console.log('Resultado parseado', result);
 
       if (result.success) {
         alert('¡Gracias! Nos contactaremos contigo pronto.');
+        
         // Limpiar formulario
         setFormData({
           name: '',
@@ -52,11 +69,15 @@ const ContactForm: React.FC = () => {
           message: ''
         });
       } else {
-        alert('Hubo un error. Por favor, rellena bien tus datos.');
+        alert('Hubo un error: ' + (result.message || 'Por favor, intenta de nuevo.'));
       }
     } catch (error) {
-      console.error('Error completo', error);
-      alert('Error de conexión: ' + (error instanceof Error ? error.message : 'Error desconocido'));
+      console.error('Error completo:', error);
+      
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      
+      // Mostrar mensaje de error al usuario
+      alert(`Error de conexión: ${errorMessage}\n\nPor favor, intenta de nuevo más tarde.`);
     }
   };
 
