@@ -5,7 +5,6 @@ interface CountdownProps {
   target?: Date | string;
   label?: string;
   emphasis?: boolean; // if true, uses accent styling for stronger visibility
-  size?: 'sm' | 'md'; // compact for mobile
   urgentThresholdHours?: number; // pulse when below threshold
 }
 
@@ -34,7 +33,7 @@ const formatDiff = (ms: number) => {
 
 const pad2 = (n: number) => n.toString().padStart(2, '0');
 
-const Countdown: React.FC<CountdownProps> = React.memo(({ target, label = 'Oferta termina en', emphasis = false, size = 'md', urgentThresholdHours = 12 }) => {
+const Countdown: React.FC<CountdownProps> = React.memo(({ target, label = 'Oferta termina en', emphasis = false, urgentThresholdHours = 12 }) => {
   const targetDate = useMemo(() => (target ? new Date(target) : getEndOfWeekLima()), [target]);
   const [remaining, setRemaining] = useState<number>(() => Math.max(0, targetDate.getTime() - Date.now()));
 
@@ -50,23 +49,44 @@ const Countdown: React.FC<CountdownProps> = React.memo(({ target, label = 'Ofert
   const isUrgent = hoursLeft <= urgentThresholdHours;
 
   return (
-    <div className="inline-flex flex-col items-center text-white" role="timer" aria-live="off" aria-atomic="true">
+    <div className="flex flex-col items-center text-white" role="timer" aria-live="off" aria-atomic="true">
       <span className="sr-only">{label}</span>
-      <span aria-hidden className={size === 'sm' ? 'text-xs opacity-90' : 'text-sm md:text-base opacity-90'}>{label}</span>
-      <div className={`mt-2 flex items-center gap-1.5 md:gap-2 font-mono ${isUrgent && emphasis ? 'animate-pulse' : ''}`}>
+      <span className="text-sm md:text-base opacity-90 mb-3">{label}</span>
+
+      {/* Contenedor principal de círculos */}
+      <div className={`flex items-center justify-center gap-3 md:gap-4 ${isUrgent && emphasis ? 'animate-pulse' : ''}`}>
+        {/* Días */}
         {d > 0 && (
-          <div className={`${emphasis ? 'bg-accent-600 text-white' : 'bg-white/10 text-white'} rounded-lg ${size === 'sm' ? 'px-2 py-1 text-base' : 'px-3 py-2 text-lg md:text-2xl'}`}>
-            {pad2(d)}<span className={`${size === 'sm' ? 'text-[10px]' : 'text-xs md:text-sm'} ml-1 opacity-80`}>d</span>
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-amber-400 rounded-full flex items-center justify-center shadow-lg ring-2 ring-amber-300">
+              <span className="text-gray-900 font-bold text-lg md:text-xl">{pad2(d)}</span>
+            </div>
+            <span className="text-xs md:text-sm text-white/80 mt-1 font-medium">Días</span>
           </div>
         )}
-        <div className={`${emphasis ? 'bg-accent-600 text-white' : 'bg-white/10 text-white'} rounded-lg ${size === 'sm' ? 'px-2 py-1 text-base' : 'px-3 py-2 text-lg md:text-2xl'}`}>
-          {pad2(h)}<span className={`${size === 'sm' ? 'text-[10px]' : 'text-xs md:text-sm'} ml-1 opacity-80`}>h</span>
+
+        {/* Horas */}
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 md:w-14 md:h-14 bg-amber-400 rounded-full flex items-center justify-center shadow-lg ring-2 ring-amber-300">
+            <span className="text-gray-900 font-bold text-lg md:text-xl">{pad2(h)}</span>
+          </div>
+          <span className="text-xs md:text-sm text-white/80 mt-1 font-medium">Horas</span>
         </div>
-        <div className={`${emphasis ? 'bg-accent-600 text-white' : 'bg-white/10 text-white'} rounded-lg ${size === 'sm' ? 'px-2 py-1 text-base' : 'px-3 py-2 text-lg md:text-2xl'}`}>
-          {pad2(m)}<span className={`${size === 'sm' ? 'text-[10px]' : 'text-xs md:text-sm'} ml-1 opacity-80`}>m</span>
+
+        {/* Minutos */}
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 md:w-14 md:h-14 bg-amber-400 rounded-full flex items-center justify-center shadow-lg ring-2 ring-amber-300">
+            <span className="text-gray-900 font-bold text-lg md:text-xl">{pad2(m)}</span>
+          </div>
+          <span className="text-xs md:text-sm text-white/80 mt-1 font-medium">Minutos</span>
         </div>
-        <div className={`${emphasis ? 'bg-accent-600 text-white' : 'bg-white/10 text-white'} rounded-lg ${size === 'sm' ? 'px-2 py-1 text-base' : 'px-3 py-2 text-lg md:text-2xl'}`}>
-          {pad2(s)}<span className={`${size === 'sm' ? 'text-[10px]' : 'text-xs md:text-sm'} ml-1 opacity-80`}>s</span>
+
+        {/* Segundos */}
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 md:w-14 md:h-14 bg-amber-400 rounded-full flex items-center justify-center shadow-lg ring-2 ring-amber-300">
+            <span className="text-gray-900 font-bold text-lg md:text-xl">{pad2(s)}</span>
+          </div>
+          <span className="text-xs md:text-sm text-white/80 mt-1 font-medium">Segundos</span>
         </div>
       </div>
     </div>

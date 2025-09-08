@@ -222,3 +222,40 @@
   .pg-mobile-dyn.pg-mobile-effect.pg-touching .proof-swiper .swiper-slide .slide-inner { transition:none !important; }
   }
 }
+
+/* Testimonials pagination bullets */
+.proof-swiper .swiper-pagination {
+  bottom: -1.5rem !important;
+}
+
+.proof-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.proof-swiper .swiper-pagination-bullet-active {
+  background: #0891b2;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.proof-swiper .swiper-pagination-bullet-active-main {
+  background: #0891b2;
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.proof-swiper .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):not(.swiper-pagination-bullet-active-main) {
+  opacity: 0.3;
+}
+
+/* Testimonials carousel variables (igual que ProofGallery) */
+.testimonials-swiper {
+  --pg-active-scale: 1.06;
+  --pg-side-scale: 0.66;
+  --pg-side-shift: 30%;
+  --pg-side-shift-max: 55%;
+}

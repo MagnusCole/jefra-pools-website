@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { A11y, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { WHATSAPP_PHONE } from '../config/contact';
+import { trackLead } from '../utils/tracking';
 
 type Slide = {
   title: string;
@@ -98,8 +98,15 @@ const OtrosServicios: React.FC = React.memo(() => {
   const [active, setActive] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
+  const handleFormRedirect = useCallback(() => {
+    document.getElementById('contacto')?.scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+    trackLead('final-cta');
+  }, []);
+
   return (
-    <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50">
+    <section id="otros-servicios" aria-labelledby="otros-servicios-title" className="py-6 bg-gray-50" style={{ display: 'none' }}>
       <div className="container-custom">
         {/* Sección de otros servicios */}
         <div className="text-center mb-6">
@@ -157,7 +164,7 @@ const OtrosServicios: React.FC = React.memo(() => {
                       )}
                     <div className="flex items-center gap-3">
                       <button
-                        onClick={() => handleWhatsAppClickInner(s)}
+                        onClick={handleFormRedirect}
                         className="w-full md:inline-flex mt-3 md:mt-0 items-center justify-center px-4 py-2 rounded-lg bg-amber-400 text-gray-900 text-sm font-semibold shadow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition uppercase"
                         aria-label={`Quiero mi piscina saludable - ${s.title}`}
                       >
@@ -202,13 +209,6 @@ const OtrosServicios: React.FC = React.memo(() => {
     </section>
   );
 });
-
-// Shared WhatsApp handler (usa mensaje personalizado si existe, si no uno genérico con el título)
-const handleWhatsAppClickInner = (slide: Slide) => {
-  const phone = WHATSAPP_PHONE;
-  const message = slide.whatsappMessage ?? `Hola JefraPools, quiero reservar gratis ahora para: ${slide.title}`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
-};
 
 OtrosServicios.displayName = 'OtrosServicios';
 export default OtrosServicios;

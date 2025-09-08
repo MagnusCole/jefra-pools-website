@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { A11y, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import VideoOverlay from './VideoOverlay';
 
 // Minimal proof gallery using public/images assets with captions
 const images: { src: string; caption: string }[] = [
@@ -193,17 +194,18 @@ const ProofGallery: React.FC = React.memo(() => {
   const few = images.length < 3;
 
   return (
-    <section id="trabajos" aria-labelledby="proof-title" className="py-16 bg-white">
-      <div className="container-custom">
+    <section id="trabajos" aria-labelledby="proof-title" className="relative pt-8 pb-16 bg-primary-600 overflow-hidden">
+      <VideoOverlay />
+      <div className="relative z-10 container-custom">
         <div className="text-center mb-8">
-          <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-gray-900">
-            Resultados reales
+          <h2 id="proof-title" className="text-3xl md:text-4xl font-black text-white">
+            ¿Aún dudas? 🤔
           </h2>
-          <p className="text-gray-600 mt-2">Trabajos reales de esta semana en La Molina, Surco y San Borja.</p>
+          <p className="text-white/90 mt-2">Mira nuestros resultados</p>
         </div>
 
-        {/* Bloque videos antes / después (adaptativo orientación) */}
-        <div className="mb-8 max-w-4xl mx-auto">
+        {/* Bloque videos antes / después (adaptativo orientación) - OCULTADO TEMPORALMENTE */}
+        <div className="hidden mb-8 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="flex flex-col items-center">
               <AdaptiveVideo src="/videos/antes.mp4" poster="/pool.png" borderClass="border-sky-100" />
@@ -216,13 +218,13 @@ const ProofGallery: React.FC = React.memo(() => {
           </div>
         </div>
 
-  <div ref={wrapperRef} className={`proof-swiper-wrapper ${few ? 'few' : ''} relative pg-mobile-effect`}>
+        <div ref={wrapperRef} className={`proof-swiper-wrapper ${few ? 'few' : ''} relative pg-mobile-effect`}>
           {/* Arrows (desktop) */}
           <button
             type="button"
             aria-label="Anterior"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 left-2 w-11 h-11 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_10px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_16px_4px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 left-2 w-11 h-11 items-center justify-center rounded-full bg-white text-primary-600 shadow-[0_0_10px_2px_rgba(255,255,255,0.55)] hover:bg-gray-100 hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -230,7 +232,7 @@ const ProofGallery: React.FC = React.memo(() => {
             type="button"
             aria-label="Siguiente"
             onClick={() => swiperRef.current?.slideNext()}
-            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 right-2 w-11 h-11 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_0_10px_2px_rgba(14,165,233,0.55)] hover:bg-primary-600 hover:shadow-[0_0_16px_4px_rgba(14,165,233,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
+            className="hidden md:flex z-20 absolute top-1/2 -translate-y-1/2 right-2 w-11 h-11 items-center justify-center rounded-full bg-white text-primary-600 shadow-[0_0_10px_2px_rgba(255,255,255,0.55)] hover:bg-gray-100 hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.65)] transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
           >
             <span aria-hidden="true">›</span>
           </button>
@@ -272,7 +274,7 @@ const ProofGallery: React.FC = React.memo(() => {
                       className="absolute inset-0 w-full h-full object-cover"
                       sizes="(max-width:640px) 75vw, (max-width:1024px) 45vw, 30vw"
                     />
-                    <figcaption className="pg-caption text-[11px] sm:text-xs">
+                    <figcaption className="pg-caption text-[11px] sm:text-xs text-white font-semibold bg-black/60 px-2 py-1 rounded">
                       {img.caption}
                     </figcaption>
                   </figure>
@@ -283,7 +285,7 @@ const ProofGallery: React.FC = React.memo(() => {
         </div>
         {open !== null && (
           <div
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
             role="dialog"
             aria-modal="true"
             aria-label="Imagen ampliada"

@@ -6,23 +6,13 @@ import { Helmet } from 'react-helmet-async';
 import Benefits from './components/Benefits';
 import FAQ from './components/FAQ';
 import HeroFunnel from './components/HeroFunnel';
-import MidCTA from './components/MidCTA';
 import Process from './components/Process';
-
-//whatsapp icon import
-import { FaWhatsapp } from 'react-icons/fa';
-
-// Utils imports
-import { trackLead, type LeadSource } from './utils/tracking';
+import ContactForm from './components/ContactForm';
 
 // Lazy loaded components for performance optimization
 const ProofGallery = lazy(() => import('./components/ProofGallery'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
 const OtrosServicios = lazy(() => import('./components/OtrosServicios'));
-
-// Constants for WhatsApp integration
-import { WHATSAPP_MESSAGE_DEFAULT, WHATSAPP_PHONE } from './config/contact';
-const WHATSAPP_MESSAGE = WHATSAPP_MESSAGE_DEFAULT;
 
 /**
  * Main App Component
@@ -30,15 +20,6 @@ const WHATSAPP_MESSAGE = WHATSAPP_MESSAGE_DEFAULT;
  * Optimized for conversion: visitor → WhatsApp lead
  */
 function App() {
-  // Handle WhatsApp contact action
-  const handleWhatsAppContact = (source: LeadSource) => {
-    window.open(
-      `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, 
-      '_blank', 
-      'noopener,noreferrer'
-    );
-    trackLead(source);
-  };
 
   return (
     <div className="App">
@@ -76,11 +57,11 @@ function App() {
         {/* Hero Section - First impression and main CTA */}
         <HeroFunnel />
         
-        {/* Process Section - How we work */}
-        <Process />
-        
         {/* Benefits Section - Why choose us */}
         <Benefits />
+        
+        {/* Process Section - How we work */}
+        <Process />
 
         {/* Other Services Carousel - Complementary offerings */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando servicios…</div>}>
@@ -92,9 +73,6 @@ function App() {
           <ProofGallery />
         </Suspense>
         
-        {/* Mid-page CTA - Second conversion opportunity */}
-        <MidCTA />
-        
         {/* Testimonials - Social proof (lazy loaded) */}
         <Suspense fallback={<div className="container-custom py-8 text-center text-gray-500">Cargando testimonios…</div>}>
           <Testimonials />
@@ -103,24 +81,16 @@ function App() {
         {/* FAQ Section - Address objections */}
         <FAQ />
 
-        {/* Final CTA Section - Last conversion opportunity */}
-        <section aria-labelledby="final-cta-title" className="py-10 bg-white">
-          <div className="container-custom text-center">
-            <h2 id="final-cta-title" className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
-              Agenda tu inspección sin costo
+        {/* Contact Section */}
+        <section id="contacto" className="py-20 bg-gray-50">
+          <div className="container-custom">
+            <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
+              Solicita tu Consulta Gratuita
             </h2>
-            <p className="text-gray-600">La Molina y alrededores • Respuesta en minutos</p>
-            <p className="text-gray-700 text-lg mt-1 mb-5">
-              Recupera tu tiempo y disfruta tu piscina sin preocupaciones.
+            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+              Completa el formulario y nos pondremos en contacto contigo en minutos.
             </p>
-            <button
-              onClick={() => handleWhatsAppContact('final-cta')}
-              className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
-              aria-label="RESERVA GRATIS AHORA"
-            >
-              RESERVA GRATIS AHORA
-              <FaWhatsapp className="inline-block ml-2" />
-            </button>
+            <ContactForm />
           </div>
         </section>
       </main>

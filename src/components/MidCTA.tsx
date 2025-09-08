@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
-import { WHATSAPP_PHONE } from '../config/contact';
 import { trackLead } from '../utils/tracking';
 import VideoOverlay from './VideoOverlay';
-import { FaWhatsapp } from 'react-icons/fa';
 
 const MidCTA: React.FC = React.memo(() => {
-  const handleClick = useCallback(() => {
-  const msg = '¡Hola Jefra Pools! Quiero agendar mi visita técnica GRATIS + 1 limpieza extra para mantenimiento.';
-  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-  trackLead('mid-cta');
+  const handleFormRedirect = useCallback(() => {
+    document.getElementById('contacto')?.scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+    trackLead('mid-cta');
   }, []);
 
   return (
@@ -20,12 +19,11 @@ const MidCTA: React.FC = React.memo(() => {
         </h2>
         <p className="opacity-90 mb-5">Reserva sin compromiso • Respuesta en minutos</p>
         <button
-          onClick={handleClick}
+          onClick={handleFormRedirect}
           className="inline-flex items-center justify-center px-9 py-5 rounded-2xl bg-amber-400 text-gray-900 font-extrabold shadow-[0_10px_25px_rgba(245,158,11,0.45)] hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition min-h-[56px] text-xl"
           aria-label="RESERVA GRATIS AHORA"
         >
           RESERVA GRATIS AHORA
-          <FaWhatsapp className="inline-block ml-2" />
         </button>
       </div>
     </section>
