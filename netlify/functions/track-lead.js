@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
 
     console.log('Parsing request body...');
     const data = JSON.parse(event.body);
-    const { name, email, phone, district, message } = data;
+    const { name, email, phone, district, message, value, currency } = data;
 
     // Validar datos requeridos
     if (!name || !email) {
@@ -92,6 +92,8 @@ exports.handler = async (event, context) => {
             content_name: 'Lead Real - Formulario Contacto',
             district: district || '',
             message: message || '',
+            value: value || 0, // Valor del lead (requerido por Facebook)
+            currency: currency || 'PEN' // Divisa (requerido por Facebook)
           },
           test_event_code: testEventCode,
         },

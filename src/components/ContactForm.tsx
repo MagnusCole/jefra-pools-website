@@ -50,6 +50,8 @@ const ContactForm: React.FC = () => {
           phone: formData.get('phone') as string,
           district: formData.get('district') as string,
           message: formData.get('message') as string,
+          value: 0, // Valor estimado del lead
+          currency: 'PEN' // Moneda peruana
         };
 
         fetch('/.netlify/functions/track-lead', {
