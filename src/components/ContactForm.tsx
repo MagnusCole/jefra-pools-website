@@ -35,13 +35,28 @@ const ContactForm: React.FC = () => {
       });
 
       if (response.ok) {
-        // ✅ Éxito: Disparar evento de Lead en Meta
+        // ✅ Éxito: Disparar evento de Lead en Meta (cliente)
         trackLead('contact-form', {
           content_name: 'Lead Real - Formulario Contacto Jefra Pools',
           content_category: 'Servicio Limpieza Piscinas',
           value: 0,
           currency: 'PEN'
         });
+
+        // Enviar evento del servidor a Facebook
+        const serverData = {
+          name: formData.get('name') as string,
+          email: formData.get('email') as string,
+          phone: formData.get('phone') as string,
+          district: formData.get('district') as string,
+          message: formData.get('message') as string,
+        };
+
+        fetch('/.netlify/functions/track-lead', {
+          method: 'POST',
+          body: JSON.stringify(serverData),
+          headers: { 'Content-Type': 'application/json' },
+        }).catch((error) => console.error('Error sending server event:', error));
 
         // Limpiar formulario
         formRef.current.reset();
