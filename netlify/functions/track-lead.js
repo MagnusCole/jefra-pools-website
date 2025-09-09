@@ -68,7 +68,8 @@ exports.handler = async (event, context) => {
     };
 
     const pixelId = '712815701724579'; // Your pixel ID
-    const testEventCode = 'TEST6009'; // Test code from Facebook
+    // Removido test_event_code para producción
+    // const testEventCode = 'TEST6009'; // Test code from Facebook
 
     // Construir user_data de forma segura
     const userData = {};
@@ -94,8 +95,8 @@ exports.handler = async (event, context) => {
             message: message || '',
             value: value || 0, // Valor del lead (requerido por Facebook)
             currency: currency || 'PEN' // Divisa (requerido por Facebook)
-          },
-          test_event_code: testEventCode,
+          }
+          // Removido test_event_code para producción
         },
       ],
     };
