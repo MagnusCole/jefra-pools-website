@@ -20,7 +20,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
   # CSP ajustada: se añade data: a font-src para permitir fuentes embebidas (woff base64) evitando el bloqueo visto en producción.
   # Mantener lo más restrictiva posible preservando funcionalidades (GA, Meta Pixel, fuentes Google, imágenes externas seguras).
-  Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.facebook.com; connect-src 'self' https://docs.google.com https://www.facebook.com https://connect.facebook.net https://formspree.io;"
+  Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.facebook.com; connect-src 'self' https://docs.google.com https://www.facebook.com https://connect.facebook.net https://formspree.io/f/mnnblegn;"
 
 [[headers]]
   for = "/assets/*"
