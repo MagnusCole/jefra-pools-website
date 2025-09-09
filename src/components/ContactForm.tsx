@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { trackLead } from '../utils/tracking';
 
 const LIMA_DISTRICTS = [
   'Ancón', 'Ate', 'Barranco', 'Breña', 'Carabayllo', 'Chaclacayo',
@@ -14,10 +15,52 @@ const LIMA_DISTRICTS = [
 ];
 
 const ContactForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    const formData = new FormData(formRef.current);
+
+    try {
+      // Enviar a Formspree
+      const response = await fetch('https://formspree.io/f/mnnblegn', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // ✅ Éxito: Disparar evento de Lead en Meta
+        trackLead('contact-form', {
+          content_name: 'Lead Real - Formulario Contacto Jefra Pools',
+          content_category: 'Servicio Limpieza Piscinas',
+          value: 0,
+          currency: 'PEN'
+        });
+
+        // Limpiar formulario
+        formRef.current.reset();
+
+        // Mensaje de éxito
+        alert('¡Gracias! Nos contactaremos contigo pronto.');
+      } else {
+        throw new Error('Error en el envío');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al enviar el formulario. Por favor intenta de nuevo.');
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
-      <form action="https://formspree.io/f/mnnblegn" method="POST">
+      <form ref={formRef} onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">Nombre</label>
           <input

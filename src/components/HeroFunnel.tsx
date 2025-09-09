@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { trackLead } from '../utils/tracking';
 import Countdown from './Countdown';
 
 // HeroFunnel: headline + urgency timer + single CTA (WhatsApp)
@@ -16,7 +15,7 @@ const HeroFunnel: React.FC = React.memo(() => {
     document.getElementById('contacto')?.scrollIntoView({ 
       behavior: 'smooth' 
     });
-    trackLead('hero');
+    // Solo scroll, sin evento de lead que genere costo
   }, []);
 
   return (

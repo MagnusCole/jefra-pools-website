@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { trackLead } from '../utils/tracking';
 import VideoOverlay from './VideoOverlay';
 
 const MidCTA: React.FC = React.memo(() => {
@@ -7,7 +6,7 @@ const MidCTA: React.FC = React.memo(() => {
     document.getElementById('contacto')?.scrollIntoView({ 
       behavior: 'smooth' 
     });
-    trackLead('mid-cta');
+    // Solo scroll, sin evento de lead que genere costo
   }, []);
 
   return (

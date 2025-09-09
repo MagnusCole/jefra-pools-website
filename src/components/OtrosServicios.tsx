@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { A11y, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { trackLead } from '../utils/tracking';
 
 type Slide = {
   title: string;
@@ -102,7 +101,7 @@ const OtrosServicios: React.FC = React.memo(() => {
     document.getElementById('contacto')?.scrollIntoView({ 
       behavior: 'smooth' 
     });
-    trackLead('final-cta');
+    // Solo scroll, sin evento de lead que genere costo
   }, []);
 
   return (

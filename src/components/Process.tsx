@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
-import { trackLead } from '../utils/tracking';
 
 const Process: React.FC = React.memo(() => {
   const handleFormRedirect = useCallback(() => {
     document.getElementById('contacto')?.scrollIntoView({ 
       behavior: 'smooth' 
     });
-    trackLead('process-cta');
+    // Solo scroll, sin evento de lead que genere costo
   }, []);
 
   return (
