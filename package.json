@@ -30,7 +30,6 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "framer-motion": "^12.23.12",
-    "node-fetch": "^3.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-helmet-async": "^2.0.5",
