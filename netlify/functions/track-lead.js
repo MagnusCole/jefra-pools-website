@@ -59,12 +59,19 @@ exports.handler = async (event, context) => {
     }
 
     console.log('Processing lead data for:', name, email);
+    console.log('User data to hash:', { email: !!email, phone: !!phone, name: !!name });
+    console.log('Custom data:', { district, message, value, currency });
 
     // Hash user data for privacy (Facebook requires hashed data)
     const crypto = require('crypto');
     const hash = (data) => {
-      if (!data || typeof data !== 'string') return undefined;
-      return crypto.createHash('sha256').update(data.toLowerCase().trim()).digest('hex');
+      if (!data || typeof data !== 'string') {
+        console.log('Skipping hash for invalid data:', data);
+        return undefined;
+      }
+      const hashed = crypto.createHash('sha256').update(data.toLowerCase().trim()).digest('hex');
+      console.log('Hashed data:', data.substring(0, 3) + '...', '->', hashed.substring(0, 8) + '...');
+      return hashed;
     };
 
     const pixelId = '712815701724579'; // Your pixel ID
@@ -96,7 +103,6 @@ exports.handler = async (event, context) => {
             value: value || 0, // Valor del lead (requerido por Facebook)
             currency: currency || 'PEN' // Divisa (requerido por Facebook)
           }
-          // Removido test_event_code para producción
         },
       ],
     };
@@ -142,6 +148,7 @@ exports.handler = async (event, context) => {
       result = { message: 'Event sent but response parsing failed' };
     }
 
+    console.log('Track-lead function completed successfully');
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, result }),
