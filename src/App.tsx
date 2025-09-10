@@ -85,7 +85,7 @@ function App() {
         <section id="contacto" className="py-20 bg-gray-50">
           <div className="container-custom">
             <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
-              Solicita tu Consulta Gratuita
+              Agenda tu cita hoy mismo
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
               Completa el formulario y nos pondremos en contacto contigo en minutos.
